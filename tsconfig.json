@@ -1,0 +1,16 @@
+// tsconfig.json (Root file)
+{
+  "files": [], // Keep this if it was empty
+  "references": [ // Keep your existing references
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  // --- Add this compilerOptions block ---
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"] // Ensure './src/*' points to your source code directory
+    }
+  }
+  // --- End of added block ---
+}
