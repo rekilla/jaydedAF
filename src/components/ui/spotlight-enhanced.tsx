@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { motion } from "framer-motion";
 
 type SpotlightProps = {
@@ -29,6 +28,7 @@ export const Spotlight = ({
   xOffset = 80,
   flavorColorHex = "#FFD700",
   fadeInOut = true,
+  // @ts-ignore
   intensity = 0.15,
 }: SpotlightProps = {}) => {
   // Dynamic gradients based on flavor color with adjustable intensity

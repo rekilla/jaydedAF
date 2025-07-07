@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 // Removed Image from "next/image"
 import { cn } from "../../lib/utils"; // Revert to relative path

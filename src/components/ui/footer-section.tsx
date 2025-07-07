@@ -1,34 +1,19 @@
 "use client"
 
-import * as React from "react"
 import { Button } from "./button"; // Revert to relative path
 import { Input } from "./input"; // Revert to relative path
-import { Label } from "./label"; // Revert to relative path
-import { Switch } from "./switch"; // Revert to relative path
-import { Textarea } from "./textarea"; // Revert to relative path
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "./tooltip"; // Revert to relative path
-import { Facebook, Instagram, Linkedin, Moon, Send, Sun, Twitter } from "lucide-react";
+import { Facebook, Instagram, Send, Twitter } from "lucide-react";
 import { cn } from "../../lib/utils"; // Revert to relative path
 
 // Renamed component to avoid conflict if demo name is used elsewhere
 export function FooterSection() {
-  // Default dark mode based on system preference or saved state (more robust)
-  // For simplicity, keeping the original state logic for now
-  const [isDarkMode, setIsDarkMode] = React.useState(true); // Default to dark as per brand
   // const [isChatOpen, setIsChatOpen] = React.useState(false); // Chat state not used
-
-  React.useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDarkMode]);
 
   // Use brand colors from Tailwind config
   const brandColors = {
