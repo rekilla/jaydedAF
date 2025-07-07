@@ -11,8 +11,8 @@ import { FooterSection } from './components/ui/footer-section'; // Import new fo
 
 // Import Page Components
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import CocktailsPage from './pages/CocktailsPage';
+
+
 import StoreLocatorPage from './pages/StoreLocatorPage';
 import ContactPage from './pages/ContactPage';
 // Import Individual Cocktail Pages
@@ -21,7 +21,44 @@ import LavenderPage from './pages/cocktails/LavenderPage';
 import CucumberPage from './pages/cocktails/CucumberPage';
 // Import Age Gate Modal
 import { AgeVerificationModal } from './components/AgeVerificationModal';
+import { BottleNexusLoader } from './components/BottleNexusLoader';
+import { CartProvider, useCart } from './contexts/CartContext';
+import { CartSidebar } from './components/CartSidebar';
 
+
+function AppContent() {
+  const { isCartOpen, closeCart } = useCart();
+  
+  return (
+    <>
+      {/* Apply base background and ensure full height */}
+      <div className="flex flex-col min-h-screen bg-brand-background text-brand-text">
+        <Header />
+        {/* Main content area grows to push footer down */}
+        <main className="flex-grow">
+          <Routes>
+            {/* Render all pages directly */}
+            <Route path="/" element={<HomePage />} />
+            
+            {/* Add routes for individual cocktail pages */}
+            <Route path="/cocktails/lemon-drop" element={<LemonDropPage />} />
+            <Route path="/cocktails/lavender" element={<LavenderPage />} />
+            <Route path="/cocktails/cucumber" element={<CucumberPage />} />
+            
+            <Route path="/store-locator" element={<StoreLocatorPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+
+            {/* TODO: Add a 404 Not Found route */}
+            {/* <Route path="*" element={<NotFoundPage />} /> */}
+          </Routes>
+        </main>
+        {/* Use the new FooterSection */}
+        <FooterSection />
+      </div>
+      <CartSidebar isOpen={isCartOpen} onClose={closeCart} />
+    </>
+  );
+}
 
 function App() {
   // State to track age verification
@@ -56,30 +93,10 @@ function App() {
   // Render the main app content if verified
   return (
     <Router>
-      {/* Apply base background and ensure full height */}
-      <div className="flex flex-col min-h-screen bg-brand-background text-brand-text">
-        <Header />
-        {/* Main content area grows to push footer down */}
-        <main className="flex-grow">
-          <Routes>
-            {/* Render all pages directly */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/cocktails" element={<CocktailsPage />} />
-            {/* Add routes for individual cocktail pages */}
-            <Route path="/cocktails/lemon-drop" element={<LemonDropPage />} />
-            <Route path="/cocktails/lavender" element={<LavenderPage />} />
-            <Route path="/cocktails/cucumber" element={<CucumberPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/store-locator" element={<StoreLocatorPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-
-            {/* TODO: Add a 404 Not Found route */}
-            {/* <Route path="*" element={<NotFoundPage />} /> */}
-          </Routes>
-        </main>
-        {/* Use the new FooterSection */}
-        <FooterSection />
-      </div>
+      <BottleNexusLoader />
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
     </Router>
   );
 }

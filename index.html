@@ -12,5 +12,20 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script type="text/javascript">
+      (function (currentScript) {
+        window.BottleNexus ? BottleNexusInit() : loadScript();
+        function loadScript() {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://buybutton.stagingbottlenexus.com/buybutton.min.js?v=1751046740211';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+          script.onload = BottleNexusInit;
+        }
+        function BottleNexusInit() {
+          BottleNexus.init();
+        }
+      })(document.currentScript);
+    </script>
   </body>
 </html>
