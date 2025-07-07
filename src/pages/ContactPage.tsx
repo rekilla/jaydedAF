@@ -4,7 +4,6 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Textarea } from '../components/ui/textarea';
 import { InView } from '../components/ui/in-view';
-import { cn } from '../lib/utils';
 import { Mail, Phone, Facebook, Twitter, Instagram } from 'lucide-react'; // Import icons
 
 // --- Main Page Component ---

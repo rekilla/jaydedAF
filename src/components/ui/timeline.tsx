@@ -5,8 +5,6 @@ import {
   motion,
 } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
-// @ts-ignore
-import { cn } from "../../lib/utils"; // Correct relative path
 
 interface TimelineEntry {
   title: string;

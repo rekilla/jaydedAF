@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef } from "react"; // Added React import
-import { motion } from "framer-motion"; // Changed from motion/react
 import { cn } from "../../lib/utils"; // Revert to relative path
 
 interface AnimatedGradientBackgroundProps {
