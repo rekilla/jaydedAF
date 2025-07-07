@@ -6,12 +6,10 @@ interface AddToCartButtonProps {
   productId: number;
   productName: string;
   price: string;
-  onCartOpen?: () => void;
 }
 
 export const AddToCartButton: React.FC<AddToCartButtonProps> = ({ 
-  productId,
-  onCartOpen 
+  productId
 }) => {
   const [isLoading, setIsLoading] = useState(false);
 

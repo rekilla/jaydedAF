@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { InView } from '../../components/ui/in-view';
 import { BottleNexusButton } from '../../components/BottleNexusButton';
 import { Link } from 'react-router-dom';
 import { cn } from '../../lib/utils';
-import { ChevronLeft, ChevronRight, Play, Pause, X } from 'lucide-react';
+import { Play, X } from 'lucide-react';
 
 // Flavor Data
 const FLAVOR_NAME = "Lemon Drop";
@@ -77,7 +77,6 @@ const destinations = [
 
 const LemonDropPage: React.FC = () => {
   const [selectedScene, setSelectedScene] = useState<string | null>(null);
-  const [isHeroPlaying, setIsHeroPlaying] = useState(true);
   const { scrollY } = useScroll();
   
   // Parallax for hero

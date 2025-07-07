@@ -66,10 +66,9 @@ const products: Product[] = [
 // Custom Add to Cart Button Component
 const CustomAddToCartButton: React.FC<{
   productId: number;
-  productName: string;
   inStock?: boolean;
   colorHex: string;
-}> = ({ productId, productName, inStock = true, colorHex }) => {
+}> = ({ productId, inStock = true, colorHex }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddToCart = () => {
@@ -281,7 +280,6 @@ const ProductCard: React.FC<{
         {/* Visible Custom Button */}
         <CustomAddToCartButton 
           productId={product.bottleNexusId || product.id}
-          productName={product.name}
           inStock={product.inStock}
           colorHex={product.colorHex}
         />

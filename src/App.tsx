@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'; // Import hooks
+import { useState, useEffect } from 'react'; // Import hooks
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 
 // Import Layout Components
 import Header from './components/Header';
-import Footer from './components/Footer'; // Keep old footer for now, will replace later
 import { FooterSection } from './components/ui/footer-section'; // Import new footer
 // Removed CombinedBackground import
 // import { CombinedBackground } from './components/ui/CombinedBackground';

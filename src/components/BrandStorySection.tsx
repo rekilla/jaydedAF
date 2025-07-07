@@ -45,11 +45,11 @@ export const BrandStorySection: React.FC = () => {
   useEffect(() => {
     const loadImages = async () => {
       const promises = storyPoints.map((point) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           const img = new Image();
           img.src = point.image;
           img.onload = resolve;
-          img.onerror = resolve; // Still resolve on error to prevent blocking
+          img.onerror = () => resolve(null);
         });
       });
       

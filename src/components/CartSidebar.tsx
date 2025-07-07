@@ -17,7 +17,7 @@ interface CartSidebarProps {
 }
 
 export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems] = useState<CartItem[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
   // Listen for BottleNexus cart events

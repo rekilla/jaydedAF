@@ -6,7 +6,7 @@ interface BottleNexusButtonProps {
   onCartOpen?: () => void;
 }
 
-export const BottleNexusButton: React.FC<BottleNexusButtonProps> = ({ id, onCartOpen }) => {
+export const BottleNexusButton: React.FC<BottleNexusButtonProps> = ({ id, onCartOpen: _onCartOpen }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scriptRef = useRef<HTMLScriptElement | null>(null);
 
