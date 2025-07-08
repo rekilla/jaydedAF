@@ -2,44 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-
-interface Store {
-  id: number;
-  name: string;
-  address: string;
-  city: string;
-  hours: string;
-  phone: string;
-  featured?: boolean;
-}
-
-const stores: Store[] = [
-  {
-    id: 1,
-    name: "Jayded AF Flagship",
-    address: "123 Luxury Avenue",
-    city: "New York, NY 10001",
-    hours: "Mon-Sat: 10am-9pm",
-    phone: "(212) 555-0100",
-    featured: true
-  },
-  {
-    id: 2,
-    name: "Beverly Hills Boutique",
-    address: "456 Rodeo Drive",
-    city: "Beverly Hills, CA 90210",
-    hours: "Mon-Sat: 10am-8pm",
-    phone: "(310) 555-0200"
-  },
-  {
-    id: 3,
-    name: "Miami Beach Location",
-    address: "789 Ocean Drive",
-    city: "Miami Beach, FL 33139",
-    hours: "Mon-Sun: 11am-10pm",
-    phone: "(305) 555-0300"
-  }
-];
+import { Link } from 'react-router-dom';
+import { locations, Location } from '../data/locations';
 
 // InView component placeholder
 const InView: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
@@ -47,7 +11,7 @@ const InView: React.FC<{ children: React.ReactNode; className?: string }> = ({ c
 };
 
 export const StoreLocatorSection: React.FC = () => {
-  const [selectedStore, setSelectedStore] = useState<Store>(stores[0]);
+  const [selectedStore, setSelectedStore] = useState<Location>(locations[0]);
   const [isMapHovered, setIsMapHovered] = useState(false);
 
   return (
@@ -73,7 +37,7 @@ export const StoreLocatorSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Side - Store List */}
           <div className="space-y-4">
-            {stores.map((store, index) => (
+            {locations.slice(0, 3).map((store, index) => (
               <motion.div
                 key={store.id}
                 className={`
@@ -109,9 +73,8 @@ export const StoreLocatorSection: React.FC = () => {
                       )}
                     </h3>
                     <p className="text-sm text-white/60 mb-1">{store.address}</p>
-                    <p className="text-sm text-white/60 mb-3">{store.city}</p>
                     <div className="space-y-1">
-                      <p className="text-xs text-white/40">{store.hours}</p>
+                      <p className="text-xs text-white/40">{store.hours ? `${store.hours.open} - ${store.hours.close}` : 'Hours not available'}</p>
                       <p className="text-xs text-white/40">{store.phone}</p>
                     </div>
                   </div>
@@ -126,30 +89,32 @@ export const StoreLocatorSection: React.FC = () => {
             ))}
             
             {/* View All Button */}
-            <motion.button
-              className="w-full py-3 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 font-light tracking-wider text-sm mt-6"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: 0.4 }}
-              style={{
-                transform: 'scale(1)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-              onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'scale(0.98)';
-              }}
-              onMouseUp={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)';
-              }}
-            >
-              VIEW ALL LOCATIONS
-            </motion.button>
+            <Link to="/store-locator" className="block w-full mt-6">
+              <motion.button
+                className="w-full py-3 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 font-light tracking-wider text-sm"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.4 }}
+                style={{
+                  transform: 'scale(1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.02)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+                onMouseDown={(e) => {
+                  e.currentTarget.style.transform = 'scale(0.98)';
+                }}
+                onMouseUp={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.02)';
+                }}
+              >
+                VIEW ALL LOCATIONS
+              </motion.button>
+            </Link>
           </div>
 
           {/* Right Side - Map Preview */}
@@ -190,7 +155,7 @@ export const StoreLocatorSection: React.FC = () => {
                 {selectedStore.name}
               </h4>
               <p className="text-sm text-white/60">
-                {selectedStore.address}, {selectedStore.city}
+                {selectedStore.address}
               </p>
               <button className="mt-3 text-xs text-[#D4AF37] hover:text-[#F4E4A0] transition-colors">
                 Get Directions →

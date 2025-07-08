@@ -40,7 +40,7 @@ export function InView({
   transition = defaultTransition,
   viewOptions = { once: true, margin: "0px 0px -10% 0px" },
   className,
-  as: Component = 'div', // Destructure 'as', default to 'div'
+  as: Component = 'section', // Destructure 'as', default to 'section'
   ...rest // Capture remaining props
 }: PolymorphicInViewProps) { // Use the polymorphic type
   const ref = useRef(null);

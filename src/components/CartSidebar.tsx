@@ -1,15 +1,8 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Minus, ShoppingBag, Lock, CreditCard, Truck } from 'lucide-react';
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
+import { useCart } from '../contexts/CartContext';
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -17,18 +10,8 @@ interface CartSidebarProps {
 }
 
 export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => {
-  const [cartItems] = useState<CartItem[]>([]);
+  const { cartItems } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
-
-  // Listen for BottleNexus cart events
-  useEffect(() => {
-    const handleCartUpdate = (event: any) => {
-      console.log('Cart updated:', event);
-    };
-
-    window.addEventListener('bottlenexus:cart:updated', handleCartUpdate);
-    return () => window.removeEventListener('bottlenexus:cart:updated', handleCartUpdate);
-  }, []);
 
   const handleCheckout = async () => {
     setIsProcessing(true);

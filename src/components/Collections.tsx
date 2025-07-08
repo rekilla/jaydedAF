@@ -4,153 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BottleNexusButton } from './BottleNexusButton';
 import { useCart } from '../contexts/CartContext';
-
-// Product data type
-interface Product {
-  id: number;
-  name: string;
-  subtitle: string;
-  description: string;
-  price: string;
-  bottleImage: string;
-  lifestyleImage: string;
-  colorHex: string;
-  colorClass: string;
-  bottleNexusId?: number;
-  inStock?: boolean;
-}
-
-// Products data
-const products: Product[] = [
-  {
-    id: 1,
-    name: "LEMON DROP",
-    subtitle: "COCKTAIL",
-    description: "A vibrant twist on a classic. Sharp lemon zest meets smooth gin.",
-    price: "$24.99",
-    bottleImage: "/Leamon_Bottle_Render.png",
-    lifestyleImage: "/asc.jpg",
-    colorHex: "#FFD700",
-    colorClass: "from-yellow-600/20 to-yellow-400/5",
-    bottleNexusId: 47035,
-    inStock: true
-  },
-  {
-    id: 2,
-    name: "LAVENDER",
-    subtitle: "COCKTAIL", 
-    description: "Smooth gin infused with lavender botanicals for a calming experience.",
-    price: "$24.99",
-    bottleImage: "/Lavender_Bottle_Render.png",
-    lifestyleImage: "/asc.jpg",
-    colorHex: "#8A2BE2",
-    colorClass: "from-purple-600/20 to-purple-400/5",
-    bottleNexusId: 47036,
-    inStock: true
-  },
-  {
-    id: 3,
-    name: "LAXLY CUCUMBER",
-    subtitle: "COCKTAIL",
-    description: "Cool, crisp cucumber blended with premium gin for ultimate refreshment.",
-    price: "$24.99",
-    bottleImage: "/cucumber_Bottle_Render.png",
-    lifestyleImage: "/asc.jpg",
-    colorHex: "#2FAF7D",
-    colorClass: "from-emerald-600/20 to-emerald-400/5",
-    bottleNexusId: 47037,
-    inStock: true
-  }
-];
-
-// Custom Add to Cart Button Component
-const CustomAddToCartButton: React.FC<{
-  productId: number;
-  inStock?: boolean;
-  colorHex: string;
-}> = ({ productId, inStock = true, colorHex }) => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleAddToCart = () => {
-    if (!inStock) return;
-    
-    setIsLoading(true);
-    
-    // Find and click the hidden BottleNexus button
-    setTimeout(() => {
-      const bottleNexusContainer = document.querySelector(`[data-bottlenexus-id="${productId}"]`);
-      if (bottleNexusContainer) {
-        const iframe = bottleNexusContainer.querySelector('iframe');
-        if (iframe) {
-          // Try to click the button inside the iframe
-          try {
-            const iframeDoc = (iframe as HTMLIFrameElement).contentDocument;
-            if (iframeDoc) {
-              const button = iframeDoc.querySelector('button');
-              if (button) {
-                button.click();
-              }
-            }
-          } catch (e) {
-            // If cross-origin, try clicking the iframe itself
-            iframe.click();
-          }
-        }
-      }
-      
-      setTimeout(() => setIsLoading(false), 500);
-    }, 100);
-  };
-
-  if (!inStock) {
-    return (
-      <button
-        disabled
-        className="px-8 py-3 border border-white/20 text-white/40 
-                   uppercase tracking-wider text-sm font-light
-                   cursor-not-allowed"
-      >
-        Out of Stock
-      </button>
-    );
-  }
-
-  return (
-    <motion.button
-      onClick={handleAddToCart}
-      disabled={isLoading}
-      className="relative px-8 py-3 border border-white/80 text-white
-                 hover:border-[#faed23] hover:text-[#faed23]
-                 transition-all duration-300
-                 uppercase tracking-wider text-sm font-light group
-                 overflow-hidden"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      style={{
-        boxShadow: `0 0 20px ${colorHex}10`
-      }}
-    >
-      <span className={`relative z-10 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        Add to Cart
-      </span>
-      
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center z-10">
-          <div className="w-5 h-5 border-2 border-[#faed23] border-t-transparent 
-                          rounded-full animate-spin" />
-        </div>
-      )}
-      
-      {/* Animated fill background */}
-      <motion.div 
-        className="absolute inset-0 bg-[#faed23]"
-        initial={{ y: "100%" }}
-        whileHover={{ y: 0 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-      />
-    </motion.button>
-  );
-};
+import { BottleNexusProvider } from '../contexts/BottleNexusContext';
+import { products, Product } from '../data/products';
+import { CustomAddToCartButton } from './CustomAddToCartButton';
 
 // Image preloader hook
 const useImagePreloader = (imageUrls: string[]) => {
@@ -315,50 +171,52 @@ export const LuxuryCollectionSection: React.FC = () => {
   };
 
   return (
-    <section className="relative py-20 sm:py-24 pb-32 bg-[#1a1a1a] overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
-      <InView className="relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px]">
-          <div className="text-center mb-16">
-            <motion.h2 
-              className="text-4xl sm:text-5xl font-light tracking-wider text-white mb-4"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              The Collection
-            </motion.h2>
-            <motion.p 
-              className="text-lg text-white/60 max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Choose your expression of liquid opulence
-            </motion.p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
-            {products.map((product, index) => (
-              <motion.div
-                key={product.id}
-                custom={index}
-                variants={cardVariants}
-                initial="initial"
-                animate="visible"
+    <BottleNexusProvider>
+      <section className="relative py-20 sm:py-24 pb-32 bg-[#1a1a1a] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
+        <InView className="relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px]">
+            <div className="text-center mb-16">
+              <motion.h2 
+                className="text-4xl sm:text-5xl font-light tracking-wider text-white mb-4"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
               >
-                <ProductCard
-                  product={product}
-                  onImageHover={() => setHoveredProductId(product.id)}
-                  onImageLeave={() => setHoveredProductId(null)}
-                  isDimmed={hoveredProductId !== null && hoveredProductId !== product.id}
-                />
-              </motion.div>
-            ))}
+                The Collection
+              </motion.h2>
+              <motion.p 
+                className="text-lg text-white/60 max-w-2xl mx-auto"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                Choose your expression of liquid opulence
+              </motion.p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 pb-12">
+              {products.map((product, index) => (
+                <motion.div
+                  key={product.id}
+                  custom={index}
+                  variants={cardVariants}
+                  initial="initial"
+                  animate="visible"
+                >
+                  <ProductCard
+                    product={product}
+                    onImageHover={() => setHoveredProductId(product.id)}
+                    onImageLeave={() => setHoveredProductId(null)}
+                    isDimmed={hoveredProductId !== null && hoveredProductId !== product.id}
+                  />
+                </motion.div>
+              ))}
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        </div>
-      </InView>
-    </section>
+        </InView>
+      </section>
+    </BottleNexusProvider>
   );
 };
 

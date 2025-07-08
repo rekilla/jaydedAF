@@ -20,6 +20,8 @@ import LavenderPage from './pages/cocktails/LavenderPage';
 import CucumberPage from './pages/cocktails/CucumberPage';
 // Import Age Gate Modal
 import { AgeVerificationModal } from './components/AgeVerificationModal';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 import { BottleNexusLoader } from './components/BottleNexusLoader';
 import { CartProvider, useCart } from './contexts/CartContext';
 import { CartSidebar } from './components/CartSidebar';
@@ -46,6 +48,8 @@ function AppContent() {
             
             <Route path="/store-locator" element={<StoreLocatorPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
 
             {/* TODO: Add a 404 Not Found route */}
             {/* <Route path="*" element={<NotFoundPage />} /> */}

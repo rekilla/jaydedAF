@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TightGallery } from '../components/ui/interactive-bento-gallery';
+import { InteractiveBentoGallery } from '../components/ui/interactive-bento-gallery';
 import { InView } from '../components/ui/in-view';
 import type { MediaItemType } from '../components/ui/interactive-bento-gallery';
 import { ShimmerButton } from '../components/ui/shimmer-button';
@@ -77,7 +77,7 @@ const HomePage: React.FC = () => {
       {/* Section 6: Gallery */}
       <section className="py-16 sm:py-20">
          <InView viewOptions={{ once: true, margin: "0px 0px -20% 0px" }}>
-              <TightGallery
+              <InteractiveBentoGallery
                   mediaItems={galleryMediaItems}
                   title="Moments of Individuality"
                   description="Explore the essence of the Jayded AF lifestyle."
@@ -86,9 +86,9 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Section 7: New Wide Image Section */}
-       <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-16 sm:my-24">
+       <section className="my-16 sm:my-24">
            <InView>
-                <div className="aspect-[21/9] overflow-hidden rounded-lg shadow-xl bg-brand-dark/50">
+                <div className="aspect-[21/9] overflow-hidden bg-brand-dark/50">
                     <img src={WIDE_IMAGE_URL} alt="Jayded AF wide lifestyle" className="w-full h-full object-cover"/>
                 </div>
            </InView>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { InView } from '../../components/ui/in-view';
 import { BottleNexusButton } from '../../components/BottleNexusButton';
+import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
+import { BottleNexusProvider } from '../../contexts/BottleNexusContext';
 import { Link } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import { Play, X } from 'lucide-react';
@@ -83,10 +85,11 @@ const LavenderPage: React.FC = () => {
   const heroParallax = useTransform(scrollY, [0, 500], [0, 150]);
 
   return (
-    <main className="w-full bg-black text-brand-text overflow-x-hidden">
-      
-      {/* Hero Section with Video Background */}
-      <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
+    <BottleNexusProvider>
+      <main className="w-full bg-black text-brand-text overflow-x-hidden">
+        
+        {/* Hero Section with Video Background */}
+        <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
         <motion.div 
           style={{ y: heroParallax }}
           className="absolute inset-0 w-full h-full"
@@ -435,11 +438,17 @@ const LavenderPage: React.FC = () => {
           <p className="text-base sm:text-lg md:text-xl text-brand-text/80 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto">
             Limited availability. Unlimited possibilities.
           </p>
-          <div className="mb-6 sm:mb-8">
-            <BottleNexusButton id={47036} />
+          <div className="flex justify-center items-center flex-col sm:flex-row gap-4 mb-6 sm:mb-8">
+            <CustomAddToCartButton
+              productId={47036}
+              colorHex="#a78bfa"
+            />
+            <div className="hidden" data-bottlenexus-id={47036}>
+              <BottleNexusButton id={47036} />
+            </div>
           </div>
-          <Link 
-            to="/store-locator" 
+          <Link
+            to="/store-locator"
             className="text-sm sm:text-base text-brand-gold hover:text-brand-gold/80 transition-colors duration-200 inline-block"
           >
             Find a retailer near you →
@@ -478,7 +487,8 @@ const LavenderPage: React.FC = () => {
           </motion.div>
         </motion.div>
       )}
-    </main>
+      </main>
+    </BottleNexusProvider>
   );
 };
 

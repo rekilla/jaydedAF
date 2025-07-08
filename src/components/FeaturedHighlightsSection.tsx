@@ -22,8 +22,8 @@ const highlights: Highlight[] = [
   {
     id: 2,
     title: "Natural Flavors",
-    value: "Zero",
-    description: "Artificial ingredients in our cocktails",
+    value: "100%",
+    description: "Natural ingredients in our cocktails",
     icon: "🌿"
   },
   {

@@ -67,12 +67,6 @@ export function FooterSection() {
               <a href="/" className={cn("block transition-colors", `hover:text-${brandColors.primary}`)}>
                 Home
               </a>
-              <a href="/about" className={cn("block transition-colors", `hover:text-${brandColors.primary}`)}>
-                About Us
-              </a>
-              <a href="/cocktails" className={cn("block transition-colors", `hover:text-${brandColors.primary}`)}>
-                Cocktails
-              </a>
               <a href="/store-locator" className={cn("block transition-colors", `hover:text-${brandColors.primary}`)}>
                 Store Locator
               </a>
@@ -101,28 +95,34 @@ export function FooterSection() {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
+                    <a href="#" aria-label="Facebook">
                     <Button variant="outline" size="icon" className="rounded-full border-brand-text/30 hover:border-brand-gold hover:bg-brand-gold/10">
                       <Facebook className="h-4 w-4" />
                       <span className="sr-only">Facebook</span>
                     </Button>
+                    </a>
                   </TooltipTrigger>
                   <TooltipContent><p>Follow us on Facebook</p></TooltipContent>
                 </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
+                    <a href="#" aria-label="Twitter">
                     <Button variant="outline" size="icon" className="rounded-full border-brand-text/30 hover:border-brand-gold hover:bg-brand-gold/10">
                       <Twitter className="h-4 w-4" />
                       <span className="sr-only">Twitter</span>
                     </Button>
+                    </a>
                   </TooltipTrigger>
                   <TooltipContent><p>Follow us on Twitter</p></TooltipContent>
                 </Tooltip>
                  <Tooltip>
                   <TooltipTrigger asChild>
+                    <a href="#" aria-label="Instagram">
                     <Button variant="outline" size="icon" className="rounded-full border-brand-text/30 hover:border-brand-gold hover:bg-brand-gold/10">
                       <Instagram className="h-4 w-4" />
                       <span className="sr-only">Instagram</span>
                     </Button>
+                    </a>
                   </TooltipTrigger>
                   <TooltipContent><p>Follow us on Instagram</p></TooltipContent>
                 </Tooltip>
@@ -151,10 +151,10 @@ export function FooterSection() {
             &copy; {new Date().getFullYear()} Jayded AF Cocktails. All rights reserved. {/* Updated company name */}
           </p>
           <nav className="flex gap-4 text-sm">
-            <a href="#" className={cn("transition-colors", `hover:text-${brandColors.primary}`)}>
+            <a href="/privacy-policy" className={cn("transition-colors", `hover:text-${brandColors.primary}`)}>
               Privacy Policy
             </a>
-            <a href="#" className={cn("transition-colors", `hover:text-${brandColors.primary}`)}>
+            <a href="/terms-of-service" className={cn("transition-colors", `hover:text-${brandColors.primary}`)}>
               Terms of Service
             </a>
             {/* <a href="#" className={cn("transition-colors", `hover:text-${brandColors.primary}`)}>

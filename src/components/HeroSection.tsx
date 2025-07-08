@@ -110,7 +110,7 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+<div className="relative min-h-[105vh] w-full overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
       
       {/* Epic Luxury Spotlight */}
       <Spotlight 
@@ -180,7 +180,7 @@ const HeroSection: React.FC = () => {
                             
                             <motion.h1
                               variants={itemVariants}
-                              className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight leading-none ${text}`}
+                              className={`pb-2 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight leading-none ${text}`}
                               style={{
                                 textShadow: `0 0 40px ${currentFlavor.colorHex}30`
                               }}
@@ -317,7 +317,7 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Flavor Selector - Part of hero section at bottom */}
-<div className="relative pb-8 sm:pb-6 md:pb-8 px-4">
+<div className="relative pb-12 sm:pb-10 md:pb-12 px-4">
           <div className="flex justify-center">
             <div className="scale-[1.6] origin-bottom">
               <FlavorSelector

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { useBottleNexus } from '../contexts/BottleNexusContext';
 
 interface BottleNexusButtonProps {
   id: number;
@@ -8,91 +9,75 @@ interface BottleNexusButtonProps {
 
 export const BottleNexusButton: React.FC<BottleNexusButtonProps> = ({ id, onCartOpen: _onCartOpen }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scriptRef = useRef<HTMLScriptElement | null>(null);
+  const { instance, isInitialized } = useBottleNexus();
 
+  // Effect to create the hidden Bottle Nexus button
   useEffect(() => {
-    const initializeButton = () => {
-      if (!containerRef.current) return;
-      
-      if (!(window as any).BottleNexus) {
-        setTimeout(initializeButton, 100);
-        return;
-      }
+    if (!isInitialized || !instance || !containerRef.current) {
+      return;
+    }
 
+    // Only create the component if the container is empty
+    if (containerRef.current.innerHTML === '') {
       try {
-        // Create a script tag inside the container to act as currentScript
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.textContent = `
-          (function() {
-            var currentScript = document.currentScript;
-            var instance = window.BottleNexus.init();
-            
-            // Store instance for later use
-            window.BottleNexusInstance = instance;
-            
-            instance.createComponent({
-              currentScript: currentScript,
-              token: "1955e908-edcb-11ee-bf2c-0242ac110002",
-              id: ${id},
-              options: {
-                iframe: true,
-                layout: "basic",
-                behavior: "sidebar",
-                buttonText: "ADD TO CART",
-                cartCheckoutText: "CHECKOUT",
-                utm: { source: "BuyButton" }
-              }
-            });
-            
-            // Debug: Log when button is created
-            console.log('BottleNexus button created for product ${id}');
-            
-            // Listen for add to cart events
-            if (instance.cart) {
-              instance.cart.on('add', function(event) {
-                console.log('Product added to cart:', event);
-                window.dispatchEvent(new CustomEvent('bottlenexus:cart:add', { detail: event }));
-              });
-              
-              instance.cart.on('open', function() {
-                console.log('Cart opened');
-                window.dispatchEvent(new CustomEvent('bottlenexus:cart:open'));
-              });
-              
-              instance.cart.on('update', function(cart) {
-                console.log('Cart updated:', cart);
-                window.dispatchEvent(new CustomEvent('bottlenexus:cart:update', { detail: cart }));
-              });
-            }
-          })();
-        `;
-        
-        containerRef.current.appendChild(script);
-        scriptRef.current = script;
-        
-        console.log(`BottleNexus button initialized for product ${id}`);
+        instance.createComponent({
+          currentScript: containerRef.current,
+          token: "1955e908-edcb-11ee-bf2c-0242ac110002",
+          id: id,
+          options: {
+            iframe: true,
+            layout: "basic",
+            behavior: "none", // We handle the cart opening ourselves
+            buttonText: "ADD TO CART", // This text won't be visible
+          },
+        });
+        console.log(`Hidden BottleNexus button created for product ${id}`);
       } catch (e) {
         console.error(`Failed to create BottleNexus button for id: ${id}`, e);
       }
-    };
+    }
+  }, [id, isInitialized, instance]);
 
-    // Start initialization
-    const timer = setTimeout(initializeButton, 1000);
-
-    return () => {
-      clearTimeout(timer);
-      if (scriptRef.current && scriptRef.current.parentNode) {
-        scriptRef.current.remove();
+  // Function for our custom button to trigger the hidden one
+  const handleCustomClick = () => {
+    if (containerRef.current) {
+      const iframe = containerRef.current.querySelector('iframe');
+      if (iframe && iframe.contentWindow) {
+        const buttonInIframe = iframe.contentWindow.document.querySelector('.shopify-buy__btn');
+        if (buttonInIframe) {
+          (buttonInIframe as HTMLElement).click();
+        } else {
+          console.error("Bottle Nexus button not found inside iframe. It might not have loaded yet.");
+        }
+      } else {
+        console.error("Bottle Nexus iframe not found.");
       }
-    };
-  }, [id]);
+    }
+  };
 
   return (
-    <div 
-      ref={containerRef} 
-      className="bottle-nexus-button-container"
-      data-product-id={id}
-    />
+    <div className="bottle-nexus-wrapper w-full max-w-xs mx-auto">
+      {/* This is OUR button. It is fully styled and visible. */}
+      <button
+        onClick={handleCustomClick}
+        className="w-full py-3 border border-[#D4AF37] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 font-light tracking-wider text-sm"
+      >
+        ADD TO CART
+      </button>
+
+      {/* This is the REAL Bottle Nexus button. It is hidden from view. */}
+      <div 
+        ref={containerRef} 
+        style={{
+          position: 'absolute',
+          top: '-9999px',
+          left: '-9999px',
+          opacity: 0,
+          pointerEvents: 'none' // Ensures it can't be accidentally clicked
+        }}
+        data-product-id={id}
+        aria-hidden="true"
+      />
+    </div>
   );
 };
