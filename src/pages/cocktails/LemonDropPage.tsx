@@ -1,492 +1,396 @@
-import React, { useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { InView } from '../../components/ui/in-view';
-import { BottleNexusButton } from '../../components/BottleNexusButton';
-import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
-import { BottleNexusProvider } from '../../contexts/BottleNexusContext';
-import { Link } from 'react-router-dom';
-import { cn } from '../../lib/utils';
-import { Play, X } from 'lucide-react';
+import React, { useState, useMemo, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Mock components for demonstration - replace with your actual imports
+const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; className?: string }> = ({ children, as = 'div', className = '', ...props }) => {
+  const Component = as;
+  return <Component className={className} {...props}>{children}</Component>;
+};
+
+const BottleNexusButton: React.FC<{ id: number }> = ({ id }) => (
+  <button className="px-4 sm:px-6 py-2 sm:py-3 bg-brand-gold text-black font-semibold rounded-lg hover:bg-brand-gold/90 transition-colors text-sm sm:text-base">
+    Quick Order
+  </button>
+);
+
+const CustomAddToCartButton: React.FC<{ productId: number; colorHex: string }> = ({ productId, colorHex }) => (
+  <button 
+    className="px-6 sm:px-8 py-3 sm:py-4 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-500 transition-colors text-sm sm:text-base"
+    style={{ backgroundColor: colorHex }}
+  >
+    Add to Cart
+  </button>
+);
+
+const BottleNexusProvider: React.FC<{children: React.ReactNode}> = ({ children }) => <div>{children}</div>;
+
+// Utility function
+const cn = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(' ');
 
 // Flavor Data
-const FLAVOR_NAME = "Lemon Drop";
-const FLAVOR_TAGLINE = "Where Sophistication Meets Edge";
+const FLAVOR_NAME = "Laxly Lemon Drop";
+const FLAVOR_TAGLINE = "Vibrant, Zesty & Unforgettably Bold";
 const FLAVOR_COLOR_CLASS = "text-yellow-400";
-
-// Lifestyle Gallery Data
-const lifestyleScenes = [
-  {
-    id: 'intimate',
-    title: 'Date Night',
-    subtitle: 'Intimate moments, unforgettable conversations',
-    image: '/images/lifestyle/intimate-dinner.jpg',
-    video: '/videos/intimate-dinner.mp4'
-  },
-  {
-    id: 'celebration',
-    title: 'Unforgettable',
-    subtitle: 'Celebrate at new heights',
-    image: '/images/lifestyle/rooftop-celebration.jpg',
-    video: '/videos/rooftop-celebration.mp4'
-  },
-  {
-    id: 'personal',
-    title: 'Me Time',
-    subtitle: 'Your moment of luxury',
-    image: '/images/lifestyle/quiet-nightcap.jpg',
-    video: '/videos/quiet-nightcap.mp4'
-  }
-];
 
 // Serving Styles Data
 const servingStyles = [
   {
     id: 'neat',
     title: 'Neat',
-    temp: '18°C',
-    glass: 'Coupe',
-    image: '/images/serving/neat.jpg'
+    temp: '16°C',
+    glass: 'Shot Glass',
+    description: 'A pure, intense burst of citrus'
   },
   {
     id: 'rocks',
     title: 'On the Rocks',
     temp: '4°C',
     glass: 'Rocks Glass',
-    image: '/images/serving/on-rocks.jpg'
-  },
-  {
-    id: 'martini',
-    title: 'Chilled Martini',
-    temp: '0°C',
-    glass: 'Martini Glass',
-    image: '/images/serving/martini.jpg'
+    description: 'Chilled perfection, vibrant and smooth'
   },
   {
     id: 'signature',
-    title: 'Signature Serve',
+    title: 'Lemon Drop Martini',
     temp: '2°C',
-    glass: 'Nick & Nora',
-    image: '/images/serving/signature.jpg'
+    glass: 'Martini',
+    description: 'The ultimate sophisticated serve'
   }
 ];
 
-// Destination Data
-const destinations = [
-  { id: 'miami', name: 'Miami Nights', video: '/videos/miami-nights.mp4' },
-  { id: 'manhattan', name: 'Manhattan Rooftop', video: '/videos/manhattan-rooftop.mp4' },
-  { id: 'malibu', name: 'Malibu Sunset', video: '/videos/malibu-sunset.mp4' }
+// Ritual Steps Data
+const ritualSteps = [
+  {
+    step: 1,
+    title: 'Prepare the Zest',
+    description: 'Get ready for the energy',
+    image: '/images/ritual/chill-lemon.jpg'
+  },
+  {
+    step: 2,
+    title: 'Pour with Attitude',
+    description: 'Add a fresh lemon twist',
+    image: '/images/ritual/pour-lemon.jpg'
+  },
+  {
+    step: 3,
+    title: 'Ignite the Senses',
+    description: 'Embrace the vibrant moment',
+    image: '/images/ritual/savor-lemon.jpg'
+  }
 ];
 
-const LemonDropPage: React.FC = () => {
-  const [selectedScene, setSelectedScene] = useState<string | null>(null);
-  const { scrollY } = useScroll();
-  
-  // Parallax for hero
-  const heroParallax = useTransform(scrollY, [0, 500], [0, 150]);
+const LemonDropPage = () => {
+  const [currentRitualStep, setCurrentRitualStep] = useState(0);
+
+  // Memoize animations to prevent re-renders
+  const heroAnimation = useMemo(() => ({
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 1, delay: 0.5 }
+  }), []);
+
+  const bottleAnimation = useMemo(() => ({
+    initial: { opacity: 0, y: 100 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 1, delay: 1 }
+  }), []);
+
+  // Optimize ritual step handler
+  const handleRitualStepChange = useCallback((index: number) => {
+    setCurrentRitualStep(index);
+  }, []);
 
   return (
     <BottleNexusProvider>
-      <main className="w-full bg-black text-brand-text overflow-x-hidden">
+      <main className="w-full bg-black text-white overflow-x-hidden">
         
-        {/* Hero Section with Video Background */}
+        {/* Hero Section with Static Background */}
         <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
-        <motion.div 
-          style={{ y: heroParallax }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/videos/hero-rooftop-bar.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-        </motion.div>
-        
-        <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="text-center px-4 w-full">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              <h1 className={cn("font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4", FLAVOR_COLOR_CLASS)}>
-                {FLAVOR_NAME}
-              </h1>
-              <p className="font-heading text-lg sm:text-xl md:text-2xl italic text-brand-text/80">
-                {FLAVOR_TAGLINE}
-              </p>
-            </motion.div>
-            
-            <motion.div
-              className="absolute bottom-10 left-1/2 sm:left-1/3 transform -translate-x-1/2"
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1 }}
-            >
-              <img 
-                src="/images/cocktails/lemon-drop/bottle-hero.png" 
-                alt="Lemon Drop Bottle"
-                className="h-[35vh] sm:h-[40vh] md:h-[50vh] object-contain"
-              />
-            </motion.div>
+          <div className="absolute inset-0 w-full h-full">
+            <img
+              src="/images/hero/lemon-lifestyle.jpg"
+              alt="Lemon Drop Gin Lifestyle"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
           </div>
-        </div>
-      </section>
-
-      {/* The Moment - Emotional Video Section */}
-      <InView as="section" className="relative py-16 sm:py-20 overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30 sm:opacity-50"
-        >
-          <source src="/videos/lemon-peel-spray.mp4" type="video/mp4" />
-        </video>
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-brand-gold mb-4">
-            Every Drop Tells a Story
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-brand-text/70 max-w-2xl mx-auto">
-            From the first citrus-kissed aroma to the last smooth finish, experience a journey crafted for those who demand more.
-          </p>
-        </div>
-      </InView>
-
-      {/* Taste Journey */}
-      <InView as="section" className="py-20 bg-gradient-to-b from-black to-brand-dark/20">
-        <div className="container mx-auto px-4">
-          <h2 className="font-heading text-4xl sm:text-5xl text-center text-brand-gold mb-16">
-            The Taste Journey
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 flex items-center justify-center">
-                <span className="text-3xl">🍋</span>
-              </div>
-              <h3 className="font-heading text-xl text-brand-gold mb-2">Initial</h3>
-              <p className="text-brand-text/70">Bright citrus awakens your palate</p>
-            </motion.div>
-            
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-green-400/20 to-green-600/20 flex items-center justify-center">
-                <span className="text-3xl">🌿</span>
-              </div>
-              <h3 className="font-heading text-xl text-brand-gold mb-2">Heart</h3>
-              <p className="text-brand-text/70">Smooth juniper and botanicals emerge</p>
-            </motion.div>
-            
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-400/20 to-blue-600/20 flex items-center justify-center">
-                <span className="text-3xl">✨</span>
-              </div>
-              <h3 className="font-heading text-xl text-brand-gold mb-2">Finish</h3>
-              <p className="text-brand-text/70">Clean, crisp, and utterly refreshing</p>
-            </motion.div>
-          </div>
-        </div>
-      </InView>
-
-      {/* Lifestyle Gallery */}
-      <InView as="section" className="py-16 sm:py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-center text-brand-gold mb-8 sm:mb-12 md:mb-16">
-            Your Jayded Moments
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
-            {lifestyleScenes.map((scene, index) => (
-              <motion.div
-                key={scene.id}
-                className="relative group cursor-pointer overflow-hidden rounded-lg"
-                whileHover={{ scale: 1.02 }}
-                onClick={() => setSelectedScene(scene.id)}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className="relative h-[300px] sm:h-[350px] md:h-[400px]">
-                  <img 
-                    src={scene.image} 
-                    alt={scene.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-300" />
-                  <div className="absolute bottom-0 left-0 p-4 sm:p-6">
-                    <h3 className="font-heading text-xl sm:text-2xl text-brand-gold mb-1">{scene.title}</h3>
-                    <p className="text-sm sm:text-base text-brand-text/70">{scene.subtitle}</p>
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Play className="w-12 h-12 sm:w-16 sm:h-16 text-white/80" />
-                  </div>
-                </div>
+          
+          <div className="relative z-10 h-full flex items-center justify-center px-4">
+            <div className="text-center w-full max-w-7xl mx-auto">
+              <motion.div {...heroAnimation}>
+                <h1 className={cn("font-bold text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 sm:mb-4", FLAVOR_COLOR_CLASS)}>
+                  {FLAVOR_NAME}
+                </h1>
+                <p className="text-base xs:text-lg sm:text-xl md:text-2xl italic text-white/80 px-4">
+                  {FLAVOR_TAGLINE}
+                </p>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </InView>
-
-      {/* The Ritual - Split Video/Text */}
-      <InView as="section" className="py-16 sm:py-20 bg-brand-dark/20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center max-w-6xl mx-auto">
-            <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] rounded-lg overflow-hidden order-2 lg:order-1">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
+              
+              <motion.div
+                className="absolute bottom-8 sm:bottom-10 left-1/2 transform -translate-x-1/2 w-full max-w-sm sm:max-w-none sm:left-1/3 sm:translate-x-0"
+                {...bottleAnimation}
               >
-                <source src="/videos/perfect-pour.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div className="order-1 lg:order-2">
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-brand-gold mb-4 sm:mb-6">
-                The Perfect Ritual
-              </h2>
-              <p className="text-base sm:text-lg text-brand-text/80 mb-6 sm:mb-8">
-                The art of the pour, the anticipation of the first sip. Each bottle of Lemon Drop is an invitation to slow down and savor life's golden moments.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-brand-gold text-sm sm:text-base">1</span>
-                  </div>
-                  <p className="text-sm sm:text-base text-brand-text/70">Chill to perfection</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-brand-gold text-sm sm:text-base">2</span>
-                  </div>
-                  <p className="text-sm sm:text-base text-brand-text/70">Pour with intention</p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-brand-gold text-sm sm:text-base">3</span>
-                  </div>
-                  <p className="text-sm sm:text-base text-brand-text/70">Savor the moment</p>
-                </div>
-              </div>
+                <img 
+                  src="/images/bottles/lemon/bottle-hero.png" 
+                  alt="Lemon Drop Bottle"
+                  className="h-[25vh] xs:h-[30vh] sm:h-[35vh] md:h-[45vh] lg:h-[50vh] object-contain mx-auto sm:mx-0"
+                  loading="eager"
+                />
+              </motion.div>
             </div>
           </div>
-        </div>
-      </InView>
+        </section>
 
-      {/* Serving Styles - Horizontal Scroll */}
-      <InView as="section" className="py-16 sm:py-20">
-        <div className="container mx-auto px-4">
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-center text-brand-gold mb-8 sm:mb-12 md:mb-16">
-            Your Perfect Serve
-          </h2>
-          <div className="relative">
-            <div className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
-              {servingStyles.map((style) => (
+        {/* The Moment - Text Only Section */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto"
+            >
+              <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl text-yellow-400 mb-4 sm:mb-6">
+                Born from a Spark of Audacity
+              </h2>
+              <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/70 leading-relaxed px-2 sm:px-0">
+                Sharp citrus zest meets a smooth, refined finish in a gin that refuses to be ignored.
+                When you're ready to make a statement, when the night calls for energy, unleash your inner fire.
+              </p>
+            </motion.div>
+          </div>
+        </InView>
+
+        {/* Taste Journey */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900/10 to-black">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-center text-yellow-400 mb-8 sm:mb-12 lg:mb-16">
+              The Taste Journey
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 max-w-5xl mx-auto">
+              {[
+                { delay: 0.2, colorClasses: 'from-yellow-400/20 to-yellow-600/20', icon: '🍋', title: 'Initial', desc: 'A bright, electrifying burst of fresh lemon zest' },
+                { delay: 0.4, colorClasses: 'from-lime-400/20 to-lime-600/20', icon: '🌿', title: 'Heart', desc: 'Crisp juniper with a hint of candied peel' },
+                { delay: 0.6, colorClasses: 'from-orange-400/20 to-orange-600/20', icon: '✨', title: 'Finish', desc: 'Clean, sharp, and invigoratingly smooth' }
+              ].map((item, index) => (
                 <motion.div
-                  key={style.id}
-                  className="flex-shrink-0 w-[250px] sm:w-[280px] md:w-[300px]"
-                  whileHover={{ y: -10 }}
+                  key={item.title}
+                  className="text-center px-4 sm:px-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: item.delay }}
+                  viewport={{ once: true }}
                 >
-                  <div className="relative h-[350px] sm:h-[380px] md:h-[400px] rounded-lg overflow-hidden group">
-                    <img 
-                      src={style.image} 
-                      alt={style.title}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-4 sm:p-6">
-                      <h3 className="font-heading text-xl sm:text-2xl text-brand-gold mb-2">{style.title}</h3>
-                      <div className="text-xs sm:text-sm text-brand-text/70 space-y-1">
-                        <p>Temperature: {style.temp}</p>
-                        <p>Glass: {style.glass}</p>
-                      </div>
-                    </div>
+                  <div className={cn("w-14 h-14 xs:w-16 xs:h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4 rounded-full bg-gradient-to-br flex items-center justify-center", item.colorClasses)}>
+                    <span className="text-3xl">{item.icon}</span>
                   </div>
+                  <h3 className="text-lg xs:text-xl sm:text-2xl text-yellow-400 mb-2 sm:mb-3">{item.title}</h3>
+                  <p className="text-xs xs:text-sm sm:text-base text-white/70 leading-relaxed">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
-        </div>
-      </InView>
+        </InView>
 
-      {/* Social Moments Grid */}
-      <InView as="section" className="py-16 sm:py-20 bg-brand-dark/20">
-        <div className="container mx-auto px-4">
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl text-center text-brand-gold mb-2 sm:mb-4">
-            #JaydedMoments
-          </h2>
-          <p className="text-center text-sm sm:text-base text-brand-text/70 mb-8 sm:mb-12 max-w-2xl mx-auto">
-            Join the celebration. Share your Jayded AF moments.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-6xl mx-auto">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+        {/* Full-Width Lifestyle Moment */}
+        <InView as="section" className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
+          <img
+            src="/images/lifestyle/lemon-rooftop-party.jpg"
+            alt="Rooftop Party Moment"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="relative z-10 h-full flex items-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <motion.div
-                key={i}
-                className="relative h-[150px] sm:h-[200px] md:h-[250px] rounded-lg overflow-hidden"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.05 }}
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true }}
+                className="max-w-lg"
               >
-                <img 
-                  src={`/images/social/moment-${i}.jpg`} 
-                  alt={`Social moment ${i}`}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20 hover:bg-black/0 transition-colors duration-300" />
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-2 sm:mb-4">
+                  Your Rooftop Party Moment
+                </h2>
+                <p className="text-sm xs:text-base sm:text-lg text-white/80">
+                  Where energy meets sophistication
+                </p>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </InView>
-
-      {/* Specifications - Elegant Grid */}
-      <InView as="section" className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="font-heading text-4xl sm:text-5xl text-center text-brand-gold mb-16">
-              The Details
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-3xl font-heading text-brand-gold mb-2">12%</div>
-                <div className="text-brand-text/70">ABV</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-heading text-brand-gold mb-2">90</div>
-                <div className="text-brand-text/70">Calories</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-heading text-brand-gold mb-2">5g</div>
-                <div className="text-brand-text/70">Sugar</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-heading text-brand-gold mb-2">750ml</div>
-                <div className="text-brand-text/70">Volume</div>
-              </div>
             </div>
           </div>
-        </div>
-      </InView>
+        </InView>
 
-      {/* Destinations Section */}
-      <InView as="section" className="py-20 bg-gradient-to-b from-brand-dark/20 to-black">
-        <div className="container mx-auto px-4">
-          <h2 className="font-heading text-4xl sm:text-5xl text-center text-brand-gold mb-4">
-            Where Will Lemon Drop Take You?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-12">
-            {destinations.map((dest) => (
-              <motion.div
-                key={dest.id}
-                className="relative h-[300px] rounded-lg overflow-hidden group"
-                whileHover={{ scale: 1.02 }}
-              >
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                >
-                  <source src={dest.video} type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="font-heading text-2xl text-white">{dest.name}</h3>
+        {/* The Lemon Drop Ritual - Scroll Triggered */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+              
+              {/* Image Side */}
+              <div className="relative h-[300px] xs:h-[350px] sm:h-[450px] lg:h-[500px] rounded-lg overflow-hidden order-2 lg:order-1">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentRitualStep}
+                    src={ritualSteps[currentRitualStep].image}
+                    alt={ritualSteps[currentRitualStep].title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    loading="lazy"
+                  />
+                </AnimatePresence>
+              </div>
+
+              {/* Content Side */}
+              <div className="order-1 lg:order-2">
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-yellow-400 mb-4 sm:mb-6 lg:mb-8">
+                  The Lemon Drop Ritual
+                </h2>
+                <p className="text-sm xs:text-base sm:text-lg text-white/80 mb-6 sm:mb-8 lg:mb-10">
+                  The art of preparation. Each step is a burst of energy, a prelude to the night's excitement.
+                </p>
+                
+                <div className="space-y-3 sm:space-y-4 lg:space-y-6">
+                  {ritualSteps.map((step, index) => (
+                    <motion.div
+                      key={step.step}
+                      className={cn(
+                        "flex items-center gap-3 sm:gap-4 cursor-pointer p-2 sm:p-3 rounded-lg transition-all duration-300",
+                        currentRitualStep === index ? "bg-yellow-400/10" : "hover:bg-yellow-400/5"
+                      )}
+                      onClick={() => handleRitualStepChange(index)}
+                      whileHover={{ x: 5 }}
+                    >
+                      <div className={cn(
+                        "w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300",
+                        currentRitualStep === index ? "bg-yellow-400/20" : "bg-yellow-400/10"
+                      )}>
+                        <span className={cn(
+                          "text-xs xs:text-sm sm:text-base font-semibold",
+                          currentRitualStep === index ? "text-yellow-400" : "text-yellow-400/70"
+                        )}>
+                          {step.step}
+                        </span>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className={cn(
+                          "text-sm xs:text-base sm:text-lg font-semibold mb-0.5 sm:mb-1 transition-colors duration-300",
+                          currentRitualStep === index ? "text-yellow-400" : "text-white"
+                        )}>
+                          {step.title}
+                        </h3>
+                        <p className="text-xs xs:text-sm sm:text-base text-white/70">{step.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </InView>
-
-      {/* Closing CTA Section */}
-      <InView as="section" className="relative py-20 sm:py-24 md:py-32 overflow-hidden">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-20 sm:opacity-30"
-        >
-          <source src="/videos/elegant-party.mp4" type="video/mp4" />
-        </video>
-        <div className="relative z-10 container mx-auto px-4 text-center">
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-brand-gold mb-4 sm:mb-6 md:mb-8">
-            Find Your Moment
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-brand-text/80 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto">
-            Limited availability. Unlimited possibilities.
-          </p>
-          <div className="flex justify-center items-center flex-col sm:flex-row gap-4 mb-6 sm:mb-8">
-            <CustomAddToCartButton
-              productId={47035}
-              colorHex="#facc15"
-            />
-            <div className="hidden" data-bottlenexus-id={47035}>
-              <BottleNexusButton id={47035} />
+              </div>
             </div>
           </div>
-          <Link
-            to="/store-locator"
-            className="text-sm sm:text-base text-brand-gold hover:text-brand-gold/80 transition-colors duration-200 inline-block"
-          >
-            Find a retailer near you →
-          </Link>
-        </div>
-      </InView>
+        </InView>
 
-      {/* Video Modal for Lifestyle Scenes */}
-      {selectedScene && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedScene(null)}
-        >
-          <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            className="relative w-full max-w-4xl aspect-video"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <video
-              autoPlay
-              controls
-              className="w-full h-full rounded-lg"
+        {/* Serving Styles - Text Focused */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-center text-yellow-400 mb-8 sm:mb-12 lg:mb-16">
+              Your Perfect Serve
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 max-w-5xl mx-auto">
+              {servingStyles.map((style, index) => (
+                <motion.div
+                  key={style.id}
+                  className="text-center p-4 sm:p-6 rounded-lg bg-gray-900/10 hover:bg-gray-900/20 transition-colors duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                >
+                  <h3 className="text-lg xs:text-xl sm:text-2xl text-yellow-400 mb-2 sm:mb-3">
+                    {style.title}
+                  </h3>
+                  <div className="text-xs xs:text-sm sm:text-base text-white/70 space-y-1 sm:space-y-2 mb-3 sm:mb-4">
+                    <p><span className="text-yellow-400">{style.temp}</span> | {style.glass}</p>
+                  </div>
+                  <p className="text-xs xs:text-sm sm:text-base text-white/60 leading-relaxed">
+                    {style.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </InView>
+
+        {/* Specifications - The Details */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900/20 to-black">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-center text-yellow-400 mb-8 sm:mb-12 lg:mb-16">
+                The Details
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+                {[
+                  { delay: 0.1, value: '12%', label: 'ABV' },
+                  { delay: 0.2, value: '90', label: 'Calories' },
+                  { delay: 0.3, value: '5g', label: 'Sugar' },
+                  { delay: 0.4, value: '750ml', label: 'Volume' }
+                ].map((spec) => (
+                  <motion.div 
+                    key={spec.label}
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: spec.delay }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400 mb-1 sm:mb-2">{spec.value}</div>
+                    <div className="text-xs xs:text-sm sm:text-base text-white/70">{spec.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </InView>
+
+        {/* Closing CTA Section */}
+        <InView as="section" className="relative py-12 xs:py-16 sm:py-20 lg:py-24 xl:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/30 to-black/80" />
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
             >
-              <source src={lifestyleScenes.find(s => s.id === selectedScene)?.video} type="video/mp4" />
-            </video>
-            <button
-              onClick={() => setSelectedScene(null)}
-              className="absolute top-2 right-2 sm:top-4 sm:right-4 text-white/80 hover:text-white bg-black/50 rounded-full p-2"
-            >
-              <X className="w-6 h-6 sm:w-8 sm:h-8" />
-            </button>
-          </motion.div>
-        </motion.div>
-      )}
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400 mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+                Ignite Your Night
+              </h2>
+              <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-4">
+                Limited availability. Unlimited energy.
+              </p>
+              <div className="flex justify-center items-center flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
+                <CustomAddToCartButton
+                  productId={47035}
+                  colorHex="#facc15"
+                />
+                <div className="hidden" data-bottlenexus-id={47035}>
+                  <BottleNexusButton id={47035} />
+                </div>
+              </div>
+              <a
+                href="/store-locator"
+                className="text-xs xs:text-sm sm:text-base text-yellow-400 hover:text-yellow-400/80 transition-colors duration-200 inline-block"
+              >
+                Find a retailer near you →
+              </a>
+            </motion.div>
+          </div>
+        </InView>
+
       </main>
     </BottleNexusProvider>
   );
