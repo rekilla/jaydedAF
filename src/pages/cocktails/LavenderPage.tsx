@@ -97,8 +97,14 @@ const LavenderPage = () => {
             <div
               className="absolute inset-0 w-full h-full"
               style={{
-                maskImage: 'linear-gradient(to bottom, transparent 0%, black 17.5%, black 82.5%, transparent 100%), linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 17.5%, black 82.5%, transparent 100%), linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
+                maskImage: `
+                  linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+                  linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)
+                `,
+                WebkitMaskImage: `
+                  linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+                  linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)
+                `,
                 maskComposite: 'intersect',
                 WebkitMaskComposite: 'source-in',
               }}
@@ -107,9 +113,6 @@ const LavenderPage = () => {
                 src="/HL.jpg"
                 alt="Lavender Lifestyle"
                 className="w-full h-full object-cover object-center"
-                style={{
-                  objectPosition: '50% 50%'
-                }}
               />
             </div>
           </div>
@@ -143,12 +146,18 @@ const LavenderPage = () => {
               </div>
               
               {/* Image section with negative margin to close gap */}
-              <div className="h-[70vh] relative -mt-9">
+              <div className="h-[62vh] relative -mt-9">
                 <div
                   className="absolute inset-0 w-full h-full"
                   style={{
-                    maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to right, transparent 5%, black 20%, black 80%, transparent 95%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to right, transparent 5%, black 20%, black 80%, transparent 95%)',
+                    maskImage: `
+                      linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+                      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)
+                    `,
+                    WebkitMaskImage: `
+                      linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+                      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)
+                    `,
                     maskComposite: 'intersect',
                     WebkitMaskComposite: 'source-in',
                   }}

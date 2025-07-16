@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FlavorHero } from '../../components/FlavorHero';
+import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
 
 // Mock components for demonstration - replace with your actual imports
 const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; className?: string }> = ({ children, as = 'div', className = '', ...props }) => {
@@ -14,7 +16,7 @@ const BottleNexusButton: React.FC<{ id: number }> = () => (
 );
 
 const CustomAddToCartButton: React.FC<{ productId: number; colorHex: string }> = ({ colorHex }) => (
-  <button 
+  <button
     className="px-6 sm:px-8 py-3 sm:py-4 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-500 transition-colors text-sm sm:text-base"
     style={{ backgroundColor: colorHex }}
   >
@@ -28,9 +30,13 @@ const BottleNexusProvider: React.FC<{children: React.ReactNode}> = ({ children }
 const cn = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(' ');
 
 // Flavor Data
-const FLAVOR_NAME = "Laxly Lemon Drop";
-const FLAVOR_TAGLINE = "Vibrant, Zesty & Unforgettably Bold";
-const FLAVOR_COLOR_CLASS = "text-yellow-400";
+const flavorData = {
+  key: "lemon",
+  name: "Laxly Lemon Drop",
+  tagline: "Vibrant, Zesty & Unforgettably Bold",
+  colorClass: "text-yellow-400",
+  colorHex: "#facc15",
+};
 
 // Serving Styles Data
 const servingStyles = [
@@ -99,31 +105,137 @@ const LemonDropPage = () => {
     <BottleNexusProvider>
       <main className="w-full bg-black text-white overflow-x-hidden">
         
-        {/* Hero Section with Static Background */}
-        <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
-          <div className="absolute inset-0 w-full h-full">
-            <img
-              src="/HL2.jpg"
-              alt="Lemon Drop Gin Lifestyle"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-          </div>
-          
-          <div className="relative z-10 h-full flex items-center justify-center px-4">
-            <div className="text-center w-full max-w-7xl mx-auto">
-              <motion.div {...heroAnimation}>
-                <h1 className={cn("font-bold text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 sm:mb-4", FLAVOR_COLOR_CLASS)}>
-                  {FLAVOR_NAME}
-                </h1>
-                <p className="text-base xs:text-lg sm:text-xl md:text-2xl italic text-white/80 px-4">
-                  {FLAVOR_TAGLINE}
-                </p>
-              </motion.div>
-              
+        {/* Enhanced Hero Section with Better Layout */}
+        <section className="relative h-auto lg:h-screen w-full flex flex-col lg:block">
+          {/* Background Container - Split layout on mobile */}
+          <div className="absolute inset-0 w-full h-full lg:block hidden">
+            <FlavorHero flavor={flavorData} />
+            <div
+              className="absolute inset-0 w-full h-full"
+              style={{
+                maskImage: `
+                  linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+                  linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)
+                `,
+                WebkitMaskImage: `
+                  linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+                  linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)
+                `,
+                maskComposite: 'intersect',
+                WebkitMaskComposite: 'source-in',
+              }}
+            >
+              <img
+                src="/HL2.jpg"
+                alt="Lemon Drop Lifestyle"
+                className="w-full h-full object-cover object-center"
+                style={{
+                  objectPosition: '50% 50%',
+                }}
+              />
             </div>
           </div>
+
+          {/* Mobile Layout - Compact with minimal gap */}
+          <div className="lg:hidden relative min-h-screen">
+            {/* Enhanced Background for mobile */}
+            <div className="absolute inset-0">
+              <FlavorHeroMobile flavor={flavorData} />
+            </div>
+            
+            {/* Content - Ultra tight spacing */}
+            <div className="relative z-10 pt-16">
+              {/* Text section with NO bottom padding */}
+              <div className="px-6">
+                <motion.div {...heroAnimation} className="text-center">
+                  <h1
+                    style={{color: flavorData.colorHex}}
+                    className={cn(
+                      "font-bold text-4xl xs:text-5xl sm:text-6xl",
+                      "drop-shadow-2xl",
+                      flavorData.colorClass
+                    )}
+                  >
+                    {flavorData.name}
+                  </h1>
+                  <p className="text-lg xs:text-xl sm:text-2xl italic text-white/90">
+                    {flavorData.tagline}
+                  </p>
+                </motion.div>
+              </div>
+              
+              {/* Image section with negative margin to close gap */}
+              <div className="h-[62vh] relative -mt-9">
+                <div
+                  className="absolute inset-0 w-full h-full"
+                  style={{
+                    maskImage: `
+                      linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+                      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)
+                    `,
+                    WebkitMaskImage: `
+                      linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%),
+                      linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%)
+                    `,
+                    maskComposite: 'intersect',
+                    WebkitMaskComposite: 'source-in',
+                  }}
+                >
+                  <img
+                    src="/HL2.jpg"
+                    alt="Lemon Drop Lifestyle"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Text Content - Original layout */}
+          <div className="relative z-10 h-full items-center justify-center lg:justify-start hidden lg:flex">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+              <div className="w-full max-w-xl text-center lg:text-left">
+                <motion.div {...heroAnimation}>
+                  <div className="relative">
+                    <div className="absolute inset-0 -inset-x-8 -inset-y-4 bg-black/20 backdrop-blur-sm rounded-2xl lg:hidden" />
+                    <div className="relative">
+                      <h1
+                        style={{color: flavorData.colorHex}}
+                        className={cn(
+                          "font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 sm:mb-4",
+                          "drop-shadow-2xl",
+                          flavorData.colorClass
+                        )}
+                      >
+                        {flavorData.name}
+                      </h1>
+                      <p className="text-lg sm:text-xl md:text-2xl italic text-white/80 px-4">
+                        {flavorData.tagline}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll Indicator - Hide on mobile since hero is shorter */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 1 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-white/50"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* The Moment - Text Only Section */}
