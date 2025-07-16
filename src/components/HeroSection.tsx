@@ -23,8 +23,8 @@ const flavors = [
     description: "A vibrant twist on a classic. Sharp lemon zest meets smooth gin, balanced with a hint of sweetness.",
     colorClass: "yellow-400",
     colorHex: "#FFD700",
-    image: "/0120.png",
-    video: "/lemon-bottle-alpha.webm",
+    image: "/images/home/hero/hero_lemon.png",
+    video: "/Lemon_hero.mp4",
     ctaLink: "/cocktails/lemon-drop",
     bottleRenderImage: "/Leamon_Bottle_Render.png"
   },
@@ -35,8 +35,8 @@ const flavors = [
     description: "Smooth gin infused with lavender botanicals, offering a calming and luxurious drinking experience.",
     colorClass: "purple-500",
     colorHex: "#8A2BE2",
-    image: "/0120.png",
-    video: "/lavender-bottle-alpha.webm",
+    image: "/images/home/hero/hero_lavender.png",
+    video: "/Lavender_hero.mp4",
     ctaLink: "/cocktails/lavender",
     bottleRenderImage: "/Lavender_Bottle_Render.png"
   },
@@ -47,8 +47,8 @@ const flavors = [
     description: "Cool, crisp cucumber blended with premium gin for ultimate refreshment. An effortlessly cool choice.",
     colorClass: "emerald-500",
     colorHex: "#2FAF7D",
-    image: "/0120.png",
-    video: "/cucumber-bottle-alpha.webm",
+    image: "/images/home/hero/hero_cucumber.png",
+    video: "/Cucumber_hero.mp4",
     ctaLink: "/cocktails/cucumber",
     bottleRenderImage: "/cucumber_Bottle_Render.png"
   },
@@ -95,6 +95,13 @@ const bottleVariants = {
   }
 };
 
+const mediaVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.7, ease: "easeIn" } },
+  exit: { opacity: 0, transition: { duration: 0.7, ease: "easeOut" } }
+};
+
+
 // --- Main Component ---
 const HeroSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -110,10 +117,10 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-<div className="relative min-h-[105vh] w-full overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
+<div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black">
       
       {/* Epic Luxury Spotlight */}
-      <Spotlight 
+      <Spotlight
         flavorColorHex={currentFlavor.colorHex}
         flavorKey={currentFlavor.key}
         intensity={0.4}
@@ -132,7 +139,7 @@ const HeroSection: React.FC = () => {
       />
 
       {/* Subtle Grid Pattern */}
-      <div 
+      <div
         className="absolute inset-0 opacity-5 pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`
@@ -143,18 +150,18 @@ const HeroSection: React.FC = () => {
       <div className="relative h-screen w-full flex flex-col">
         
         {/* Content Area */}
-<div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-12 xl:px-[120px] pt-16 pb-20 sm:pt-20 sm:pb-6 md:pt-24 md:pb-8">
-          <div className="w-full mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+<div className="flex-1 flex items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-16 pb-20 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20">
+          <div className="w-full max-w-[1600px] mx-auto">
+            <div className="flex flex-col lg:flex-row items-center justify-center w-full h-full gap-8 md:gap-12 lg:gap-16 xl:gap-20">
               
               {/* LEFT SIDE - Content */}
-              <div className="text-center lg:text-left order-2 lg:order-1">
+              <div className="w-full lg:w-[45%] text-center lg:text-left order-2 lg:order-1 py-8 lg:py-0">
                 <Swiper
                   modules={[EffectFade, Autoplay]}
                   effect="fade"
                   fadeEffect={{ crossFade: true }}
                   loop={true}
-                  autoplay={{ delay: 5000, disableOnInteraction: false }}
+                  autoplay={{ delay: 7000, disableOnInteraction: false }}
                   slidesPerView={1}
                   onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                   className="w-full"
@@ -171,8 +178,8 @@ const HeroSection: React.FC = () => {
                             animate={isActive ? "show" : "hidden"}
                             className="space-y-4 sm:space-y-6"
                           >
-                            <motion.p 
-                              variants={itemVariants} 
+                            <motion.p
+                              variants={itemVariants}
                               className="uppercase text-xs sm:text-sm tracking-[0.2em] text-white/60 font-light"
                             >
                               PREMIUM GIN MARTINI
@@ -188,42 +195,69 @@ const HeroSection: React.FC = () => {
                               {flavor.title}
                             </motion.h1>
                             
-                            <motion.p 
-                              variants={itemVariants} 
+                            <motion.p
+                              variants={itemVariants}
                               className="text-lg sm:text-xl italic text-white/70 font-light tracking-wide"
                             >
                               {flavor.tagline}
                             </motion.p>
                             
-                            <motion.p 
-                              variants={itemVariants} 
+                            <motion.p
+                              variants={itemVariants}
                               className="text-base sm:text-lg leading-relaxed text-white/80 font-light max-w-md mx-auto lg:mx-0"
                             >
                               {flavor.description}
                             </motion.p>
 
-                            <motion.div 
+                            <motion.div
                               variants={itemVariants}
                               className="flex justify-center lg:justify-start pt-2 sm:pt-4"
                             >
-                              <motion.div 
-                                whileHover={{ scale: 1.05 }} 
-                                transition={{ type: 'spring', stiffness: 400 }}
-                              >
-                                <Link to={flavor.ctaLink}>
-                                  <button
-                                    className={`px-6 sm:px-8 py-2.5 sm:py-3 border-2 ${border} ${text} bg-transparent hover:bg-white hover:text-black transition-all duration-300 font-medium tracking-wide text-sm sm:text-base`}
-                                    style={{
-                                      boxShadow: `0 0 20px ${currentFlavor.colorHex}20`
-                                    }}
-                                  >
-                                    <span className="flex items-center gap-2">
+                              <Link to={flavor.ctaLink}>
+                                <button
+                                  className={`
+                                    relative overflow-hidden
+                                    px-8 sm:px-10 py-3 sm:py-3.5
+                                    border ${border}
+                                    ${text}
+                                    bg-transparent
+                                    font-light tracking-[0.15em] uppercase text-sm
+                                    transition-all duration-500 ease-out
+                                    group
+                                    hover:shadow-2xl
+                                    hover:border-white
+                                  `}
+                                  style={{
+                                    boxShadow: `0 0 30px ${currentFlavor.colorHex}10, inset 0 0 0 0 ${currentFlavor.colorHex}`,
+                                    transition: 'box-shadow 0.5s ease-out, border-color 0.5s ease-out'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.boxShadow = `0 0 40px ${currentFlavor.colorHex}40, inset 0 0 20px 0 ${currentFlavor.colorHex}20`;
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.boxShadow = `0 0 30px ${currentFlavor.colorHex}10, inset 0 0 0 0 ${currentFlavor.colorHex}`;
+                                  }}
+                                >
+                                  {/* Gradient sweep effect */}
+                                  <span
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"
+                                  />
+                                  
+                                  {/* Button content */}
+                                  <span className="relative flex items-center gap-3">
+                                    <span className="transition-all duration-300 group-hover:tracking-[0.2em]">
                                       Explore This Flavor
-                                      <ChevronRight className="w-4 h-4" />
                                     </span>
-                                  </button>
-                                </Link>
-                              </motion.div>
+                                    <ChevronRight className="w-4 h-4 transition-all duration-300 group-hover:translate-x-1" />
+                                  </span>
+                                  
+                                  {/* Bottom line accent */}
+                                  <span
+                                    className={`absolute bottom-0 left-0 w-0 h-[1px] ${border} group-hover:w-full transition-all duration-500 ease-out`}
+                                    style={{ backgroundColor: currentFlavor.colorHex }}
+                                  />
+                                </button>
+                              </Link>
                             </motion.div>
                           </motion.div>
                         )}
@@ -233,83 +267,40 @@ const HeroSection: React.FC = () => {
                 </Swiper>
               </div>
 
-              {/* RIGHT SIDE - Bottle Display */}
-<div className="relative order-1 lg:order-2 flex items-center justify-center h-[30vh] sm:h-[50vh] lg:h-[60vh]">
+              {/* RIGHT SIDE - Media */}
+              <div className="w-full lg:w-[55%] flex items-center justify-center order-1 lg:order-2 lg:h-full">
                 <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentFlavor.key}
-                    variants={bottleVariants}
-                    initial="hidden"
-                    animate="show"
-                    exit="exit"
-                    className="relative h-full flex items-center justify-center"
-                    style={{ perspective: '1000px' }}
-                    onMouseMove={(e) => {
-                      const rect = e.currentTarget.getBoundingClientRect();
-                      const x = (e.clientX - rect.left) / rect.width - 0.5;
-                      const y = (e.clientY - rect.top) / rect.height - 0.5;
-                      e.currentTarget.style.transform = `
-                        rotateY(${x * 10}deg) 
-                        rotateX(${-y * 10}deg) 
-                        scale(1.02)
-                      `;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
-                    }}
-                  >
-                    {/* Bottle Image or Video */}
-                    {currentFlavor.video ? (
-                      <video
-                        key={currentFlavor.video}
-                        src={currentFlavor.video}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="h-full w-auto object-contain max-w-full"
-                        style={{
-                          filter: `drop-shadow(0 20px 40px ${currentFlavor.colorHex}20)`,
-                          maxHeight: '100%'
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src={currentFlavor.image}
-                        alt={`${currentFlavor.title} bottle`}
-                        className="h-full w-auto object-contain max-w-full"
-                        style={{
-                          filter: `drop-shadow(0 20px 40px ${currentFlavor.colorHex}20)`,
-                          maxHeight: '100%'
-                        }}
-                      />
-                    )}
-
-                    {/* Floating Botanicals/Ingredients */}
-                    <div className="absolute inset-0 pointer-events-none">
-                      {[...Array(6)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          className="absolute w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full opacity-30"
-                          style={{ 
-                            backgroundColor: currentFlavor.colorHex,
-                            left: `${20 + (i * 15)}%`,
-                            top: `${30 + (i * 10)}%`
-                          }}
-                          animate={{
-                            y: [0, -20, 0],
-                            opacity: [0.2, 0.6, 0.2],
-                            scale: [1, 1.2, 1]
-                          }}
-                          transition={{
-                            duration: 3 + (i * 0.5),
-                            repeat: Infinity,
-                            delay: i * 0.3
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
+                  {currentFlavor.video ? (
+                    <motion.video
+                      key={`video-${currentFlavor.key}`}
+                      variants={mediaVariants}
+                      initial="hidden"
+                      animate="show"
+                      exit="exit"
+                      src={currentFlavor.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto max-h-[60vh] lg:max-h-[85vh] object-contain lg:scale-[1.15]"
+                      style={{
+                        filter: 'drop-shadow(0 0 50px rgba(255,255,255,0.1))',
+                        maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
+                      }}
+                    />
+                  ) : (
+                    <motion.img
+                      key={`image-${currentFlavor.key}`}
+                      variants={mediaVariants}
+                      initial="hidden"
+                      animate="show"
+                      exit="exit"
+                      src={currentFlavor.image}
+                      alt={`Jayded AF ${currentFlavor.title}`}
+                      className="w-full h-auto max-h-[60vh] lg:max-h-[85vh] object-contain lg:scale-[1.15]"
+                      style={{ filter: 'drop-shadow(0 0 50px rgba(255,255,255,0.1))' }}
+                    />
+                  )}
                 </AnimatePresence>
               </div>
             </div>
@@ -317,9 +308,9 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Flavor Selector - Part of hero section at bottom */}
-<div className="relative pb-12 sm:pb-10 md:pb-12 px-4">
+<div className="relative pb-8 sm:pb-10 md:pb-12 lg:pb-16 px-6">
           <div className="flex justify-center">
-            <div className="scale-[1.6] origin-bottom">
+            <div className="scale-100 md:scale-110 lg:scale-125 xl:scale-150 origin-bottom transition-transform duration-300">
               <FlavorSelector
                 flavors={flavors.map(f => ({
                   key: f.key,

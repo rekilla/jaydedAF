@@ -71,7 +71,7 @@ const Header: React.FC = () => {
           isMobileMenuOpen ? "z-40" : "z-50"
         )}
       >
-        <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
           {/* Left Desktop Navigation */}
           <div className="hidden sm:flex items-center flex-1">
             <ul className="flex space-x-8">
@@ -87,8 +87,8 @@ const Header: React.FC = () => {
 
           {/* Logo */}
           <div className="flex-shrink-0 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-            <Link to="/" className="text-brand-gold text-3xl font-bold font-heading tracking-tight">
-              JAF
+            <Link to="/" className="block h-9 transition-transform duration-300 ease-in-out hover:scale-105">
+              <img src="/JAF only_Wh.png" alt="Jayded AF Cocktails Logo" className="h-full w-auto" />
             </Link>
           </div>
 

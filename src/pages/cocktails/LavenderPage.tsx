@@ -1,36 +1,28 @@
+"use client";
 import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FlavorHero } from '../../components/FlavorHero';
+import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
+import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
 
-// Mock components for demonstration - replace with your actual imports
+// Mock components
 const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; className?: string }> = ({ children, as = 'div', className = '', ...props }) => {
   const Component = as;
   return <Component className={className} {...props}>{children}</Component>;
 };
 
-const BottleNexusButton: React.FC<{ id: number }> = ({ id }) => (
-  <button className="px-4 sm:px-6 py-2 sm:py-3 bg-brand-gold text-black font-semibold rounded-lg hover:bg-brand-gold/90 transition-colors text-sm sm:text-base">
-    Quick Order
-  </button>
-);
-
-const CustomAddToCartButton: React.FC<{ productId: number; colorHex: string }> = ({ productId, colorHex }) => (
-  <button 
-    className="px-6 sm:px-8 py-3 sm:py-4 bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-600 transition-colors text-sm sm:text-base"
-    style={{ backgroundColor: colorHex }}
-  >
-    Add to Cart
-  </button>
-);
-
 const BottleNexusProvider: React.FC<{children: React.ReactNode}> = ({ children }) => <div>{children}</div>;
 
-// Utility function
 const cn = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(' ');
 
 // Flavor Data
-const FLAVOR_NAME = "Laxly Lavender";
-const FLAVOR_TAGLINE = "Elegant, Aromatic & Mysteriously Alluring";
-const FLAVOR_COLOR_CLASS = "text-purple-400";
+const flavorData = {
+  key: "lavender",
+  name: "Laxly Lavender",
+  tagline: "Elegant, Aromatic & Mysteriously Alluring",
+  colorClass: "",
+  colorHex: "#8A2BE2",
+};
 
 // Serving Styles Data
 const servingStyles = [
@@ -89,12 +81,6 @@ const LavenderPage = () => {
     transition: { duration: 1, delay: 0.5 }
   }), []);
 
-  const bottleAnimation = useMemo(() => ({
-    initial: { opacity: 0, y: 100 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 1, delay: 1 }
-  }), []);
-
   // Optimize ritual step handler
   const handleRitualStepChange = useCallback((index: number) => {
     setCurrentRitualStep(index);
@@ -104,42 +90,125 @@ const LavenderPage = () => {
     <BottleNexusProvider>
       <main className="w-full bg-black text-white overflow-x-hidden">
         
-        {/* Hero Section with Static Background */}
-        <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
-          <div className="absolute inset-0 w-full h-full">
-            <img
-              src="/images/hero/lavender-lifestyle.jpg"
-              alt="Lavender Gin Lifestyle"
-              className="absolute inset-0 w-full h-full object-cover"
-              loading="eager"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-          </div>
-          
-          <div className="relative z-10 h-full flex items-center justify-center px-4">
-            <div className="text-center w-full max-w-7xl mx-auto">
-              <motion.div {...heroAnimation}>
-                <h1 className={cn("font-bold text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 sm:mb-4", FLAVOR_COLOR_CLASS)}>
-                  {FLAVOR_NAME}
-                </h1>
-                <p className="text-base xs:text-lg sm:text-xl md:text-2xl italic text-white/80 px-4">
-                  {FLAVOR_TAGLINE}
-                </p>
-              </motion.div>
-              
-              <motion.div
-                className="absolute bottom-8 sm:bottom-10 left-1/2 transform -translate-x-1/2 w-full max-w-sm sm:max-w-none sm:left-1/3 sm:translate-x-0"
-                {...bottleAnimation}
-              >
-                <img 
-                  src="/images/bottles/lavender/bottle-hero.png" 
-                  alt="Lavender Bottle"
-                  className="h-[25vh] xs:h-[30vh] sm:h-[35vh] md:h-[45vh] lg:h-[50vh] object-contain mx-auto sm:mx-0"
-                  loading="eager"
-                />
-              </motion.div>
+        {/* Enhanced Hero Section with Better Layout */}
+        <section className="relative h-auto lg:h-screen w-full flex flex-col lg:block">
+          {/* Background Container - Split layout on mobile */}
+          <div className="absolute inset-0 w-full h-full lg:block hidden">
+            <FlavorHero flavor={flavorData} />
+            <div
+              className="absolute inset-0 w-full h-full"
+              style={{
+                maskImage: 'linear-gradient(to bottom, transparent 0%, black 17.5%, black 82.5%, transparent 100%), linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 17.5%, black 82.5%, transparent 100%), linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
+                maskComposite: 'intersect',
+                WebkitMaskComposite: 'source-in',
+              }}
+            >
+              <img
+                src="/HL.jpg"
+                alt="Lavender Lifestyle"
+                className="w-full h-full object-cover object-center"
+                style={{
+                  objectPosition: '50% 50%'
+                }}
+              />
             </div>
           </div>
+
+          {/* Mobile Layout - Compact with minimal gap */}
+          <div className="lg:hidden relative min-h-screen">
+            {/* Enhanced Background for mobile */}
+            <div className="absolute inset-0">
+              <FlavorHeroMobile flavor={flavorData} />
+            </div>
+            
+            {/* Content - Ultra tight spacing */}
+            <div className="relative z-10 pt-16">
+              {/* Text section with NO bottom padding */}
+              <div className="px-6">
+                <motion.div {...heroAnimation} className="text-center">
+                  <h1
+                    style={{color: flavorData.colorHex}}
+                    className={cn(
+                      "font-bold text-4xl xs:text-5xl sm:text-6xl",
+                      "drop-shadow-2xl",
+                      flavorData.colorClass
+                    )}
+                  >
+                    {flavorData.name}
+                  </h1>
+                  <p className="text-lg xs:text-xl sm:text-2xl italic text-white/90">
+                    {flavorData.tagline}
+                  </p>
+                </motion.div>
+              </div>
+              
+              {/* Image section with negative margin to close gap */}
+              <div className="h-[70vh] relative -mt-9">
+                <div
+                  className="absolute inset-0 w-full h-full"
+                  style={{
+                    maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to right, transparent 5%, black 20%, black 80%, transparent 95%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to right, transparent 5%, black 20%, black 80%, transparent 95%)',
+                    maskComposite: 'intersect',
+                    WebkitMaskComposite: 'source-in',
+                  }}
+                >
+                  <img
+                    src="/HL.jpg"
+                    alt="Lavender Lifestyle"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Text Content - Original layout */}
+          <div className="relative z-10 h-full items-center justify-center lg:justify-start hidden lg:flex">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+              <div className="w-full max-w-xl text-center lg:text-left">
+                <motion.div {...heroAnimation}>
+                  <div className="relative">
+                    <div className="absolute inset-0 -inset-x-8 -inset-y-4 bg-black/20 backdrop-blur-sm rounded-2xl lg:hidden" />
+                    <div className="relative">
+                      <h1
+                        style={{color: flavorData.colorHex}}
+                        className={cn(
+                          "font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-2 sm:mb-4",
+                          "drop-shadow-2xl",
+                          flavorData.colorClass
+                        )}
+                      >
+                        {flavorData.name}
+                      </h1>
+                      <p className="text-lg sm:text-xl md:text-2xl italic text-white/80 px-4">
+                        {flavorData.tagline}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+
+          {/* Scroll Indicator - Hide on mobile since hero is shorter */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2, duration: 1 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-white/50"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* The Moment - Text Only Section */}
@@ -194,34 +263,37 @@ const LavenderPage = () => {
           </div>
         </InView>
 
-        {/* Full-Width Lifestyle Moment */}
-        <InView as="section" className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
-          <img
-            src="/images/lifestyle/lavender-field-soiree.jpg"
-            alt="Lavender Field Soiree"
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
-          <div className="relative z-10 h-full flex items-center">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true }}
-                className="max-w-lg"
-              >
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-2 sm:mb-4">
-                  Your Sunset Soiree Moment
-                </h2>
-                <p className="text-sm xs:text-base sm:text-lg text-white/80">
-                  Where elegance meets enchantment
-                </p>
-              </motion.div>
-            </div>
+        {/* Your Sunset Soiree Moment */}
+        <section className="w-full bg-black">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-16 lg:py-20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-2 sm:mb-4">
+                Your Sunset Soiree Moment
+              </h2>
+              <p className="text-sm xs:text-base sm:text-lg text-white/80">
+                Where elegance meets enchantment
+              </p>
+            </motion.div>
           </div>
-        </InView>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <img
+              src="/Lwide.jpg"
+              alt="Elegant lavender cocktail soiree"
+              className="w-full h-auto object-cover"
+              loading="lazy"
+            />
+          </motion.div>
+        </section>
 
         {/* The Lavender Ritual - Scroll Triggered */}
         <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/20">
@@ -357,7 +429,7 @@ const LavenderPage = () => {
         </InView>
 
         {/* Closing CTA Section */}
-        <InView as="section" className="relative py-12 xs:py-16 sm:py-20 lg:py-24 xl:py-32 overflow-hidden">
+        <InView as="section" className="relative py-8 xs:py-10 sm:py-12 lg:py-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900/30 to-black/80" />
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
@@ -366,21 +438,12 @@ const LavenderPage = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400 mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-yellow-400 mb-3 sm:mb-4 md:mb-6">
                 Embrace the Allure
               </h2>
-              <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-4">
+              <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white/80 mb-4 sm:mb-6 md:mb-8 max-w-2xl mx-auto px-4">
                 Limited availability. Unlimited tranquility.
               </p>
-              <div className="flex justify-center items-center flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
-                <CustomAddToCartButton
-                  productId={47036}
-                  colorHex="#a78bfa"
-                />
-                <div className="hidden" data-bottlenexus-id={47036}>
-                  <BottleNexusButton id={47036} />
-                </div>
-              </div>
               <a
                 href="/store-locator"
                 className="text-xs xs:text-sm sm:text-base text-yellow-400 hover:text-yellow-400/80 transition-colors duration-200 inline-block"

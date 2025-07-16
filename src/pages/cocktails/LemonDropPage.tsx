@@ -89,11 +89,6 @@ const LemonDropPage = () => {
     transition: { duration: 1, delay: 0.5 }
   }), []);
 
-  const bottleAnimation = useMemo(() => ({
-    initial: { opacity: 0, y: 100 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 1, delay: 1 }
-  }), []);
 
   // Optimize ritual step handler
   const handleRitualStepChange = useCallback((index: number) => {
@@ -108,7 +103,7 @@ const LemonDropPage = () => {
         <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <img
-              src="/images/hero/lemon-lifestyle.jpg"
+              src="/HL2.jpg"
               alt="Lemon Drop Gin Lifestyle"
               className="absolute inset-0 w-full h-full object-cover"
               loading="eager"
@@ -127,17 +122,6 @@ const LemonDropPage = () => {
                 </p>
               </motion.div>
               
-              <motion.div
-                className="absolute bottom-8 sm:bottom-10 left-1/2 transform -translate-x-1/2 w-full max-w-sm sm:max-w-none sm:left-1/3 sm:translate-x-0"
-                {...bottleAnimation}
-              >
-                <img 
-                  src="/images/bottles/lemon/bottle-hero.png" 
-                  alt="Lemon Drop Bottle"
-                  className="h-[25vh] xs:h-[30vh] sm:h-[35vh] md:h-[45vh] lg:h-[50vh] object-contain mx-auto sm:mx-0"
-                  loading="eager"
-                />
-              </motion.div>
             </div>
           </div>
         </section>

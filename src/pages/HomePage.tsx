@@ -21,17 +21,17 @@ const WIDE_IMAGE_URL = "/images/home/wide/all_bottle_wide.png";
 
 // Update gallery image paths and spans
 const galleryMediaItems: MediaItemType[] = [
-  { id: 1, type: "image", title: "Urban Edge", desc: "Confidence in the city.", url: "/images/home/gallery/G1 (1).png" },
-  { id: 2, type: "image", title: "Sophisticated Night", desc: "Elegance after dark.", url: "/images/home/gallery/G1 (2).png" },
-  { id: 3, type: "image", title: "Modern Artistry", desc: "Where creativity meets style.", url: "/images/home/gallery/G1 (3).png" },
-  { id: 4, type: "image", title: "Golden Hour", desc: "Chic moments.", url: "/images/home/gallery/G1 (4).png" },
-  { id: 5, type: "image", title: "Individual Style", desc: "Express yourself.", url: "/images/home/gallery/G1 (5).png" },
-  { id: 6, type: "image", title: "Abstract Flow", desc: "Liquid inspiration.", url: "/images/home/gallery/G1 (6).png" },
-  { id: 7, type: "image", title: "Night Lights", desc: "City vibes.", url: "/images/home/gallery/G1 (7).png" },
-  { id: 8, type: "image", title: "Minimalist Detail", desc: "Subtle luxury.", url: "/images/home/gallery/G1 (8).png" },
+  { id: 1, type: "image", title: "Urban Edge", desc: "Confidence in the city.", url: "/images/home/gallery/G1%20(1).png" },
+  { id: 2, type: "image", title: "Sophisticated Night", desc: "Elegance after dark.", url: "/images/home/gallery/G1%20(2).png" },
+  { id: 3, type: "image", title: "Modern Artistry", desc: "Where creativity meets style.", url: "/images/home/gallery/G1%20(3).png" },
+  { id: 4, type: "image", title: "Golden Hour", desc: "Chic moments.", url: "/images/home/gallery/G1%20(4).png" },
+  { id: 5, type: "image", title: "Individual Style", desc: "Express yourself.", url: "/images/home/gallery/G1%20(5).png" },
+  { id: 6, type: "image", title: "Abstract Flow", desc: "Liquid inspiration.", url: "/images/home/gallery/G1%20(6).png" },
+  { id: 7, type: "image", title: "Night Lights", desc: "City vibes.", url: "/images/home/gallery/G1%20(7).png" },
+  { id: 8, type: "image", title: "Minimalist Detail", desc: "Subtle luxury.", url: "/images/home/gallery/G1%20(8).png" },
   // Repeat last images for items 9 and 10 as only 8 gallery images provided
-  { id: 9, type: "image", title: "Shared Moment", desc: "Connect and indulge.", url: "/images/home/gallery/G1 (7).png" },
-  { id: 10, type: "image", title: "Texture & Tone", desc: "Sensory details.", url: "/images/home/gallery/G1 (8).png" },
+  { id: 9, type: "image", title: "Shared Moment", desc: "Connect and indulge.", url: "/images/home/gallery/G1%20(7).png" },
+  { id: 10, type: "image", title: "Texture & Tone", desc: "Sensory details.", url: "/images/home/gallery/G1%20(8).png" },
 ];
 
 
@@ -60,8 +60,8 @@ const HomePage: React.FC = () => {
       <section>
           <InView>
               <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
-                  <video controls muted loop className="w-full h-full object-cover" poster={FEATURE_IMAGE_LEMON}> {/* Update poster image */}
-                      {/* <source src="YOUR_VIDEO_URL.mp4" type="video/mp4" /> */}
+                  <video autoPlay loop muted className="w-full h-full object-cover" poster={FEATURE_IMAGE_LEMON}> {/* Update poster image */}
+                      <source src="/Models4.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                   </video>
               </div>

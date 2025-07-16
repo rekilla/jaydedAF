@@ -15,19 +15,19 @@ const storyPoints: StoryPoint[] = [
     number: "01",
     title: "The Vision",
     description: "Born from a desire to redefine cocktail culture. Alexa Jayde Fitzpatrick envisioned a brand that celebrates individuality and liquid luxury.",
-    image: "/images/brand/vision.jpg"
+    image: "/H1.jpg"
   },
   {
-    number: "02", 
+    number: "02",
     title: "Unapologetically Bold",
     description: "Jayded AF isn't just a name—it's an attitude. For those who refuse to blend in and choose to stand out.",
-    image: "/images/brand/bold.jpg"
+    image: "/H2.jpg"
   },
   {
     number: "03",
     title: "Crafted Excellence",
     description: "Every bottle represents our commitment to quality. Real gin, natural flavors, and the perfect pour every time.",
-    image: "/images/brand/craft.jpg"
+    image: "/H3.jpg"
   }
 ];
 
@@ -208,21 +208,11 @@ export const BrandStorySection: React.FC = () => {
                     src={story.image}
                     alt={story.title}
                     className="w-full h-full object-cover"
-                    style={{ opacity: 0.8 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
               ))}
               
-              {/* Fallback placeholder */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl font-light text-white/10 mb-4">
-                    {activeIndex + 1}/3
-                  </div>
-                  <p className="text-sm text-white/40">Brand Story</p>
-                </div>
-              </div>
+              {/* Fallback placeholder removed */}
             </div>
           </motion.div>
         </div>
