@@ -7,13 +7,13 @@ const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; clas
   return <Component className={className} {...props}>{children}</Component>;
 };
 
-const BottleNexusButton: React.FC<{ id: number }> = ({ id }) => (
+const BottleNexusButton: React.FC<{ id: number }> = () => (
   <button className="px-4 sm:px-6 py-2 sm:py-3 bg-brand-gold text-black font-semibold rounded-lg hover:bg-brand-gold/90 transition-colors text-sm sm:text-base">
     Quick Order
   </button>
 );
 
-const CustomAddToCartButton: React.FC<{ productId: number; colorHex: string }> = ({ productId, colorHex }) => (
+const CustomAddToCartButton: React.FC<{ productId: number; colorHex: string }> = ({ colorHex }) => (
   <button 
     className="px-6 sm:px-8 py-3 sm:py-4 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-500 transition-colors text-sm sm:text-base"
     style={{ backgroundColor: colorHex }}
@@ -158,7 +158,7 @@ const LemonDropPage = () => {
                 { delay: 0.2, colorClasses: 'from-yellow-400/20 to-yellow-600/20', icon: '🍋', title: 'Initial', desc: 'A bright, electrifying burst of fresh lemon zest' },
                 { delay: 0.4, colorClasses: 'from-lime-400/20 to-lime-600/20', icon: '🌿', title: 'Heart', desc: 'Crisp juniper with a hint of candied peel' },
                 { delay: 0.6, colorClasses: 'from-orange-400/20 to-orange-600/20', icon: '✨', title: 'Finish', desc: 'Clean, sharp, and invigoratingly smooth' }
-              ].map((item, index) => (
+              ].map((item) => (
                 <motion.div
                   key={item.title}
                   className="text-center px-4 sm:px-0"

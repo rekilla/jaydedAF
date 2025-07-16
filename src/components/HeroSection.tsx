@@ -79,21 +79,6 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
-const bottleVariants = {
-  hidden: { opacity: 0, scale: 0.8, rotateY: -15 },
-  show: { 
-    opacity: 1, 
-    scale: 1, 
-    rotateY: 0,
-    transition: { duration: 0.8, ease: "easeOut" }
-  },
-  exit: { 
-    opacity: 0, 
-    scale: 0.8, 
-    rotateY: 15,
-    transition: { duration: 0.4, ease: "easeIn" }
-  }
-};
 
 const mediaVariants = {
   hidden: { opacity: 0 },

@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Mock components for demonstration - replace with your actual imports
 const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; className?: string }> = ({ children, as = 'div', className = '', ...props }) => {
@@ -7,13 +7,13 @@ const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; clas
   return <Component className={className} {...props}>{children}</Component>;
 };
 
-const BottleNexusButton: React.FC<{ id: number }> = ({ id }) => (
+const BottleNexusButton: React.FC<{ id: number }> = () => (
   <button className="px-4 sm:px-6 py-2 sm:py-3 bg-brand-gold text-black font-semibold rounded-lg hover:bg-brand-gold/90 transition-colors text-sm sm:text-base">
     Quick Order
   </button>
 );
 
-const CustomAddToCartButton: React.FC<{ productId: number; colorHex: string }> = ({ productId, colorHex }) => (
+const CustomAddToCartButton: React.FC<{ productId: number; colorHex: string }> = ({ colorHex }) => (
   <button
     className="px-6 sm:px-8 py-3 sm:py-4 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors text-sm sm:text-base"
     style={{ backgroundColor: colorHex }}
@@ -158,7 +158,7 @@ const CucumberPage = () => {
                 { delay: 0.2, colorClasses: 'from-emerald-400/20 to-emerald-600/20', icon: '🥒', title: 'Initial', desc: 'Cool cucumber awakens your senses with crisp freshness' },
                 { delay: 0.4, colorClasses: 'from-green-400/20 to-green-600/20', icon: '🌿', title: 'Heart', desc: 'Gentle botanicals and subtle mint create harmony' },
                 { delay: 0.6, colorClasses: 'from-blue-400/20 to-blue-600/20', icon: '✨', title: 'Finish', desc: 'Lingering elegance with clean, refreshing clarity' }
-              ].map((item, index) => (
+              ].map((item) => (
                 <motion.div
                   key={item.title}
                   className="text-center px-4 sm:px-0"
