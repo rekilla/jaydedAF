@@ -3,7 +3,6 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FlavorHero } from '../../components/FlavorHero';
 import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
-import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
 
 // Mock components
 const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; className?: string }> = ({ children, as = 'div', className = '', ...props }) => {
@@ -243,7 +242,7 @@ const LavenderPage = () => {
                 { delay: 0.2, colorClasses: 'from-purple-400/20 to-purple-600/20', icon: '🪻', title: 'Initial', desc: 'Delicate lavender and soft floral notes' },
                 { delay: 0.4, colorClasses: 'from-pink-400/20 to-pink-600/20', icon: '🍯', title: 'Heart', desc: 'A hint of wild honey and subtle botanicals' },
                 { delay: 0.6, colorClasses: 'from-indigo-400/20 to-indigo-600/20', icon: '✨', title: 'Finish', desc: 'Smooth, elegant, with a whisper of sweetness' }
-              ].map((item, index) => (
+              ].map((item) => (
                 <motion.div
                   key={item.title}
                   className="text-center px-4 sm:px-0"
