@@ -54,19 +54,19 @@ const ritualSteps = [
     step: 1,
     title: 'Find Your Sanctuary',
     description: 'Create your calm space',
-    image: '/images/ritual/chill-lavender.jpg'
+    image: '/LX2.jpg'
   },
   {
     step: 2,
     title: 'Pour with Grace',
     description: 'Add a sprig of lavender',
-    image: '/images/ritual/pour-lavender.jpg'
+    image: '/LX1.jpg'
   },
   {
     step: 3,
     title: 'Inhale the Aroma',
     description: 'Breathe deep and relax',
-    image: '/images/ritual/savor-lavender.jpg'
+    image: '/LX3.jpg'
   }
 ];
 
