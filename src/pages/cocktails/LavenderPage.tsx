@@ -380,13 +380,13 @@ const LavenderPage = () => {
               Your Perfect Serve
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 max-w-5xl mx-auto">
-              {servingStyles.map((style, index) => (
+              {servingStyles.map((style) => (
                 <motion.div
                   key={style.id}
                   className="text-center p-4 sm:p-6 rounded-lg bg-gray-900/10 hover:bg-gray-900/20 transition-colors duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
                 >

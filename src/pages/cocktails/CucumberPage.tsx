@@ -9,13 +9,13 @@ const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; clas
   return <Component className={className} {...props}>{children}</Component>;
 };
 
-const BottleNexusButton: React.FC<{ id: number }> = () => (
+const BottleNexusButton: React.FC = () => (
   <button className="px-4 sm:px-6 py-2 sm:py-3 bg-brand-gold text-black font-semibold rounded-lg hover:bg-brand-gold/90 transition-colors text-sm sm:text-base">
     Quick Order
   </button>
 );
 
-const CustomAddToCartButton: React.FC<{ productId: number; colorHex: string }> = ({ colorHex }) => (
+const CustomAddToCartButton: React.FC<{ colorHex: string }> = ({ colorHex }) => (
   <button
     className="px-6 sm:px-8 py-3 sm:py-4 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-600 transition-colors text-sm sm:text-base"
     style={{ backgroundColor: colorHex }}
@@ -396,13 +396,13 @@ const CucumberPage = () => {
               Your Perfect Serve
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 max-w-5xl mx-auto">
-              {servingStyles.map((style, index) => (
+              {servingStyles.map((style) => (
                 <motion.div
                   key={style.id}
                   className="text-center p-4 sm:p-6 rounded-lg bg-gray-900/10 hover:bg-gray-900/20 transition-colors duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
                 >
@@ -470,11 +470,10 @@ const CucumberPage = () => {
               </p>
               <div className="flex justify-center items-center flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
                 <CustomAddToCartButton
-                  productId={47037}
                   colorHex="#2dd4bf"
                 />
                 <div className="hidden" data-bottlenexus-id={47037}>
-                  <BottleNexusButton id={47037} />
+                  <BottleNexusButton />
                 </div>
               </div>
               <a
