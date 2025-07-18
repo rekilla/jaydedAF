@@ -69,19 +69,19 @@ const ritualSteps = [
     step: 1,
     title: 'Chill to Perfection',
     description: 'Find your quiet space',
-    image: '/images/ritual/chill-cucumber.jpg'
+    image: '/CX1.jpg'
   },
   {
     step: 2,
     title: 'Pour with Intention',
     description: 'Add fresh cucumber',
-    image: '/images/ritual/pour-cucumber.jpg'
+    image: '/CX2.jpg'
   },
   {
     step: 3,
     title: 'Savor the Moment',
     description: 'Breathe and savor',
-    image: '/images/ritual/savor-cucumber.jpg'
+    image: '/CX3.jpg'
   }
 ];
 
@@ -126,18 +126,16 @@ const CucumberPage = () => {
               }}
             >
               <img
-                src="/HC.jpg"
+                src="/HC.png"
                 alt="Cucumber Lifestyle"
-                className="w-full h-full object-cover object-center"
-                style={{
-                  objectPosition: '50% 50%',
-                }}
+                className="w-full h-full object-contain object-center"
+                style={{ transform: 'scale(1.1)' }}
               />
             </div>
           </div>
 
           {/* Mobile Layout - Compact with minimal gap */}
-          <div className="lg:hidden relative min-h-screen">
+          <div className="lg:hidden relative h-auto">
             {/* Enhanced Background for mobile */}
             <div className="absolute inset-0">
               <FlavorHeroMobile flavor={flavorData} />
@@ -165,7 +163,7 @@ const CucumberPage = () => {
               </div>
               
               {/* Image section with negative margin to close gap */}
-              <div className="h-[62vh] relative -mt-9">
+              <div className="h-[440px] relative -mt-9">
                 <div
                   className="absolute inset-0 w-full h-full"
                   style={{
@@ -293,7 +291,7 @@ const CucumberPage = () => {
         {/* Full-Width Lifestyle Moment */}
         <InView as="section" className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
           <img
-            src="/images/lifestyle/cucumber-garden-party.jpg"
+            src="/C2wide.jpg"
             alt="Garden Party Moment"
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"

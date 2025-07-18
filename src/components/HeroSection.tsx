@@ -291,24 +291,24 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Flavor Selector - Part of hero section at bottom */}
-<div className="relative pb-8 sm:pb-10 md:pb-12 lg:pb-16 px-6">
-          <div className="flex justify-center">
-            <div className="scale-100 md:scale-110 lg:scale-125 xl:scale-150 origin-bottom transition-transform duration-300">
-              <FlavorSelector
-                flavors={flavors.map(f => ({
-                  key: f.key,
-                  title: f.title,
-                  colorHex: f.colorHex,
-                  colorClass: f.colorClass,
-                  bottleRenderImage: f.bottleRenderImage
-                }))}
-                activeIndex={activeIndex}
-                onFlavorChange={handleFlavorChange}
-                className="flex flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-8"
-              />
-            </div>
-          </div>
-        </div>
+<div className="relative pb-32 sm:pb-20 md:pb-24 lg:pb-28 px-6">
+  <div className="flex justify-center">
+    <div className="scale-90 sm:scale-100 md:scale-110 lg:scale-125 xl:scale-150 origin-bottom transition-transform duration-300">
+      <FlavorSelector
+        flavors={flavors.map(f => ({
+          key: f.key,
+          title: f.title,
+          colorHex: f.colorHex,
+          colorClass: f.colorClass,
+          bottleRenderImage: f.bottleRenderImage
+        }))}
+        activeIndex={activeIndex}
+        onFlavorChange={handleFlavorChange}
+        className="flex flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-8"
+      />
+    </div>
+  </div>
+</div>
       </div>
     </div>
   );

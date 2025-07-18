@@ -32,7 +32,7 @@ const cn = (...classes: (string | undefined | null | false)[]) => classes.filter
 // Flavor Data
 const flavorData = {
   key: "lemon",
-  name: "Laxly Lemon Drop",
+  name: "Lemon Drop",
   tagline: "Vibrant, Zesty & Unforgettably Bold",
   colorClass: "text-yellow-400",
   colorHex: "#facc15",
@@ -69,19 +69,19 @@ const ritualSteps = [
     step: 1,
     title: 'Prepare the Zest',
     description: 'Get ready for the energy',
-    image: '/images/ritual/chill-lemon.jpg'
+    image: '/L2X3.jpg'
   },
   {
     step: 2,
     title: 'Pour with Attitude',
     description: 'Add a fresh lemon twist',
-    image: '/images/ritual/pour-lemon.jpg'
+    image: '/L2X2.jpg'
   },
   {
     step: 3,
     title: 'Ignite the Senses',
     description: 'Embrace the vibrant moment',
-    image: '/images/ritual/savor-lemon.jpg'
+    image: '/L2X1.jpg'
   }
 ];
 
@@ -126,18 +126,16 @@ const LemonDropPage = () => {
               }}
             >
               <img
-                src="/HL2.jpg"
+                src="/HL2.png"
                 alt="Lemon Drop Lifestyle"
-                className="w-full h-full object-cover object-center"
-                style={{
-                  objectPosition: '50% 50%',
-                }}
+                className="w-full h-full object-contain object-center"
+                style={{ transform: 'scale(1.1)' }}
               />
             </div>
           </div>
 
           {/* Mobile Layout - Compact with minimal gap */}
-          <div className="lg:hidden relative min-h-screen">
+          <div className="lg:hidden relative h-auto">
             {/* Enhanced Background for mobile */}
             <div className="absolute inset-0">
               <FlavorHeroMobile flavor={flavorData} />
@@ -165,7 +163,7 @@ const LemonDropPage = () => {
               </div>
               
               {/* Image section with negative margin to close gap */}
-              <div className="h-[62vh] relative -mt-9">
+              <div className="h-[440px] relative -mt-9">
                 <div
                   className="absolute inset-0 w-full h-full"
                   style={{
@@ -293,8 +291,8 @@ const LemonDropPage = () => {
         {/* Full-Width Lifestyle Moment */}
         <InView as="section" className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
           <img
-            src="/images/lifestyle/lemon-rooftop-party.jpg"
-            alt="Rooftop Party Moment"
+            src="/L2wide.jpg"
+            alt="Garden Party Moment"
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />

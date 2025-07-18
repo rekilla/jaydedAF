@@ -17,7 +17,7 @@ const cn = (...classes: (string | undefined | null | false)[]) => classes.filter
 // Flavor Data
 const flavorData = {
   key: "lavender",
-  name: "Laxly Lavender",
+  name: "Lavender",
   tagline: "Elegant, Aromatic & Mysteriously Alluring",
   colorClass: "",
   colorHex: "#8A2BE2",
@@ -110,15 +110,16 @@ const LavenderPage = () => {
               }}
             >
               <img
-                src="/HL.jpg"
+                src="/HL.png"
                 alt="Lavender Lifestyle"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-contain object-center"
+                style={{ transform: 'scale(1.1)' }}
               />
             </div>
           </div>
 
           {/* Mobile Layout - Compact with minimal gap */}
-          <div className="lg:hidden relative min-h-screen">
+          <div className="lg:hidden relative h-auto">
             {/* Enhanced Background for mobile */}
             <div className="absolute inset-0">
               <FlavorHeroMobile flavor={flavorData} />
@@ -146,7 +147,7 @@ const LavenderPage = () => {
               </div>
               
               {/* Image section with negative margin to close gap */}
-              <div className="h-[62vh] relative -mt-9">
+              <div className="h-[440px] relative -mt-9">
                 <div
                   className="absolute inset-0 w-full h-full"
                   style={{
@@ -163,7 +164,7 @@ const LavenderPage = () => {
                   }}
                 >
                   <img
-                    src="/HL.jpg"
+                    src="/HL.png"
                     alt="Lavender Lifestyle"
                     className="w-full h-full object-contain"
                   />
@@ -271,37 +272,34 @@ const LavenderPage = () => {
           </div>
         </InView>
 
-        {/* Your Sunset Soiree Moment */}
-        <section className="w-full bg-black">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center py-12 sm:py-16 lg:py-20">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-2 sm:mb-4">
-                Your Sunset Soiree Moment
-              </h2>
-              <p className="text-sm xs:text-base sm:text-lg text-white/80">
-                Where elegance meets enchantment
-              </p>
-            </motion.div>
+        {/* Full-Width Lifestyle Moment */}
+        <InView as="section" className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
+          <img
+            src="/Lwide.jpg"
+            alt="Garden Party Moment"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+          <div className="relative z-10 h-full flex items-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true }}
+                className="max-w-lg"
+              >
+                <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-2 sm:mb-4">
+                  Your Sunset Soiree Moment
+                </h2>
+                <p className="text-sm xs:text-base sm:text-lg text-white/80">
+                  Where elegance meets enchantment
+                </p>
+              </motion.div>
+            </div>
           </div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <img
-              src="/Lwide.jpg"
-              alt="Elegant lavender cocktail soiree"
-              className="w-full h-auto object-cover"
-              loading="lazy"
-            />
-          </motion.div>
-        </section>
+        </InView>
 
         {/* The Lavender Ritual - Scroll Triggered */}
         <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/20">
