@@ -140,7 +140,7 @@ const InView: React.FC<{ children: React.ReactNode; className?: string }> = ({ c
 
 // Main Collection Section Component
 export const LuxuryCollectionSection: React.FC = () => {
-  const [hoveredProductId, setHoveredProductId] = useState<number | null>(null);
+  const [, setHoveredProductId] = useState<number | null>(null);
 
   const allImageUrls = products.flatMap(product => [product.bottleImage, product.lifestyleImage]);
   useImagePreloader(allImageUrls);

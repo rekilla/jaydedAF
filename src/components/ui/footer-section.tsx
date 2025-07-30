@@ -9,7 +9,6 @@ import {
   TooltipTrigger,
 } from "./tooltip"; // Revert to relative path
 import { Facebook, Instagram, Send, Twitter } from "lucide-react";
-import { cn } from "../../lib/utils"; // Revert to relative path
 
 // Renamed component to avoid conflict if demo name is used elsewhere
 export function FooterSection() {
