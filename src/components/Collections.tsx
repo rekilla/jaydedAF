@@ -38,17 +38,14 @@ const ProductCard: React.FC<{
   onImageHover: () => void;
   onImageLeave: () => void;
   isDimmed: boolean;
-}> = ({ product, onImageHover, onImageLeave, isDimmed }) => {
+}> = ({ product, onImageHover, onImageLeave }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { openCart } = useCart();
 
   return (
-    <motion.div 
+    <motion.div
       className="relative flex flex-col items-center"
-      animate={{
-        opacity: isDimmed ? 0.4 : 1,
-        filter: isDimmed ? 'grayscale(50%)' : 'grayscale(0%)'
-      }}
+      whileHover={{ scale: 1.1 }}
       transition={{ duration: 0.3 }}
     >
       {/* Spotlight Effect */}
@@ -87,7 +84,7 @@ const ProductCard: React.FC<{
 
       {/* Product Image Container */}
       <div
-        className="relative z-10 w-64 h-80 mb-8 cursor-pointer"
+        className="relative z-10 w-64 h-80 mb-8 cursor-pointer transform-gpu"
         onMouseEnter={() => { setIsHovered(true); onImageHover(); }}
         onMouseLeave={() => { setIsHovered(false); onImageLeave(); }}
       >
@@ -95,15 +92,7 @@ const ProductCard: React.FC<{
           src={product.bottleImage}
           alt={`${product.name} bottle`}
           className="absolute inset-0 w-full h-full object-contain"
-          animate={{ opacity: isHovered ? 0 : 1, scale: isHovered ? 0.95 : 1 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          style={{ filter: `drop-shadow(0 25px 50px ${product.colorHex}20)` }}
-        />
-        <motion.img
-          src={product.lifestyleImage}
-          alt={`${product.name} lifestyle`}
-          className="absolute inset-0 w-full h-full object-contain"
-          animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.95 }}
+          animate={{ scale: isHovered ? 1.1 : 1 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
           style={{ filter: `drop-shadow(0 25px 50px ${product.colorHex}20)` }}
         />
@@ -117,14 +106,9 @@ const ProductCard: React.FC<{
 
       {/* Product Info */}
       <div className="text-center z-10">
-        <h3 className="text-2xl font-light tracking-wider mb-1" style={{ color: product.colorHex }}>
-          {product.name}
-        </h3>
-        <p className="text-sm text-white/60 tracking-widest mb-3">{product.subtitle}</p>
         <p className="text-sm text-white/80 max-w-xs mx-auto mb-4 leading-relaxed">
           {product.description}
         </p>
-        <p className="text-xl text-white mb-6">{product.price}</p>
 
         {/* Hidden BottleNexus button */}
         <div className="hidden" data-bottlenexus-id={product.bottleNexusId}>
@@ -172,28 +156,10 @@ export const LuxuryCollectionSection: React.FC = () => {
 
   return (
     <BottleNexusProvider>
-      <section className="relative py-20 sm:py-24 pb-32 bg-[#1a1a1a] overflow-hidden">
+      <section className="relative py-20 sm:py-24 pb-32 bg-black overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
         <InView className="relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px]">
-            <div className="text-center mb-16">
-              <motion.h2 
-                className="text-4xl sm:text-5xl font-light tracking-wider text-white mb-4"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                The Collection
-              </motion.h2>
-              <motion.p 
-                className="text-lg text-white/60 max-w-2xl mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Choose your expression of liquid opulence
-              </motion.p>
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 pb-12">
               {products.map((product, index) => (
                 <motion.div
@@ -207,7 +173,7 @@ export const LuxuryCollectionSection: React.FC = () => {
                     product={product}
                     onImageHover={() => setHoveredProductId(product.id)}
                     onImageLeave={() => setHoveredProductId(null)}
-                    isDimmed={hoveredProductId !== null && hoveredProductId !== product.id}
+                    isDimmed={false}
                   />
                 </motion.div>
               ))}

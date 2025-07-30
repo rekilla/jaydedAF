@@ -10,9 +10,9 @@ const cn = (...classes: (string | undefined | null | false)[]) => {
 interface FlavorSelectorProps {
   flavors: Array<{
     key: string;
-    title: string;
+    title: React.ReactNode;
+    label: string;
     colorHex: string;
-    colorClass: string;
     bottleRenderImage: string;
   }>;
   activeIndex: number;
@@ -37,7 +37,7 @@ export const FlavorSelector: React.FC<FlavorSelectorProps> = ({
             onClick={() => onFlavorChange(index)}
             className={cn(
               "relative transition-all duration-300 group",
-              "w-16 h-20 md:w-20 md:h-24" // Bigger size
+              "w-28 h-36 md:w-20 md:h-24" // 75% larger mobile, original desktop
             )}
             whileHover={{ scale: isActive ? 1.1 : 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -77,7 +77,7 @@ export const FlavorSelector: React.FC<FlavorSelectorProps> = ({
                 isActive ? "text-white opacity-100" : "text-white/40 opacity-0 group-hover:opacity-60"
               )}
             >
-              {flavor.title.split(' ')[0]}
+              {flavor.label}
             </div>
           </motion.button>
         );

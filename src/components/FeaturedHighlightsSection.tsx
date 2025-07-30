@@ -14,31 +14,24 @@ interface Highlight {
 const highlights: Highlight[] = [
   {
     id: 1,
-    title: "Premium Gin Base",
+    title: "Premium Quality",
     value: "100%",
     description: "Real gin spirits, no artificial alternatives",
-    icon: "🍸"
+    icon: "/leaf-svgrepo-com.svg"
   },
   {
     id: 2,
-    title: "Natural Flavors",
-    value: "100%",
-    description: "Natural ingredients in our cocktails",
-    icon: "🌿"
+    title: "Perfect Strength",
+    value: "12.5%",
+    description: "ABV for the ideal cocktail experience",
+    icon: "/martini-glass-with-straw-svgrepo-com.svg"
   },
   {
     id: 3,
-    title: "Perfect Serve",
-    value: "15%",
-    description: "ABV for the ideal cocktail experience",
-    icon: "✨"
-  },
-  {
-    id: 4,
-    title: "Crafted Daily",
-    value: "Fresh",
-    description: "Small batch production for quality",
-    icon: "🏆"
+    title: "Natural Ingredients",
+    value: "100%",
+    description: "Natural ingredients in our cocktails",
+    icon: "/check-mark-svgrepo-com.svg"
   }
 ];
 
@@ -67,11 +60,11 @@ export const FeaturedHighlightsSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-white mb-2">
             Why Choose Jayded AF
           </h2>
-          <div className="w-12 h-px bg-[#D4AF37] mx-auto" />
+          <div className="w-12 h-px bg-white mx-auto" />
         </motion.div>
 
         {/* Highlights Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
           {highlights.map((highlight, index) => (
             <motion.div
               key={highlight.id}
@@ -85,7 +78,7 @@ export const FeaturedHighlightsSection: React.FC = () => {
             >
               {/* Background glow on hover - using CSS transition instead of motion */}
               <div
-                className="absolute inset-0 bg-[#D4AF37]/5 rounded-lg transition-all duration-300"
+                className="absolute inset-0 bg-white/5 rounded-lg transition-all duration-300"
                 style={{
                   opacity: hoveredIndex === index ? 1 : 0,
                   transform: hoveredIndex === index ? 'scale(1)' : 'scale(0.95)'
@@ -94,13 +87,17 @@ export const FeaturedHighlightsSection: React.FC = () => {
               
               <div className="relative p-6 sm:p-8">
                 {/* Icon */}
-                <div className="text-3xl sm:text-4xl mb-4 opacity-80">
-                  {highlight.icon}
+                <div className="mb-4 flex justify-center">
+                  <img 
+                    src={highlight.icon} 
+                    alt={highlight.title}
+                    className="w-8 h-8 sm:w-10 sm:h-10 opacity-80"
+                  />
                 </div>
                 
                 {/* Value - using CSS transition */}
                 <div 
-                  className="text-3xl sm:text-4xl font-light text-[#D4AF37] mb-2 transition-transform duration-300"
+                  className="text-3xl sm:text-4xl font-light text-white mb-2 transition-transform duration-300"
                   style={{
                     transform: hoveredIndex === index ? 'scale(1.1)' : 'scale(1)'
                   }}
@@ -121,7 +118,7 @@ export const FeaturedHighlightsSection: React.FC = () => {
               
               {/* Bottom accent line - using CSS transition */}
               <div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-[#D4AF37] transition-all duration-300"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-white transition-all duration-300"
                 style={{
                   width: hoveredIndex === index ? '50%' : '0%'
                 }}

@@ -2,6 +2,7 @@
 {
   "compilerOptions": {
     // ... your other existing options ...
+    "incremental": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,

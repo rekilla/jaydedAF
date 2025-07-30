@@ -36,7 +36,7 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <main className="w-full min-h-screen bg-brand-background flex items-center justify-center pt-32 pb-32">
+    <main className="w-full min-h-screen bg-white text-black flex items-center justify-center pt-32 pb-32">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -45,10 +45,10 @@ const ContactPage: React.FC = () => {
       >
         {/* Heading */}
         <div className="text-center mb-12">
-          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-gold mb-6">
+          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6">
             Get In Touch
           </h1>
-          <p className="text-lg text-brand-text/80 leading-relaxed">
+          <p className="text-lg text-black/80 leading-relaxed">
             We'd love to hear from you.
           </p>
         </div>
@@ -74,14 +74,14 @@ const ContactPage: React.FC = () => {
               onChange={handleChange}
               onFocus={() => setFocusedField('name')}
               onBlur={() => setFocusedField(null)}
-              className="peer w-full bg-transparent border-b border-brand-text/20 pb-3 text-brand-text placeholder-transparent focus:border-brand-gold focus:outline-none transition-colors duration-300"
+              className="peer w-full bg-transparent border-b border-black/20 pb-3 text-black placeholder-transparent focus:border-yellow-400 focus:outline-none transition-colors duration-300"
               placeholder="Name"
             />
             <label
               className={`absolute left-0 transition-all duration-300 pointer-events-none ${
                 formData.name || focusedField === 'name'
-                  ? '-top-5 text-xs text-brand-gold'
-                  : 'top-0 text-brand-text/70'
+                  ? '-top-5 text-xs text-yellow-400'
+                  : 'top-0 text-black/70'
               }`}
             >
               Name
@@ -97,14 +97,14 @@ const ContactPage: React.FC = () => {
               onChange={handleChange}
               onFocus={() => setFocusedField('email')}
               onBlur={() => setFocusedField(null)}
-              className="peer w-full bg-transparent border-b border-brand-text/20 pb-3 text-brand-text placeholder-transparent focus:border-brand-gold focus:outline-none transition-colors duration-300"
+              className="peer w-full bg-transparent border-b border-black/20 pb-3 text-black placeholder-transparent focus:border-yellow-400 focus:outline-none transition-colors duration-300"
               placeholder="Email"
             />
             <label
               className={`absolute left-0 transition-all duration-300 pointer-events-none ${
                 formData.email || focusedField === 'email'
-                  ? '-top-5 text-xs text-brand-gold'
-                  : 'top-0 text-brand-text/70'
+                  ? '-top-5 text-xs text-yellow-400'
+                  : 'top-0 text-black/70'
               }`}
             >
               Email Address
@@ -120,14 +120,14 @@ const ContactPage: React.FC = () => {
               onChange={handleChange}
               onFocus={() => setFocusedField('subject')}
               onBlur={() => setFocusedField(null)}
-              className="peer w-full bg-transparent border-b border-brand-text/20 pb-3 text-brand-text placeholder-transparent focus:border-brand-gold focus:outline-none transition-colors duration-300"
+              className="peer w-full bg-transparent border-b border-black/20 pb-3 text-black placeholder-transparent focus:border-yellow-400 focus:outline-none transition-colors duration-300"
               placeholder="Subject"
             />
             <label
               className={`absolute left-0 transition-all duration-300 pointer-events-none ${
                 formData.subject || focusedField === 'subject'
-                  ? '-top-5 text-xs text-brand-gold'
-                  : 'top-0 text-brand-text/70'
+                  ? '-top-5 text-xs text-yellow-400'
+                  : 'top-0 text-black/70'
               }`}
             >
               Subject
@@ -143,14 +143,14 @@ const ContactPage: React.FC = () => {
               onFocus={() => setFocusedField('message')}
               onBlur={() => setFocusedField(null)}
               rows={5}
-              className="peer w-full bg-transparent border-b border-brand-text/20 pb-3 text-brand-text placeholder-transparent focus:border-brand-gold focus:outline-none transition-colors duration-300 resize-none"
+              className="peer w-full bg-transparent border-b border-black/20 pb-3 text-black placeholder-transparent focus:border-yellow-400 focus:outline-none transition-colors duration-300 resize-none"
               placeholder="Message"
             />
             <label
               className={`absolute left-0 transition-all duration-300 pointer-events-none ${
                 formData.message || focusedField === 'message'
-                  ? '-top-5 text-xs text-brand-gold'
-                  : 'top-0 text-brand-text/70'
+                  ? '-top-5 text-xs text-yellow-400'
+                  : 'top-0 text-black/70'
               }`}
             >
               Your Message
@@ -163,7 +163,7 @@ const ContactPage: React.FC = () => {
             disabled={isSubmitting || !formData.name || !formData.email || !formData.subject || !formData.message}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="w-full py-4 mt-12 bg-brand-gold text-brand-dark hover:bg-brand-gold/90 font-medium tracking-wide uppercase text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+            className="w-full py-4 mt-12 bg-yellow-400 text-black hover:bg-yellow-500 font-medium tracking-wide uppercase text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center gap-2">

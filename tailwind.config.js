@@ -6,38 +6,32 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
-    // Safelist only for dynamic flavor color classes used in HeroSection/NavArrows
-    'text-yellow-400',
-    'text-purple-500',
-    'text-emerald-500',
-    'border-yellow-400',
-    'border-purple-500',
-    'border-emerald-500',
-    'hover:bg-yellow-400',
-    'hover:bg-purple-500',
-    'hover:bg-emerald-500',
+    // Monochrome theme classes
+    'text-white',
+    'text-gray-400',
+    'text-gray-600',
+    'border-white',
+    'border-gray-400',
+    'border-gray-600',
+    'hover:bg-white',
+    'hover:bg-gray-400',
     'hover:text-black',
-    // Safelist for glow classes (if needed by script.js - keep for now)
-    'glow-yellow',
-    'glow-green',
-    'glow-purple',
-    // Removed patterns for CSS vars and Aurora as they seem unnecessary/handled
+    // Safelist for glow classes
+    'glow-white',
+    'glow-gray',
   ],
   theme: {
   	extend: {
   		colors: {
-            // Add glow colors & Update yellow to new gold
-            'glow-yellow': '#bfb23a', // New Gold
-            'glow-green': '#34D399',
-            'glow-purple': '#A78BFA',
-            // Keep existing brand colors & Update gold
-  			'brand-background': '#111111',
-  			'brand-text': '#F5F5F5',
-  			'brand-gold': '#bfb23a', // New Gold
-  			'brand-lemon': '#FFD700', // Keep original lemon yellow distinct
-  			'brand-lavender': '#8A2BE2',
-  			'brand-cucumber': '#20B2AA',
-  			'brand-dark': '#000000',
+            // True black theme colors
+            'brand-background': '#000',
+            'brand-text': '#FFF',
+            'brand-gold': '#FFE34D', // Accent yellow
+            'brand-lavender': '#C7B8FF',
+            'brand-dark': '#000',
+            // Remove rainbow colors, keep monochrome
+            'glow-white': '#FFF',
+            'glow-gray': '#808080',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

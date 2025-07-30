@@ -6,6 +6,7 @@ import type { MediaItemType } from '../components/ui/interactive-bento-gallery';
 import { ShimmerButton } from '../components/ui/shimmer-button';
 import { Link } from 'react-router-dom';
 import HeroSection from '../components/HeroSection';
+import { AwardsSection } from '../components/AwardsSection';
 // Keep Swiper CSS commented out until resolved
 // import '../styles/vendor/swiper/swiper.css';
 // import '../styles/vendor/swiper/pagination.css';
@@ -42,12 +43,13 @@ const HomePage: React.FC = () => {
 
       {/* Section 1: New Dynamic Hero Section */}
       <HeroSection />
+      <AwardsSection />
 
       {/* Section 2: Featured Text (Brand Essence - Moved) */}
-      <section className="py-16 sm:py-20 text-center bg-black">
+      <section className="py-8 sm:py-10 text-center bg-black">
         <InView className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-5 text-brand-gold">Bold. Authentic. Individual.</h2>
-            <p className="mb-10 max-w-2xl mx-auto text-brand-text/80">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-5 text-white">Bold. Authentic. Individual.</h2>
+            <p className="mb-10 max-w-2xl mx-auto text-white/80">
               Jayded AF is more than a cocktail; it's a statement. We celebrate the confidence of the modern individual.
             </p>
             {/* Removed blockquote */}
@@ -61,7 +63,7 @@ const HomePage: React.FC = () => {
           <InView>
               <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
                   <video autoPlay loop muted className="w-full h-full object-cover" poster={FEATURE_IMAGE_LEMON}> {/* Update poster image */}
-                      <source src="/Models4.mp4" type="video/mp4" />
+                      <source src="/Models4.webm" type="video/webm" />
                       Your browser does not support the video tag.
                   </video>
               </div>
@@ -72,10 +74,9 @@ const HomePage: React.FC = () => {
 
 <FeaturedHighlightsSection />
 
-<StoreLocatorSection />
 
       {/* Section 6: Gallery */}
-      <section className="py-16 sm:py-20">
+      <section className="py-8 sm:py-10">
          <InView viewOptions={{ once: true, margin: "0px 0px -20% 0px" }}>
               <InteractiveBentoGallery
                   mediaItems={galleryMediaItems}
@@ -85,8 +86,10 @@ const HomePage: React.FC = () => {
          </InView>
       </section>
 
+      <StoreLocatorSection />
+
       {/* Section 7: New Wide Image Section */}
-       <section className="my-16 sm:my-24">
+       <section className="my-8 sm:my-12">
            <InView>
                 <div className="aspect-[21/9] overflow-hidden bg-brand-dark/50">
                     <img src={WIDE_IMAGE_URL} alt="Jayded AF wide lifestyle" className="w-full h-full object-cover"/>
@@ -95,7 +98,7 @@ const HomePage: React.FC = () => {
         </section>
 
       {/* Section 9: Final CTA Section - Centered */}
-      <section className="py-16 bg-brand-dark text-center">
+      <section className="py-8 bg-brand-dark text-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
                 <Link to="/store-locator">

@@ -59,8 +59,8 @@ export const CustomAddToCartButton: React.FC<{
     <motion.button
       onClick={handleAddToCart}
       disabled={isLoading}
-      className="relative px-8 py-3 border border-[#D4AF37] text-[#D4AF37] 
-                 hover:bg-[#D4AF37] hover:text-black
+      className="relative px-8 py-3 border border-white bg-white text-black
+                 hover:bg-gray-200
                  transition-all duration-300
                  uppercase tracking-wider text-sm font-light group"
       whileHover={{ scale: 1.02 }}
@@ -70,7 +70,7 @@ export const CustomAddToCartButton: React.FC<{
       }}
     >
       <span className={`relative z-10 transition-opacity ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        Add to Cart
+        Purchase
       </span>
       
       {isLoading && (

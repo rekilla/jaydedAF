@@ -38,18 +38,18 @@ const StoreCard: React.FC<{
   return (
     <div
       className={cn(
-        "p-5 border border-brand-gold/10 rounded-lg cursor-pointer transition-all duration-300",
-        "hover:border-brand-gold/30 hover:shadow-lg hover:shadow-brand-gold/5 hover:-translate-y-0.5",
-        isSelected && "border-brand-gold/50 shadow-lg shadow-brand-gold/10"
+        "p-5 border border-black/10 rounded-lg cursor-pointer transition-all duration-300",
+        "hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/20 hover:-translate-y-0.5",
+        isSelected && "border-yellow-400 shadow-lg shadow-yellow-400/20"
       )}
       onClick={onClick}
     >
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <h3 className="font-heading text-lg text-brand-gold mb-1">{store.name}</h3>
-          <p className="text-sm text-brand-text/70">{store.address}</p>
+          <h3 className="font-heading text-lg text-black mb-1">{store.name}</h3>
+          <p className="text-sm text-black/70">{store.address}</p>
           {distance !== undefined && (
-            <p className="text-xs text-brand-text/50 mt-1">{distance.toFixed(1)} miles away</p>
+            <p className="text-xs text-black/50 mt-1">{distance.toFixed(1)} miles away</p>
           )}
         </div>
         <div className="flex items-center gap-1 ml-4">
@@ -57,7 +57,7 @@ const StoreCard: React.FC<{
             "w-2 h-2 rounded-full",
             isOpen ? "bg-green-500" : "bg-red-500/70"
           )} />
-          <span className="text-xs text-brand-text/50">
+          <span className="text-xs text-black/50">
             {isOpen ? "Open" : "Closed"}
           </span>
         </div>
@@ -125,7 +125,7 @@ const GoogleMap: React.FC<{
             icon: {
               path: google.maps.SymbolPath.CIRCLE,
               scale: 8,
-              fillColor: '#bfb23a',
+              fillColor: '#000000',
               fillOpacity: 1,
               strokeColor: '#ffffff',
               strokeWeight: 2,
@@ -218,46 +218,39 @@ const StoreLocatorPage: React.FC = () => {
   }, [searchTerm, userLocation]);
 
   return (
-    <main className="w-full min-h-screen bg-black text-brand-text pt-20">
+    <main className="w-full min-h-screen bg-white text-black pt-20">
       {/* Hero Section - Minimal */}
-      <section className="text-center py-12 px-4">
-        <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-brand-gold mb-3">
-          Find Jayded AF Near You
-        </h1>
-        <p className="text-lg text-brand-text/70 max-w-md mx-auto">
-          Available at select premium retailers
-        </p>
-      </section>
 
       {/* Search Section - Clean */}
-      <section className="container mx-auto px-4 max-w-xl mb-8">
+      <section className="container mx-auto px-6 max-w-xl mb-6">
         <div className="relative">
           <input
             type="text"
             placeholder="Enter city or ZIP"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-4 py-3 bg-brand-dark/50 border border-brand-text/20 rounded-lg 
-                     text-brand-text placeholder:text-brand-text/40 
-                     focus:border-brand-gold/50 focus:outline-none focus:ring-1 focus:ring-brand-gold/30
+            className="w-full px-3 py-2 bg-white border border-black/20 rounded-lg 
+                     text-black placeholder:text-black/40 
+                     focus:border-black focus:outline-none focus:ring-2 focus:ring-black
                      transition-all duration-300"
-          />
-          <button
-            onClick={getUserLocation}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-brand-gold/70 
-                     hover:text-brand-gold transition-colors duration-200 flex items-center gap-1"
-          >
-            <MapPin className="w-4 h-4" />
-            <span className="hidden sm:inline">Use my location</span>
-          </button>
+         />
+         <button
+           onClick={getUserLocation}
+           className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-black/70
+                    hover:text-black transition-colors duration-200 flex items-center gap-1
+                    border border-black/20 rounded-md px-2 py-1"
+         >
+           <MapPin className="w-4 h-4" />
+           <span className="hidden sm:inline">Use my location</span>
+         </button>
         </div>
       </section>
 
       {/* Map and Results */}
-      <section className="container mx-auto px-4 pb-16">
+      <section className="container mx-auto px-6 pb-11">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {/* Interactive Map */}
-          <div className="lg:col-span-2 h-[50vh] lg:h-[600px] bg-brand-dark/30 border border-brand-gold/10 rounded-lg overflow-hidden">
+          <div className="lg:col-span-2 h-[50vh] lg:h-[600px] bg-black/5 border border-black/10 rounded-lg overflow-hidden">
             <GoogleMap
               locations={filteredLocations}
               selectedStore={selectedStore}
@@ -266,8 +259,8 @@ const StoreLocatorPage: React.FC = () => {
           </div>
 
           {/* Store List - Elegant scroll */}
-          <div className="lg:col-span-1 space-y-3 max-h-[600px] overflow-y-auto pr-2 
-                          scrollbar-thin scrollbar-track-brand-dark/20 scrollbar-thumb-brand-gold/20">
+          <div className="lg:col-span-1 space-y-3 max-h-[600px] overflow-y-auto pr-2
+                          scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400">
             {filteredLocations.length > 0 ? (
               filteredLocations.map(store => (
                 <StoreCard
@@ -286,7 +279,7 @@ const StoreLocatorPage: React.FC = () => {
                 />
               ))
             ) : (
-              <p className="text-brand-text/50 text-center py-8">
+              <p className="text-black/50 text-center py-8">
                 No locations found matching your search.
               </p>
             )}
@@ -296,25 +289,25 @@ const StoreLocatorPage: React.FC = () => {
 
       {/* Selected Store Details - Simple tooltip style */}
       {selectedStore && (
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-brand-dark/95 backdrop-blur-sm 
-                        border border-brand-gold/20 rounded-lg p-4 shadow-xl max-w-sm mx-4 z-30">
-          <h3 className="font-heading text-brand-gold mb-2">{selectedStore.name}</h3>
-          <p className="text-sm text-brand-text/70 mb-3">{selectedStore.address}</p>
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm
+                        border border-black/20 rounded-lg p-4 shadow-xl max-w-sm mx-4 z-30">
+          <h3 className="font-heading text-black mb-2">{selectedStore.name}</h3>
+          <p className="text-sm text-black/70 mb-3">{selectedStore.address}</p>
           <div className="flex gap-3">
             <a
               href={`https://maps.google.com/?q=${encodeURIComponent(selectedStore.address)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 text-center py-2 px-4 bg-brand-gold/10 hover:bg-brand-gold/20 
-                         text-brand-gold text-sm rounded transition-colors duration-200"
+              className="flex-1 text-center py-2 px-4 bg-black/10 hover:bg-black/20
+                         text-black text-sm rounded transition-colors duration-200"
             >
               Get Directions
             </a>
             {selectedStore.phone && (
               <a
                 href={`tel:${selectedStore.phone}`}
-                className="flex-1 text-center py-2 px-4 bg-brand-gold/10 hover:bg-brand-gold/20 
-                           text-brand-gold text-sm rounded transition-colors duration-200"
+                className="flex-1 text-center py-2 px-4 bg-black/10 hover:bg-black/20
+                           text-black text-sm rounded transition-colors duration-200"
               >
                 Call Store
               </a>

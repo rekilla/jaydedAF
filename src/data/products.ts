@@ -22,7 +22,7 @@ export const products: Product[] = [
     bottleImage: "/Leamon_Bottle_Render.png",
     lifestyleImage: "/LE.jpg",
     colorHex: "#FFD700",
-    colorClass: "from-yellow-600/20 to-yellow-400/5",
+    colorClass: "from-yellow-400/20 to-yellow-600/5",
     bottleNexusId: 47035,
     inStock: true
   },
@@ -34,8 +34,8 @@ export const products: Product[] = [
     price: "$24.99",
     bottleImage: "/Lavender_Bottle_Render.png",
     lifestyleImage: "/LV.jpg",
-    colorHex: "#8A2BE2",
-    colorClass: "from-purple-600/20 to-purple-400/5",
+    colorHex: "#C7B8FF",
+    colorClass: "from-gray-400/20 to-gray-600/5",
     bottleNexusId: 47036,
     inStock: true
   },
@@ -47,8 +47,8 @@ export const products: Product[] = [
     price: "$24.99",
     bottleImage: "/cucumber_Bottle_Render.png",
     lifestyleImage: "/CU.jpg",
-    colorHex: "#2FAF7D",
-    colorClass: "from-emerald-600/20 to-emerald-400/5",
+    colorHex: "#8BC34A",
+    colorClass: "from-green-400/20 to-green-600/5",
     bottleNexusId: 47037,
     inStock: true
   }

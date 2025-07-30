@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { pathname } = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    const solidHeaderPages = ['/store-locator', '/contact'];
+    
+    if (solidHeaderPages.includes(pathname)) {
+      setIsScrolled(true);
+      // For solid header pages, we don't need a scroll listener for this effect
+      return;
+    }
+
+    // For other pages (like home), handle scroll effect
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Check scroll position on initial load for these pages
     handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -55,8 +68,8 @@ const Header: React.FC = () => {
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
     cn(
       "relative uppercase tracking-wide text-sm font-medium pb-1 transition-colors duration-300 ease-in-out",
-      "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-brand-gold after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
-      isActive ? "text-brand-gold after:scale-x-100" : "text-brand-text"
+      "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
+      isActive ? "text-white after:scale-x-100" : "text-white/80 hover:text-white"
     );
 
   return (
@@ -64,11 +77,12 @@ const Header: React.FC = () => {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 transition-all duration-500 ease-in-out",
+          isMobileMenuOpen ? "z-40" : "z-50",
           isScrolled
-            ? "bg-black/80 backdrop-blur-md shadow-md border-b border-brand-gold/10"
-            : "bg-transparent border-b border-transparent",
-          // Conditional z-index: lower when mobile menu is open
-          isMobileMenuOpen ? "z-40" : "z-50"
+            ? (['/store-locator', '/contact'].includes(pathname)
+              ? "bg-black shadow-md border-b border-white/10"
+              : "bg-black/50 backdrop-blur-lg shadow-md border-b border-white/10")
+            : "bg-transparent border-b border-transparent"
         )}
       >
         <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
@@ -109,7 +123,7 @@ const Header: React.FC = () => {
           <div className="sm:hidden flex-1 flex justify-end">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-brand-text hover:text-brand-gold focus:outline-none p-2 relative z-50"
+              className="text-white hover:text-white/80 focus:outline-none p-2 relative z-50"
               aria-label="Toggle menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -132,7 +146,7 @@ const Header: React.FC = () => {
           >
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="absolute top-6 right-4 text-brand-text hover:text-brand-gold p-2 z-[101]"
+              className="absolute top-6 right-4 text-white hover:text-white/80 p-2 z-[101]"
               aria-label="Close menu"
             >
               <X className="h-7 w-7" />
@@ -145,7 +159,7 @@ const Header: React.FC = () => {
                     className={({ isActive }) =>
                       cn(
                         "text-2xl uppercase tracking-wide font-medium transition-colors duration-300 ease-in-out",
-                        isActive ? "text-brand-gold" : "text-brand-text hover:text-brand-gold/80"
+                        isActive ? "text-white" : "text-white/80 hover:text-white"
                       )
                     }
                     onClick={() => setIsMobileMenuOpen(false)}
