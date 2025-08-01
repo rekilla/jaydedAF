@@ -74,8 +74,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, mediaItems, setSelectedIt
                     </div>
                     
                     <div className="p-4 text-center">
-                        <h3 className="text-white text-2xl font-bold">{selectedItem.title}</h3>
-                        <p className="text-white/80 mt-2 text-lg">{selectedItem.desc}</p>
+                        
                     </div>
 
                     <button

@@ -3,6 +3,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FlavorHero } from '../../components/FlavorHero';
 import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
+import { InteractiveBentoGallery, MediaItemType } from '../../components/ui/interactive-bento-gallery';
 
 import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
 import { BottleNexusProvider } from '../../contexts/BottleNexusContext';
@@ -31,60 +32,42 @@ const servingStyles = [
     title: 'Neat',
     temp: '18°C',
     glass: 'Coupe',
-    description: 'Pure & unfiltered floral essence'
+    description: 'Pure floral rebellion'
   },
   {
     id: 'rocks',
     title: 'On the Rocks',
     temp: '4°C',
     glass: 'Rocks Glass',
-    description: 'Chilled perfection over quality ice'
+    description: 'Chilled perfection for the multifaceted'
   },
   {
     id: 'signature',
     title: 'Lavender Haze Martini',
     temp: '2°C',
     glass: 'Martini',
-    description: 'Signature serve with a twist of lemon'
+    description: 'Your signature sophisticated mystique'
   }
 ];
 
-// Ritual Steps Data
-const ritualSteps = [
-  {
-    step: 1,
-    title: 'Find Your Sanctuary',
-    description: 'Create your calm space',
-    image: '/LX2.jpg'
-  },
-  {
-    step: 2,
-    title: 'Pour with Grace',
-    description: 'Add a sprig of lavender',
-    image: '/LX1.jpg'
-  },
-  {
-    step: 3,
-    title: 'Inhale the Aroma',
-    description: 'Breathe deep and relax',
-    image: '/LX3.jpg'
-  }
+const curatedMomentsMedia: MediaItemType[] = [
+  { id: 'lv1', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_06d12f3f2e.jpg" },
+  { id: 'lv2', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_069d4c71ba.jpg" },
+  { id: 'lv3', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_6394e9d2b6.jpg" },
+  { id: 'lv4', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_84528a668d.jpg" },
+  { id: 'lv5', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_923316f1e8.jpg" },
+  { id: 'lv6', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_ac02859538.jpg" },
+  { id: 'lv7', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_ba998da4da.jpg" },
+  { id: 'lv8', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_cc6a11bb08.jpg" }
 ];
 
 const LavenderPage = () => {
-  const [currentRitualStep, setCurrentRitualStep] = useState(0);
-
   // Memoize animations to prevent re-renders
   const heroAnimation = useMemo(() => ({
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 1, delay: 0.5 }
   }), []);
-
-  // Optimize ritual step handler
-  const handleRitualStepChange = useCallback((index: number) => {
-    setCurrentRitualStep(index);
-  }, []);
 
   return (
     <BottleNexusProvider>
@@ -98,8 +81,8 @@ const LavenderPage = () => {
             <div className="absolute inset-0 w-full h-full">
               <img
                 src="/HL.jpg"
-                alt="Lavender Lifestyle"
-                className="w-full h-full object-cover object-center"
+                alt="Lavender Hero"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
@@ -112,8 +95,8 @@ const LavenderPage = () => {
             {/* Image */}
             <div className="absolute inset-0 w-full h-full">
               <img
-                src="/HL.png"
-                alt="Lavender Lifestyle"
+                src="/HL.jpg"
+                alt="Lavender Hero Mobile"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -197,7 +180,10 @@ const LavenderPage = () => {
                 The Interim
               </h2>
               <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white leading-relaxed px-2 sm:px-0">
-                Sexy, Subtle and Incredibly Chic. Demanding of your attention, the Lavender Martini Cocktail excites the senses with the wicked flavor of the vibrant flower. Ending naturally on the sweet note of Mandarin Orange.
+                Sexy, Subtle and Incredibly Chic. Your interlude in elegance. The Lavender Martini Cocktail excites the senses with the hypnotic allure of the vibrant bloom, ending naturally on the sweet note of Mandarin Orange.
+                <br /><br />
+                Hand-curated for those who understand that true power whispers, never shouts. You are layered, authentic, and unapologetically bold.
+                <br /><br />
               </p>
             </motion.div>
           </div>
@@ -206,12 +192,15 @@ const LavenderPage = () => {
 
         {/* Full-Width Lifestyle Moment */}
         <InView as="section" className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
-          <img
-            src="/Lwide.jpg"
-            alt="Garden Party Moment"
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-          />
+          <div
+            className="absolute inset-0 w-full h-full"
+          >
+            <img
+              src="/images/lavender/Whisk_c146dc0301.jpg"
+              alt="Your Rooftop Party Moment"
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
           <div className="relative z-10 h-full flex items-center">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -223,82 +212,69 @@ const LavenderPage = () => {
                 className="max-w-lg"
               >
                 <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-2 sm:mb-4">
-                  Your Sunset Soiree Moment
+                  Your Enigma Moment
                 </h2>
                 <p className="text-sm xs:text-base sm:text-lg text-white">
-                  Where elegance meets enchantment
+                  Where mystery meets sophistication
                 </p>
               </motion.div>
             </div>
           </div>
         </InView>
 
-        {/* The Lavender Ritual - Scroll Triggered */}
-        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
-              
-              {/* Image Side */}
-              <div className="relative h-[300px] xs:h-[350px] sm:h-[450px] lg:h-[500px] rounded-lg overflow-hidden order-2 lg:order-1">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentRitualStep}
-                    src={ritualSteps[currentRitualStep].image}
-                    alt={ritualSteps[currentRitualStep].title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    loading="lazy"
-                  />
-                </AnimatePresence>
-              </div>
 
-              {/* Content Side */}
-              <div className="order-1 lg:order-2">
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-4 sm:mb-6 lg:mb-8">
-                  The Lavender Ritual
-                </h2>
-                <p className="text-sm xs:text-base sm:text-lg text-white mb-6 sm:mb-8 lg:mb-10">
-                  The art of mindful preparation. Each step deepens the connection to your moment of peace.
-                </p>
-                
-                <div className="space-y-3 sm:space-y-4 lg:space-y-6">
-                  {ritualSteps.map((step, index) => (
-                    <motion.div
-                      key={step.step}
-                      className={cn(
-                        "flex items-center gap-3 sm:gap-4 cursor-pointer p-2 sm:p-3 rounded-lg transition-all duration-300",
-                        currentRitualStep === index ? "bg-white/10" : "hover:bg-white/5"
-                      )}
-                      onClick={() => handleRitualStepChange(index)}
-                      whileHover={{ x: 5 }}
-                    >
-                      <div className={cn(
-                        "w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300",
-                        currentRitualStep === index ? "bg-white/20" : "bg-white/10"
-                      )}>
-                        <span className={cn(
-                          "text-xs xs:text-sm sm:text-base font-semibold",
-                          currentRitualStep === index ? "text-white" : "text-white"
-                        )}>
-                          {step.step}
-                        </span>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className={cn(
-                          "text-sm xs:text-base sm:text-lg font-semibold mb-0.5 sm:mb-1 transition-colors duration-300",
-                          currentRitualStep === index ? "text-white" : "text-white"
-                        )}>
-                          {step.title}
-                        </h3>
-                        <p className="text-xs xs:text-sm sm:text-base text-white">{step.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+        {/* The Art of the Serve */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-8 sm:mb-12 lg:mb-16"
+            >
+              Your Signature Vibe
+            </motion.h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-8xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="/images/lavender/Whisk_b952ba5475.jpg"
+                  alt="The Art of the Serve 1"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="/images/lavender/Whisk_62406354b6.jpg"
+                  alt="The Art of the Serve 2"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="/images/lavender/Whisk_30062ca53d.jpg"
+                  alt="The Art of the Serve 3"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
             </div>
           </div>
         </InView>
@@ -307,20 +283,20 @@ const LavenderPage = () => {
         <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-center text-white mb-8 sm:mb-12 lg:mb-16">
-              Your Perfect Serve
+              Your Signature Vibe
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 max-w-5xl mx-auto">
               {servingStyles.map((style) => (
                 <motion.div
                   key={style.id}
-                  className="text-center p-4 sm:p-6 rounded-lg bg-gray-900/10 hover:bg-gray-900/20 transition-colors duration-300"
+                  className="text-center p-4 sm:p-6 rounded-lg bg-black/50 hover:bg-black/70 transition-colors duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
                 >
-                  <h3 className="text-lg xs:text-xl sm:text-2xl text-white mb-2 sm:mb-3">
+                  <h3 className="text-lg sm:text-xl md:text-2xl text-white mb-2 sm:mb-3">
                     {style.title}
                   </h3>
                   <div className="text-xs xs:text-sm sm:text-base text-white space-y-1 sm:space-y-2 mb-3 sm:mb-4">
@@ -334,6 +310,51 @@ const LavenderPage = () => {
             </div>
           </div>
         </InView>
+
+
+        {/* Placeholder for New Call to Action */}
+        <InView as="section" className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-4">Embrace Your Mystique</h2>
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-4">
+              Limited availability. Unlimited allure.
+            </p>
+            <CustomAddToCartButton productId={47036} colorHex="#FFFFFF" />
+          </div>
+        </InView>
+        {/* Curated Moments */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-8 sm:mb-12 lg:mb-16"
+            >
+              Curated Moments
+            </motion.h2>
+            {/* Full-width 16:9 image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative w-full h-[50vh] min-h-[300px] rounded-lg overflow-hidden mb-8 lg:mb-12"
+            >
+              <img
+                src="/images/lavender/Whisk_18e89e678e.jpg"
+                alt="Curated Moments Wide"
+                className="w-full h-full object-cover object-[center_30%]"
+              />
+            </motion.div>
+
+            <InteractiveBentoGallery mediaItems={curatedMomentsMedia} />
+          </div>
+        </InView>
+
+
+
 
         {/* Specifications - The Details */}
         <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900/20 to-black">
@@ -349,7 +370,7 @@ const LavenderPage = () => {
                   { delay: 0.3, value: '5g', label: 'Sugar' },
                   { delay: 0.4, value: '750ml', label: 'Volume' }
                 ].map((spec) => (
-                  <motion.div 
+                  <motion.div
                     key={spec.label}
                     className="text-center"
                     initial={{ opacity: 0, y: 20 }}
@@ -357,7 +378,7 @@ const LavenderPage = () => {
                     transition={{ delay: spec.delay }}
                     viewport={{ once: true }}
                   >
-                    <div className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1 sm:mb-2">{spec.value}</div>
+                    <div className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl text-white mb-1 sm:mb-2">{spec.value}</div>
                     <div className="text-xs xs:text-sm sm:text-base text-white">{spec.label}</div>
                   </motion.div>
                 ))}
@@ -367,8 +388,17 @@ const LavenderPage = () => {
         </InView>
 
         {/* Closing CTA Section */}
-        <InView as="section" className="relative py-8 xs:py-10 sm:py-12 lg:py-16 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/30 to-black/80" />
+        <InView as="section" className="relative py-12 xs:py-16 sm:py-20 lg:py-24 xl:py-32 overflow-hidden">
+          <div
+            className="absolute inset-0 w-full h-full"
+          >
+            <img
+              src="/images/lavender/Whisk_feecfdbb1c.jpg"
+              alt="Ignite Your Night CTA"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="absolute inset-0 bg-black/60" /> {/* Overlay for text readability */}
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -376,21 +406,21 @@ const LavenderPage = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-3 sm:mb-4 md:mb-6">
-                Embrace the Allure
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+                Embrace Your Mystique
               </h2>
-              <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white mb-4 sm:mb-6 md:mb-8 max-w-2xl mx-auto px-4">
-                Limited availability. Unlimited tranquility.
+              <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-4">
+                Limited availability. Unlimited allure.
               </p>
               <div className="flex justify-center items-center flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
-               <CustomAddToCartButton
-                 productId={47036}
-                 colorHex="#FFFFFF"
-               />
-               <div className="hidden" data-bottlenexus-id={47036}>
-                 {/* This div is intentionally left empty for BottleNexus to populate */}
-               </div>
-             </div>
+                <CustomAddToCartButton
+                  productId={47035}
+                  colorHex="#FFFFFF"
+                />
+                <div className="hidden" data-bottlenexus-id={47035}>
+                  {/* This div is intentionally left empty for BottleNexus to populate */}
+                </div>
+              </div>
               <a
                 href="/store-locator"
                 className="text-xs xs:text-sm sm:text-base text-white hover:text-white transition-colors duration-200 inline-block"

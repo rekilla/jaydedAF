@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FlavorHero } from '../../components/FlavorHero';
 import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
+import { InteractiveBentoGallery, MediaItemType } from '../../components/ui/interactive-bento-gallery';
 
 import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
 import { BottleNexusProvider } from '../../contexts/BottleNexusContext';
@@ -19,7 +20,7 @@ const cn = (...classes: (string | undefined | null | false)[]) => classes.filter
 const flavorData = {
   key: "lemon",
   name: "Lemon Drop",
-  tagline: "Vibrant, Zesty & Unforgettably Bold",
+  tagline: "Bold never needs a chaser.",
   colorClass: "text-white",
   colorHex: "#FFFFFF",
 };
@@ -31,61 +32,43 @@ const servingStyles = [
     title: 'Neat',
     temp: '16°C',
     glass: 'Shot Glass',
-    description: 'A pure, intense burst of citrus'
+    description: 'Pure citrus courage'
   },
   {
     id: 'rocks',
     title: 'On the Rocks',
     temp: '4°C',
     glass: 'Rocks Glass',
-    description: 'Chilled perfection, vibrant and smooth'
+    description: 'Chilled perfection for the unbridled'
   },
   {
     id: 'signature',
     title: 'Lemon Drop Martini',
     temp: '2°C',
-    glass: 'Martini',
-    description: 'The ultimate sophisticated serve'
+    glass: 'Martini Glass',
+    description: 'The ultimate sophisticated statement'
   }
 ];
 
-// Ritual Steps Data
-const ritualSteps = [
-  {
-    step: 1,
-    title: 'Prepare the Zest',
-    description: 'Get ready for the energy',
-    image: '/L2X3.jpg'
-  },
-  {
-    step: 2,
-    title: 'Pour with Attitude',
-    description: 'Add a fresh lemon twist',
-    image: '/L2X2.jpg'
-  },
-  {
-    step: 3,
-    title: 'Ignite the Senses',
-    description: 'Embrace the vibrant moment',
-    image: '/L2X1.jpg'
-  }
+const curatedMomentsMedia: MediaItemType[] = [
+    { id: 'ld1', type: 'image', title: '', desc: '', url: "/images/Lemon/Whisk_5dc1750ce6.jpg" },
+    { id: 'ld2', type: 'image', title: '', desc: '', url: "/images/Lemon/Whisk_7e4e74c949.jpg" },
+    { id: 'ld3', type: 'image', title: '', desc: '', url: "/images/Lemon/Whisk_051e47542d.jpg" },
+    { id: 'ld4', type: 'image', title: '', desc: '', url: "/images/Lemon/Whisk_094a3f8728.jpg" },
+    { id: 'ld5', type: 'image', title: '', desc: '', url: "/images/Lemon/Whisk_4089bd3aea.jpg" },
+    { id: 'ld6', type: 'image', title: '', desc: '', url: "/images/Lemon/Whisk_a7df7f7215.jpg" },
+    { id: 'ld7', type: 'image', title: '', desc: '', url: "/images/Lemon/Whisk_f9c9b961e1.jpg" },
+    { id: 'ld8', type: 'image', title: '', desc: '', url: "/images/Lemon/Whisk_ae72e68558.jpg" }
 ];
+
 
 const LemonDropPage = () => {
-  const [currentRitualStep, setCurrentRitualStep] = useState(0);
-
   // Memoize animations to prevent re-renders
   const heroAnimation = useMemo(() => ({
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 1, delay: 0.5 }
   }), []);
-
-
-  // Optimize ritual step handler
-  const handleRitualStepChange = useCallback((index: number) => {
-    setCurrentRitualStep(index);
-  }, []);
 
   return (
     <BottleNexusProvider>
@@ -124,7 +107,7 @@ const LemonDropPage = () => {
               <motion.div {...heroAnimation}>
                 <h1
                   className={cn(
-                    "font-bold text-5xl sm:text-6xl",
+                    "font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl",
                     "drop-shadow-2xl",
                     "text-white"
                   )}
@@ -194,11 +177,15 @@ const LemonDropPage = () => {
               viewport={{ once: true }}
               className="max-w-3xl mx-auto"
             >
-              <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl text-white mb-4 sm:mb-6">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-4 sm:mb-6">
                 The Genesis
               </h2>
               <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white leading-relaxed px-2 sm:px-0">
-                Classic, Sophisticated and Sinfully Edgy. The Lemon Drop Martini Cocktail is simply the prototype of the art of a cocktail. Consisting of deliciously tart Meyer Lemons, Juniper Berries and Triple Sec.
+                Classic, Sophisticated and Sinfully Edgy. The Lemon Drop Martini Cocktail is simply the prototype of the art of a cocktail.
+                <br /><br />
+                Start your story with a flavor that commands attention. Tart Meyer Lemons, bold Juniper, and a kiss of Triple Sec—this is citrus swagger in a glass. You are the sun, so radiate.
+                <br /><br />
+                <span className="italic">Confidence distilled.</span>
               </p>
             </motion.div>
           </div>
@@ -208,7 +195,7 @@ const LemonDropPage = () => {
         {/* Full-Width Lifestyle Moment */}
         <InView as="section" className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
           <img
-            src="/L2wide.jpg"
+            src="/images/Lemon/Whisk_d9cd8f895e.jpg"
             alt="Garden Party Moment"
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
@@ -224,86 +211,60 @@ const LemonDropPage = () => {
                 className="max-w-lg"
               >
                 <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-2 sm:mb-4">
-                  Your Rooftop Party Moment
+                  Your Power Hour Moment
                 </h2>
                 <p className="text-sm xs:text-base sm:text-lg text-white">
-                  Where energy meets sophistication
+                  Where audacity meets sophistication
                 </p>
               </motion.div>
             </div>
           </div>
         </InView>
 
-        {/* The Lemon Drop Ritual - Scroll Triggered */}
-        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
-              
-              {/* Image Side */}
-              <div className="relative h-[300px] xs:h-[350px] sm:h-[450px] lg:h-[500px] rounded-lg overflow-hidden order-2 lg:order-1">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentRitualStep}
-                    src={ritualSteps[currentRitualStep].image}
-                    alt={ritualSteps[currentRitualStep].title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    loading="lazy"
-                  />
-                </AnimatePresence>
-              </div>
 
-              {/* Content Side */}
-              <div className="order-1 lg:order-2">
-                <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-4 sm:mb-6 lg:mb-8">
-                  The Lemon Drop Ritual
-                </h2>
-                <p className="text-sm xs:text-base sm:text-lg text-white mb-6 sm:mb-8 lg:mb-10">
-                  The art of preparation. Each step is a burst of energy, a prelude to the night's excitement.
-                </p>
-                
-                <div className="space-y-3 sm:space-y-4 lg:space-y-6">
-                  {ritualSteps.map((step, index) => (
-                    <motion.div
-                      key={step.step}
-                      className={cn(
-                        "flex items-center gap-3 sm:gap-4 cursor-pointer p-2 sm:p-3 rounded-lg transition-all duration-300",
-                        currentRitualStep === index ? "bg-white/10" : "hover:bg-white/5"
-                      )}
-                      onClick={() => handleRitualStepChange(index)}
-                      whileHover={{ x: 5 }}
-                    >
-                      <div className={cn(
-                        "w-8 h-8 xs:w-10 xs:h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300",
-                        currentRitualStep === index ? "bg-white/20" : "bg-white/10"
-                      )}>
-                        <span className={cn(
-                          "text-xs xs:text-sm sm:text-base font-semibold",
-                          currentRitualStep === index ? "text-white" : "text-white/70"
-                        )}>
-                          {step.step}
-                        </span>
-                      </div>
-                      <div className="flex-1">
-                        <h3 className={cn(
-                          "text-sm xs:text-base sm:text-lg font-semibold mb-0.5 sm:mb-1 transition-colors duration-300",
-                          currentRitualStep === index ? "text-white" : "text-white"
-                        )}>
-                          {step.title}
-                        </h3>
-                        <p className="text-xs xs:text-sm sm:text-base text-white">{step.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
+        {/* The Art of the Serve */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-8 sm:mb-12 lg:mb-16"
+            >
+              Your Signature Moment
+            </motion.h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-8xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img src="/images/Lemon/Whisk_19343a5625.jpg" alt="Lemon Drop Serve 1" className="w-full h-full object-cover" loading="lazy" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img src="/images/Lemon/Whisk_4da19cdd37.jpg" alt="Lemon Drop Serve 2" className="w-full h-full object-cover" loading="lazy" />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
+              >
+                <img src="/images/Lemon/Whisk_1cf71bdcb4.jpg" alt="Lemon Drop Serve 3" className="w-full h-full object-cover" loading="lazy" />
+              </motion.div>
             </div>
           </div>
         </InView>
-
         {/* Serving Styles - Text Focused */}
         <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -321,7 +282,7 @@ const LemonDropPage = () => {
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
                 >
-                  <h3 className="text-lg xs:text-xl sm:text-2xl text-white mb-2 sm:mb-3">
+                  <h3 className="text-lg sm:text-xl md:text-2xl text-white mb-2 sm:mb-3">
                     {style.title}
                   </h3>
                   <div className="text-xs xs:text-sm sm:text-base text-white space-y-1 sm:space-y-2 mb-3 sm:mb-4">
@@ -335,6 +296,47 @@ const LemonDropPage = () => {
             </div>
           </div>
         </InView>
+
+
+        {/* Placeholder for New Call to Action */}
+        <InView as="section" className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-4">Own Your Moment</h2>
+            <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-4">
+              Limited availability. Unlimited boldness.
+            </p>
+            <CustomAddToCartButton productId={47035} colorHex="#FFFFFF" />
+          </div>
+        </InView>
+
+        {/* Curated Moments */}
+        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-8 sm:mb-12 lg:mb-16"
+            >
+              Curated Moments
+            </motion.h2>
+            {/* Full-width 16:9 image */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="relative w-full h-[50vh] min-h-[300px] rounded-lg overflow-hidden mb-8 lg:mb-12"
+            >
+              <img src="/images/Lemon/Whisk_4e25346a05.jpg" alt="Curated Moment Full Width" className="w-full h-full object-cover" loading="lazy" />
+            </motion.div>
+
+            <InteractiveBentoGallery mediaItems={curatedMomentsMedia} />
+          </div>
+        </InView>
+
+
 
         {/* Specifications - The Details */}
         <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900/20 to-black">
@@ -358,7 +360,7 @@ const LemonDropPage = () => {
                     transition={{ delay: spec.delay }}
                     viewport={{ once: true }}
                   >
-                    <div className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1 sm:mb-2">{spec.value}</div>
+                    <div className="text-xl xs:text-2xl sm:text-3xl lg:text-4xl text-white mb-1 sm:mb-2">{spec.value}</div>
                     <div className="text-xs xs:text-sm sm:text-base text-white">{spec.label}</div>
                   </motion.div>
                 ))}
@@ -369,7 +371,13 @@ const LemonDropPage = () => {
 
         {/* Closing CTA Section */}
         <InView as="section" className="relative py-12 xs:py-16 sm:py-20 lg:py-24 xl:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/30 to-black/80" />
+          <img
+            src="/images/Lemon/Whisk_3aac0a8433.jpg"
+            alt="Ignite Your Night Background"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-black/60" /> {/* Overlay for text readability */}
           <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -377,11 +385,11 @@ const LemonDropPage = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-3 sm:mb-4 md:mb-6 lg:mb-8">
-                Ignite Your Night
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-white mb-3 sm:mb-4 md:mb-6 lg:mb-8">
+                Own Your Moment
               </h2>
               <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-4">
-                Limited availability. Unlimited energy.
+                Limited availability. Unlimited boldness.
               </p>
               <div className="flex justify-center items-center flex-col sm:flex-row gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
                 <CustomAddToCartButton

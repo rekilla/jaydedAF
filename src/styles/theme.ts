@@ -6,8 +6,8 @@ export const theme = {
     lavender: '#C7B8FF',
   },
   fonts: {
-    heading: 'Quicksand, sans-serif',
-    body: 'Times, serif',
+    heading: 'Playfair Display, serif',
+    body: 'Montserrat, sans-serif',
   },
 } as const;
 
