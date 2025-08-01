@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useMemo, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { FlavorHero } from '../../components/FlavorHero';
 import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
 import { InteractiveBentoGallery, MediaItemType } from '../../components/ui/interactive-bento-gallery';
