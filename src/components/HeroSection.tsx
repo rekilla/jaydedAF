@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import { FlavorSelector } from './ui/flavor-selector';
 import { Spotlight } from './ui/spotlight';
 
 // Import Swiper styles
@@ -95,13 +94,6 @@ const HeroSection: React.FC = () => {
   const swiperRef = useRef<any>(null);
   const currentFlavor = flavors[activeIndex];
 
-  // Handle flavor change from selector
-  const handleFlavorChange = (index: number) => {
-    setActiveIndex(index);
-    if (swiperRef.current) {
-      swiperRef.current.slideToLoop(index);
-    }
-  };
 
   return (
 <div className="relative min-h-screen w-full overflow-hidden bg-black">

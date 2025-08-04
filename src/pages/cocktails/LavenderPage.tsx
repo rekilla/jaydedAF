@@ -102,18 +102,18 @@ const LavenderPage = () => {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+            <div className="relative z-10 flex flex-col items-start justify-start h-full text-left">
               <motion.div {...heroAnimation}>
                 <h1
                   className={cn(
-                    "font-bold text-5xl sm:text-6xl",
+                    "font-bold text-6xl sm:text-7xl",
                     "drop-shadow-2xl",
                     "text-white"
                   )}
                 >
                   {flavorData.name}
                 </h1>
-                <p className="text-xl sm:text-2xl italic text-white mt-4">
+                <p className="text-2xl sm:text-3xl italic text-white mt-4">
                   {flavorData.tagline}
                 </p>
               </motion.div>
