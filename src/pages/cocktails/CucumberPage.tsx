@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FlavorHero } from '../../components/FlavorHero';
 import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
 import { InteractiveBentoGallery, MediaItemType } from '../../components/ui/interactive-bento-gallery';
-import Ritual from '../../components/Ritual';
+import FlavorRitual from '../../components/FlavorRitual';
 import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
 import { BottleNexusProvider } from '../../contexts/BottleNexusContext';
 
@@ -38,26 +38,29 @@ const curatedMomentsMedia: MediaItemType[] = [
     { id: 'cu8', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_bcbd4f271b.jpg" }
 ];
 
-const ritualSteps = [
-  {
-    step: 1,
-    title: 'Chill to Perfection',
-    description: 'Find your quiet space',
-    image: '/CX1.jpg'
-  },
-  {
-    step: 2,
-    title: 'Pour with Intention',
-    description: 'Add fresh cucumber',
-    image: '/CX2.jpg'
-  },
-  {
-    step: 3,
-    title: 'Savor the Moment',
-    description: 'Breathe and savor',
-    image: '/CX3.jpg'
-  }
-];
+const cucumberRitualData = {
+  flavorName: 'Cucumber',
+  subtext: 'The art of cool preparation. <br /> Each step centers you in a moment of zen.',
+  ritualSteps: [
+    {
+      step: 1,
+      title: 'Find Your Zen',
+      description: 'Create your tranquil space',
+    },
+    {
+      step: 2,
+      title: 'Pour with Poise',
+      description: 'Add a slice of cucumber',
+    },
+    {
+      step: 3,
+      title: 'Inhale the Calm',
+      description: 'Breathe deep and find your center',
+    },
+  ],
+  imageUrl: '/images/cucumber/Whisk_51343ac871.jpg',
+  imageAlt: 'The Cucumber Ritual',
+};
 
 
 
@@ -219,7 +222,7 @@ const CucumberPage = () => {
         </InView>
 
 
-        <Ritual flavor={flavorData} ritualSteps={ritualSteps} />
+        <FlavorRitual {...cucumberRitualData} />
 
 
         {/* Placeholder for New Call to Action */}

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FlavorHero } from '../../components/FlavorHero';
 import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
 import { InteractiveBentoGallery, MediaItemType } from '../../components/ui/interactive-bento-gallery';
-import Ritual from '../../components/Ritual';
+import FlavorRitual from '../../components/FlavorRitual';
 import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
 import { BottleNexusProvider } from '../../contexts/BottleNexusContext';
 
@@ -38,26 +38,29 @@ const curatedMomentsMedia: MediaItemType[] = [
   { id: 'lv8', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_cc6a11bb08.jpg" }
 ];
 
-const ritualSteps = [
-  {
-    step: 1,
-    title: 'Prepare the Aura',
-    description: 'Set the mood for mystique',
-    image: '/LX1.jpg'
-  },
-  {
-    step: 2,
-    title: 'Pour with Grace',
-    description: 'Add a touch of lavender',
-    image: '/LX2.jpg'
-  },
-  {
-    step: 3,
-    title: 'Embrace the Allure',
-    description: 'Savor the enchanting moment',
-    image: '/LX3.jpg'
-  }
-];
+const lavenderRitualData = {
+  flavorName: 'Lavender',
+  subtext: 'The art of mindful preparation. <br /> Each step deepens the connection to your moment of peace.',
+  ritualSteps: [
+    {
+      step: 1,
+      title: 'Find Your Sanctuary',
+      description: 'Create your calm space',
+    },
+    {
+      step: 2,
+      title: 'Pour with Grace',
+      description: 'Add a sprig of lavender',
+    },
+    {
+      step: 3,
+      title: 'Inhale the Aroma',
+      description: 'Breathe deep and relax',
+    },
+  ],
+  imageUrl: '/images/lavender/Whisk_62406354b6.jpg',
+  imageAlt: 'The Lavender Ritual',
+};
 
 
 const LavenderPage = () => {
@@ -222,7 +225,7 @@ const LavenderPage = () => {
         </InView>
 
 
-        <Ritual flavor={flavorData} ritualSteps={ritualSteps} />
+        <FlavorRitual {...lavenderRitualData} />
 
 
         {/* Placeholder for New Call to Action */}

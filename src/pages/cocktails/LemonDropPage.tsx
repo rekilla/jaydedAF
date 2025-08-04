@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FlavorHero } from '../../components/FlavorHero';
 import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
 import { InteractiveBentoGallery, MediaItemType } from '../../components/ui/interactive-bento-gallery';
-
+import FlavorRitual from '../../components/FlavorRitual';
 import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
 import { BottleNexusProvider } from '../../contexts/BottleNexusContext';
 
@@ -222,6 +222,30 @@ const LemonDropPage = () => {
           </div>
         </InView>
 
+
+        <FlavorRitual
+          flavorName="Lemon Drop"
+          subtext="The art of bold preparation. <br /> Each step energizes your moment of power."
+          ritualSteps={[
+            {
+              step: 1,
+              title: 'Find Your Power',
+              description: 'Create your vibrant space',
+            },
+            {
+              step: 2,
+              title: 'Pour with Zest',
+              description: 'Add a twist of lemon',
+            },
+            {
+              step: 3,
+              title: 'Inhale the Energy',
+              description: 'Breathe deep and feel the power',
+            },
+          ]}
+          imageUrl="/images/Lemon/Whisk_19343a5625.jpg"
+          imageAlt="The Lemon Drop Ritual"
+        />
 
         {/* The Art of the Serve */}
         <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">

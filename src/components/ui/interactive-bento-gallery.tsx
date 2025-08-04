@@ -218,7 +218,7 @@ export const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = (
         <>
             {/* Header */}
             {(title || description) && (
-                <div className="text-center py-8 md:py-12 px-4">
+                <div className="text-center pt-8 md:pt-12 pb-6 px-4">
                     {title && (
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
                             {title}
