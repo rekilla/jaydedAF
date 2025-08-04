@@ -94,47 +94,49 @@ const HeroSection: React.FC = () => {
   const swiperRef = useRef<any>(null);
   const currentFlavor = flavors[activeIndex];
 
+  // Handle flavor change from selector
 
   return (
 <div className="relative min-h-screen w-full overflow-hidden bg-black">
-      
-      {/* Epic Luxury Spotlight */}
-      <Spotlight
-        flavorColorHex={currentFlavor.colorHex}
-        flavorKey={currentFlavor.key}
-        intensity={0.4}
-        pulseIntensity={0.6}
-        beamCount={3}
-        animationSpeed={8}
-        luxuryMode={true}
-      />
-      
-      {/* Ambient Background Glow */}
-      <div
-        className="absolute inset-0 opacity-20 transition-all duration-1000 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at 70% 50%, ${currentFlavor.colorHex}15 0%, transparent 70%)`
-        }}
-      />
-
-      {/* Subtle Grid Pattern */}
-      <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`
-        }}
-      />
+      <AnimatePresence mode="wait">
+        {currentFlavor.video ? (
+          <motion.video
+            key={`video-${currentFlavor.key}`}
+            variants={mediaVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            src={currentFlavor.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-0 left-0 w-screen h-screen object-cover"
+          />
+        ) : (
+          <motion.img
+            key={`image-${currentFlavor.key}`}
+            variants={mediaVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            src={currentFlavor.image}
+            alt={`Jayded AF ${currentFlavor.title}`}
+            className="absolute top-0 left-0 w-screen h-screen object-cover"
+          />
+        )}
+      </AnimatePresence>
       
       {/* Main Content Container */}
       <div className="relative h-screen w-full flex flex-col">
         
         {/* Content Area */}
-        <div className="flex-1 flex items-center justify-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-16 pb-20 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20">
+        <div className="flex-1 flex items-center justify-center text-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-16 pb-20 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
-            <div className="lg:flex lg:flex-row lg:items-center lg:justify-center w-full h-full lg:gap-8">
-              
-              {/* LEFT SIDE - Content */}
-              <div className="relative z-20 w-full lg:w-[45%] text-left order-2 lg:order-1 py-8 lg:py-0">
+            <div className="relative w-full h-full">
+
+              {/* Text Content */}
+              <div className="relative z-20 w-full h-full flex flex-col items-center justify-center text-center py-8 lg:py-0">
                 <Swiper
                   modules={[EffectFade, Autoplay]}
                   effect="fade"
@@ -160,7 +162,7 @@ const HeroSection: React.FC = () => {
                               variants={itemVariants}
                               className={`text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold lg:font-light leading-tight lg:leading-none tracking-tight text-white`}
                               style={{
-                                textShadow: `0 0 40px ${currentFlavor.colorHex}30`
+                                textShadow: `0 0 40px ${currentFlavor.colorHex}30, 0px 2px 4px rgba(0, 0, 0, 0.5)`
                               }}
                             >
                               {flavor.title}
@@ -169,20 +171,22 @@ const HeroSection: React.FC = () => {
                             <motion.p
                               variants={itemVariants}
                               className="hidden sm:block text-lg sm:text-xl italic text-white font-light tracking-wide"
+                              style={{ textShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)' }}
                             >
                               {flavor.tagline}
                             </motion.p>
                             
                             <motion.p
                               variants={itemVariants}
-                              className="text-xl sm:text-lg leading-relaxed text-white font-light max-w-md"
+                              className="text-xl sm:text-lg leading-relaxed text-white font-light max-w-md mx-auto"
+                              style={{ textShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)' }}
                             >
                               {flavor.description}
                             </motion.p>
 
                             <motion.div
                               variants={itemVariants}
-                              className="flex justify-start pt-2 sm:pt-4"
+                              className="flex justify-center pt-2 sm:pt-4"
                             >
                               <Link to={flavor.ctaLink}>
                                 <button
@@ -226,65 +230,11 @@ const HeroSection: React.FC = () => {
                 </Swiper>
               </div>
 
-              {/* RIGHT SIDE - Media */}
-              <div className="absolute inset-0 z-10 w-full h-full lg:relative lg:w-[55%] flex items-center justify-center order-1 lg:order-2 lg:h-full">
-                <AnimatePresence mode="wait">
-                  {currentFlavor.video ? (
-                    <motion.video
-                      key={`video-${currentFlavor.key}`}
-                      variants={mediaVariants}
-                      initial="hidden"
-                      animate="show"
-                      exit="exit"
-                      src={currentFlavor.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover lg:h-auto lg:max-h-[85vh] lg:object-contain lg:scale-[1.15]"
-                      style={{
-                        filter: 'drop-shadow(0 0 50px rgba(255,255,255,0.1))',
-                        maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
-                      }}
-                    />
-                  ) : (
-                    <motion.img
-                      key={`image-${currentFlavor.key}`}
-                      variants={mediaVariants}
-                      initial="hidden"
-                      animate="show"
-                      exit="exit"
-                      src={currentFlavor.image}
-                      alt={`Jayded AF ${currentFlavor.title}`}
-                      className="w-full h-full object-cover lg:h-auto lg:max-h-[85vh] lg:object-contain lg:scale-[1.15]"
-                      style={{ filter: 'drop-shadow(0 0 50px rgba(255,255,255,0.1))' }}
-                    />
-                  )}
-                </AnimatePresence>
-              </div>
+              {/* Background Media is now at the top level */}
             </div>
           </div>
         </div>
         
-        {/* Flavor Selector - Part of hero section at bottom */}
-        {/* <div className="relative z-20 pb-32 sm:pb-20 md:pb-24 lg:pb-28 px-6">
-          <div className="flex justify-center">
-            <div className="scale-90 sm:scale-100 md:scale-110 lg:scale-125 xl:scale-150 origin-bottom transition-transform duration-300">
-              <FlavorSelector
-                flavors={flavors.map(f => ({
-                  key: f.key,
-                  title: f.title,
-                  label: f.label,
-                  colorHex: f.colorHex,
-                  bottleRenderImage: f.bottleRenderImage
-                }))}
-                activeIndex={activeIndex}
-                onFlavorChange={handleFlavorChange}
-                className="flex flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-8"
-              />
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );

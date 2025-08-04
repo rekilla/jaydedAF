@@ -75,12 +75,12 @@ export default {
   		},
   		fontFamily: {
   			heading: [
-  				'Playfair Display',
-  				'serif'
+  				'Quicksand',
+  				'sans-serif'
   			],
   			body: [
-  				'Montserrat',
-  				'sans-serif'
+  				'Times',
+  				'serif'
   			]
   		},
   		borderRadius: {

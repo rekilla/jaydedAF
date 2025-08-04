@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FlavorHero } from '../../components/FlavorHero';
 import { FlavorHeroMobile } from '../../components/FlavorHeroMobile';
 import { InteractiveBentoGallery, MediaItemType } from '../../components/ui/interactive-bento-gallery';
-
+import Ritual from '../../components/Ritual';
 import { CustomAddToCartButton } from '../../components/CustomAddToCartButton';
 import { BottleNexusProvider } from '../../contexts/BottleNexusContext';
 
@@ -61,6 +61,28 @@ const curatedMomentsMedia: MediaItemType[] = [
   { id: 'lv8', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_cc6a11bb08.jpg" }
 ];
 
+const ritualSteps = [
+  {
+    step: 1,
+    title: 'Prepare the Aura',
+    description: 'Set the mood for mystique',
+    image: '/LX1.jpg'
+  },
+  {
+    step: 2,
+    title: 'Pour with Grace',
+    description: 'Add a touch of lavender',
+    image: '/LX2.jpg'
+  },
+  {
+    step: 3,
+    title: 'Embrace the Allure',
+    description: 'Savor the enchanting moment',
+    image: '/LX3.jpg'
+  }
+];
+
+
 const LavenderPage = () => {
   // Memoize animations to prevent re-renders
   const heroAnimation = useMemo(() => ({
@@ -102,18 +124,18 @@ const LavenderPage = () => {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 flex flex-col items-start justify-start h-full text-left">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
               <motion.div {...heroAnimation}>
                 <h1
                   className={cn(
-                    "font-bold text-6xl sm:text-7xl",
+                    "font-bold text-5xl sm:text-6xl",
                     "drop-shadow-2xl",
                     "text-white"
                   )}
                 >
                   {flavorData.name}
                 </h1>
-                <p className="text-2xl sm:text-3xl italic text-white mt-4">
+                <p className="text-xl sm:text-2xl italic text-white mt-4">
                   {flavorData.tagline}
                 </p>
               </motion.div>
@@ -223,93 +245,7 @@ const LavenderPage = () => {
         </InView>
 
 
-        {/* The Art of the Serve */}
-        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-8 sm:mb-12 lg:mb-16"
-            >
-              Your Signature Vibe
-            </motion.h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-8xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <img
-                  src="/images/lavender/Whisk_b952ba5475.jpg"
-                  alt="The Art of the Serve 1"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <img
-                  src="/images/lavender/Whisk_62406354b6.jpg"
-                  alt="The Art of the Serve 2"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="relative w-full aspect-square rounded-3xl overflow-hidden shadow-2xl"
-              >
-                <img
-                  src="/images/lavender/Whisk_30062ca53d.jpg"
-                  alt="The Art of the Serve 3"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-            </div>
-          </div>
-        </InView>
-
-        {/* Serving Styles - Text Focused */}
-        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-center text-white mb-8 sm:mb-12 lg:mb-16">
-              Your Best Vibe
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 max-w-5xl mx-auto">
-              {servingStyles.map((style) => (
-                <motion.div
-                  key={style.id}
-                  className="text-center p-4 sm:p-6 rounded-lg bg-black/50 hover:bg-black/70 transition-colors duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                >
-                  <h3 className="text-lg sm:text-xl md:text-2xl text-white mb-2 sm:mb-3">
-                    {style.title}
-                  </h3>
-                  <div className="text-xs xs:text-sm sm:text-base text-white space-y-1 sm:space-y-2 mb-3 sm:mb-4">
-                    <p><span className="text-white">{style.temp}</span> | {style.glass}</p>
-                  </div>
-                  <p className="text-xs xs:text-sm sm:text-base text-white leading-relaxed">
-                    {style.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </InView>
+        <Ritual flavor={flavorData} ritualSteps={ritualSteps} />
 
 
         {/* Placeholder for New Call to Action */}

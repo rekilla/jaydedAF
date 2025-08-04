@@ -85,7 +85,7 @@ const Header: React.FC = () => {
             : "bg-transparent border-b border-transparent"
         )}
       >
-        <nav className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+        <nav className="mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
           {/* Left Desktop Navigation */}
           <div className="hidden sm:flex items-center flex-1">
             <ul className="flex space-x-8">
