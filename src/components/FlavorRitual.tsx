@@ -35,8 +35,7 @@ const FlavorRitual: React.FC<FlavorRitualProps> = ({
               viewport={{ once: true }}
             >
               <h2
-                className="text-4xl md:text-5xl font-serif mb-4"
-                style={{ color: '#FFD700' }}
+                className="text-4xl md:text-5xl font-serif mb-4 text-white"
               >
                 The {flavorName} Ritual
               </h2>
@@ -52,8 +51,7 @@ const FlavorRitual: React.FC<FlavorRitualProps> = ({
                     className="flex items-start"
                   >
                     <div
-                      className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-4"
-                      style={{ backgroundColor: '#FFD700', color: '#000' }}
+                      className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-4 bg-white text-black"
                     >
                       <span className="font-bold">{step.step}</span>
                     </div>
@@ -83,8 +81,8 @@ const FlavorRitual: React.FC<FlavorRitualProps> = ({
                 alt={imageAlt}
                 className="w-full h-auto rounded-lg shadow-2xl"
                 style={{
-                  boxShadow: '0 10px 30px rgba(255, 215, 0, 0.1)',
-                  border: '1px solid rgba(255, 215, 0, 0.2)',
+                  boxShadow: '0 10px 30px rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
                 }}
               />
             </motion.div>
