@@ -81,7 +81,7 @@ const LemonDropPage = () => {
             <FlavorHero flavor={flavorData} />
             <div className="absolute inset-0 w-full h-full">
               <img
-                src="/HL2.jpg"
+                src="/hero_lemon_2.jpg"
                 alt="Lemon Drop Lifestyle"
                 className="w-full h-full object-cover object-center"
               />
@@ -301,7 +301,7 @@ const LemonDropPage = () => {
         {/* Placeholder for New Call to Action */}
         <InView as="section" className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-4">Own Your Moment</h2>
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-4">Bright & Playful</h2>
             <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-4">
               Limited availability. Unlimited boldness.
             </p>

@@ -80,7 +80,7 @@ const LavenderPage = () => {
             <FlavorHero flavor={flavorData} />
             <div className="absolute inset-0 w-full h-full">
               <img
-                src="/HL.jpg"
+                src="/hero_lavender_2.jpg"
                 alt="Lavender Hero"
                 className="w-full h-full object-cover"
               />
@@ -283,7 +283,7 @@ const LavenderPage = () => {
         <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-center text-white mb-8 sm:mb-12 lg:mb-16">
-              Your Signature Vibe
+              Your Best Vibe
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-12 max-w-5xl mx-auto">
               {servingStyles.map((style) => (
@@ -315,7 +315,7 @@ const LavenderPage = () => {
         {/* Placeholder for New Call to Action */}
         <InView as="section" className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-4">Embrace Your Mystique</h2>
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl mb-4">Unlock the Calm</h2>
             <p className="text-sm xs:text-base sm:text-lg md:text-xl text-white mb-6 sm:mb-8 md:mb-10 lg:mb-12 max-w-2xl mx-auto px-4">
               Limited availability. Unlimited allure.
             </p>

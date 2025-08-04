@@ -275,7 +275,7 @@ const HeroSection: React.FC = () => {
         </div>
         
         {/* Flavor Selector - Part of hero section at bottom */}
-        <div className="relative z-20 pb-32 sm:pb-20 md:pb-24 lg:pb-28 px-6">
+        {/* <div className="relative z-20 pb-32 sm:pb-20 md:pb-24 lg:pb-28 px-6">
           <div className="flex justify-center">
             <div className="scale-90 sm:scale-100 md:scale-110 lg:scale-125 xl:scale-150 origin-bottom transition-transform duration-300">
               <FlavorSelector
@@ -292,7 +292,7 @@ const HeroSection: React.FC = () => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

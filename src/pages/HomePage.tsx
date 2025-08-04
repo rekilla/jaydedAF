@@ -18,7 +18,7 @@ import { FeaturedHighlightsSection } from '../components/FeaturedHighlightsSecti
 // --- Constants --- Use actual filenames provided
 // Map feature images logically
 const FEATURE_IMAGE_LEMON = "/images/home/features/feature_Lemon Drop.png";
-const WIDE_IMAGE_URL = "/images/home/wide/all_bottle_wide.png";
+const WIDE_IMAGE_URL = "/images/home/wide/all_bottle_wide.jpg";
 
 // Update gallery image paths and spans
 const galleryMediaItems: MediaItemType[] = [
