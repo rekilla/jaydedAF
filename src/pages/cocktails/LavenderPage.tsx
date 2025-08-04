@@ -26,29 +26,6 @@ const flavorData = {
 };
 
 // Serving Styles Data
-const servingStyles = [
-  {
-    id: 'neat',
-    title: 'Neat',
-    temp: '18°C',
-    glass: 'Coupe',
-    description: 'Pure floral rebellion'
-  },
-  {
-    id: 'rocks',
-    title: 'On the Rocks',
-    temp: '4°C',
-    glass: 'Rocks Glass',
-    description: 'Chilled perfection for the multifaceted'
-  },
-  {
-    id: 'signature',
-    title: 'Lavender Haze Martini',
-    temp: '2°C',
-    glass: 'Martini',
-    description: 'Your signature sophisticated mystique'
-  }
-];
 
 const curatedMomentsMedia: MediaItemType[] = [
   { id: 'lv1', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_06d12f3f2e.jpg" },

@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import { Spotlight } from './ui/spotlight';
 
 // Import Swiper styles
 import '../styles/vendor/swiper/swiper.css';

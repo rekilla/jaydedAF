@@ -26,29 +26,6 @@ const flavorData = {
 };
 
 // Serving Styles Data
-const servingStyles = [
-  {
-    id: 'neat',
-    title: 'Neat',
-    temp: '16°C',
-    glass: 'Highball',
-    description: 'Pure essence of cool'
-  },
-  {
-    id: 'rocks',
-    title: 'On the Rocks',
-    temp: '4°C',
-    glass: 'Rocks Glass',
-    description: 'Chilled perfection for the poised'
-  },
-  {
-    id: 'signature',
-    title: 'Cucumber Collins',
-    temp: '2°C',
-    glass: 'Collins',
-    description: 'Effortless sophistication'
-  }
-];
 
 const curatedMomentsMedia: MediaItemType[] = [
     { id: 'cu1', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_3d7bb4c753.jpg" },
