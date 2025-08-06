@@ -59,7 +59,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, mediaItems, setSelectedIt
                             {selectedItem.type === 'video' ? (
                                 <video
                                     src={selectedItem.url}
-                                    className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                                    className="max-w-full max-h-[90vh] object-contain"
                                     controls
                                     autoPlay
                                 />
@@ -67,7 +67,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, mediaItems, setSelectedIt
                                 <img
                                     src={selectedItem.url}
                                     alt={selectedItem.title}
-                                    className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                                    className="max-w-full max-h-[90vh] object-contain"
                                 />
                             )}
                         </div>
@@ -140,7 +140,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, index, onClick }) => {
     return (
         <motion.div
             ref={itemRef}
-            className="relative overflow-hidden cursor-pointer group rounded-lg bg-gray-900 aspect-square"
+            className="relative overflow-hidden cursor-pointer group bg-gray-900 aspect-square"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -220,7 +220,7 @@ export const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = (
             {(title || description) && (
                 <div className="text-center pt-8 md:pt-12 pb-6 px-4">
                     {title && (
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-wider text-white">
                             {title}
                         </h2>
                     )}
@@ -234,7 +234,7 @@ export const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = (
 
             {/* Grid Gallery */}
             <div className="w-full px-4 md:px-8 lg:px-12">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1">
                     {mediaItems.map((item, index) => (
                         <GalleryItem
                             key={item.id}

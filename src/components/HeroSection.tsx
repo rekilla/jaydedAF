@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
+import StyledButton from './StyledButton';
 
 // Import Swiper styles
 import '../styles/vendor/swiper/swiper.css';
@@ -130,108 +130,44 @@ const HeroSection: React.FC = () => {
       <div className="relative h-screen w-full flex flex-col">
         
         {/* Content Area */}
-        <div className="flex-1 flex items-center justify-center text-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-16 pb-20 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20">
-          <div className="w-full max-w-[1600px] mx-auto">
-            <div className="relative w-full h-full">
-
-              {/* Text Content */}
-              <div className="relative z-20 w-full h-full flex flex-col items-center justify-center text-center py-8 lg:py-0">
-                <Swiper
-                  modules={[EffectFade, Autoplay]}
-                  effect="fade"
-                  fadeEffect={{ crossFade: true }}
-                  loop={true}
-                  autoplay={{ delay: 7000, disableOnInteraction: false }}
-                  slidesPerView={1}
-                  onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                  className="w-full"
-                  onBeforeInit={(swiper) => { swiperRef.current = swiper; }}
-                >
-                  {flavors.map((flavor) => {
-                    return (
-                      <SwiperSlide key={flavor.key}>
-                        {({ isActive }) => (
-                          <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate={isActive ? "show" : "hidden"}
-                            className="space-y-4 md:space-y-6"
-                          >
-                            <motion.h1
-                              variants={itemVariants}
-                              className={`text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold lg:font-light leading-tight lg:leading-none tracking-tight text-white`}
-                              style={{
-                                textShadow: `0 0 40px ${currentFlavor.colorHex}30, 0px 2px 4px rgba(0, 0, 0, 0.5)`
-                              }}
-                            >
-                              {flavor.title}
-                            </motion.h1>
-                            
-                            <motion.p
-                              variants={itemVariants}
-                              className="hidden sm:block text-lg sm:text-xl italic text-white font-light tracking-wide"
-                              style={{ textShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)' }}
-                            >
-                              {flavor.tagline}
-                            </motion.p>
-                            
-                            <motion.p
-                              variants={itemVariants}
-                              className="text-xl sm:text-lg leading-relaxed text-white font-light max-w-md mx-auto"
-                              style={{ textShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)' }}
-                            >
-                              {flavor.description}
-                            </motion.p>
-
-                            <motion.div
-                              variants={itemVariants}
-                              className="flex justify-center pt-2 sm:pt-4"
-                            >
-                              <Link to={flavor.ctaLink}>
-                                <button
-                                  className={`
-                                    relative overflow-hidden
-                                    px-8 sm:px-10 py-3 sm:py-3.5
-                                    border border-transparent
-                                    text-black
-                                    font-light tracking-[0.15em] uppercase text-sm
-                                    transition-all duration-500 ease-out
-                                    group
-                                    hover:shadow-2xl
-                                  `}
-                                  style={{
-                                    backgroundColor: currentFlavor.colorHex,
-                                    boxShadow: `0 0 30px ${currentFlavor.colorHex}40`,
-                                    transition: 'box-shadow 0.5s ease-out, background-color 0.5s ease-out'
-                                  }}
-                                  onMouseEnter={(e) => {
-                                    e.currentTarget.style.boxShadow = `0 0 40px ${currentFlavor.colorHex}70`;
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.boxShadow = `0 0 30px ${currentFlavor.colorHex}40`;
-                                  }}
-                                >
-                                  {/* Button content */}
-                                  <span className="relative flex items-center gap-3">
-                                    <span className="transition-all duration-300 group-hover:tracking-[0.2em]">
-                                      Explore This Flavor
-                                    </span>
-                                    <ChevronRight className="w-4 h-4 transition-all duration-300 group-hover:translate-x-1" />
-                                  </span>
-                                </button>
-                              </Link>
-                            </motion.div>
-                          </motion.div>
-                        )}
-                      </SwiperSlide>
-                    );
-                  })}
-                </Swiper>
-              </div>
-
-              {/* Background Media is now at the top level */}
-            </div>
-          </div>
+        <div className="absolute inset-0 z-20">
+          <Swiper
+            modules={[EffectFade, Autoplay]}
+            effect="fade"
+            fadeEffect={{ crossFade: true }}
+            loop={true}
+            autoplay={{ delay: 7000, disableOnInteraction: false }}
+            slidesPerView={1}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+            className="w-full h-full"
+            onBeforeInit={(swiper) => { swiperRef.current = swiper; }}
+          >
+            {flavors.map((flavor) => {
+              return (
+                <SwiperSlide key={flavor.key}>
+                  {({ isActive }) => (
+                    <div className="w-full h-full flex justify-end items-end p-16">
+                      <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate={isActive ? "show" : "hidden"}
+                      >
+                        <motion.div
+                          variants={itemVariants}
+                        >
+                          <Link to={flavor.ctaLink}>
+                            <StyledButton>
+                              DELVE
+                            </StyledButton>
+                          </Link>
+                        </motion.div>
+                      </motion.div>
+                    </div>
+                  )}
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
         
       </div>

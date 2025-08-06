@@ -1,70 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin } from 'lucide-react';
-import { cn } from '../lib/utils';
 import { locations, Location } from '../data/locations';
-
-// Store card component - minimal and elegant
-const StoreCard: React.FC<{
-  store: Location;
-  isSelected: boolean;
-  distance?: number;
-  onClick: () => void;
-}> = ({ store, isSelected, distance, onClick }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const checkIfOpen = () => {
-      const now = new Date();
-      const currentTime = now.getHours() * 60 + now.getMinutes();
-      
-      if (store.hours) {
-        const [openHour, openMin] = store.hours.open.split(':').map(Number);
-        const [closeHour, closeMin] = store.hours.close.split(':').map(Number);
-        const openTime = openHour * 60 + openMin;
-        let closeTime = closeHour * 60 + closeMin;
-        
-        // Handle closing times after midnight
-        if (closeTime < openTime) closeTime += 24 * 60;
-        
-        setIsOpen(currentTime >= openTime && currentTime <= closeTime);
-      }
-    };
-
-    checkIfOpen();
-    const interval = setInterval(checkIfOpen, 60000); // Check every minute
-    return () => clearInterval(interval);
-  }, [store.hours]);
-
-  return (
-    <div
-      className={cn(
-        "p-5 border border-black/10 rounded-lg cursor-pointer transition-all duration-300",
-        "hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/20 hover:-translate-y-0.5",
-        isSelected && "border-yellow-400 shadow-lg shadow-yellow-400/20"
-      )}
-      onClick={onClick}
-    >
-      <div className="flex items-start justify-between">
-        <div className="flex-1">
-          <h3 className="font-heading text-lg text-black mb-1">{store.name}</h3>
-          <p className="text-sm text-black/70">{store.address}</p>
-          {distance !== undefined && (
-            <p className="text-xs text-black/50 mt-1">{distance.toFixed(1)} miles away</p>
-          )}
-        </div>
-        <div className="flex items-center gap-1 ml-4">
-          <div className={cn(
-            "w-2 h-2 rounded-full",
-            isOpen ? "bg-green-500" : "bg-red-500/70"
-          )} />
-          <span className="text-xs text-black/50">
-            {isOpen ? "Open" : "Closed"}
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-};
+import { StoreListItem } from '../components/StoreListItem';
 
 // Google Maps implementation
 const GoogleMap: React.FC<{
@@ -218,39 +155,39 @@ const StoreLocatorPage: React.FC = () => {
   }, [searchTerm, userLocation]);
 
   return (
-    <main className="w-full min-h-screen bg-white text-black pt-20">
+    <main className="w-full min-h-screen bg-white text-black pt-32">
       {/* Hero Section - Minimal */}
 
       {/* Search Section - Clean */}
-      <section className="container mx-auto px-6 max-w-xl mb-6">
+      <section className="container mx-auto px-6 max-w-xl mb-12">
         <div className="relative">
           <input
             type="text"
-            placeholder="Enter city or ZIP"
+            placeholder="Enter city, state, or ZIP code"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-3 py-2 bg-white border border-black/20 rounded-lg 
-                     text-black placeholder:text-black/40 
+            className="w-full px-4 py-3 bg-white border border-black/20 rounded-lg
+                     text-black placeholder:text-black/40
                      focus:border-black focus:outline-none focus:ring-2 focus:ring-black
-                     transition-all duration-300"
-         />
-         <button
-           onClick={getUserLocation}
-           className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-black/70
-                    hover:text-black transition-colors duration-200 flex items-center gap-1
-                    border border-black/20 rounded-md px-2 py-1"
-         >
-           <MapPin className="w-4 h-4" />
-           <span className="hidden sm:inline">Use my location</span>
-         </button>
+                     transition-all duration-300 text-lg"
+          />
+          <button
+            onClick={getUserLocation}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white
+                       px-4 py-2 rounded-md flex items-center gap-2
+                       hover:bg-gray-800 transition-colors"
+          >
+            <MapPin className="w-4 h-4" />
+            <span className="hidden sm:inline">Use My Location</span>
+          </button>
         </div>
       </section>
 
       {/* Map and Results */}
       <section className="container mx-auto px-6 pb-11">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
           {/* Interactive Map */}
-          <div className="lg:col-span-2 h-[50vh] lg:h-[600px] bg-black/5 border border-black/10 rounded-lg overflow-hidden">
+          <div className="lg:col-span-2 h-[60vh] lg:h-[700px] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
             <GoogleMap
               locations={filteredLocations}
               selectedStore={selectedStore}
@@ -258,12 +195,11 @@ const StoreLocatorPage: React.FC = () => {
             />
           </div>
 
-          {/* Store List - Elegant scroll */}
-          <div className="lg:col-span-1 space-y-3 max-h-[600px] overflow-y-auto pr-2
-                          scrollbar-thin scrollbar-track-gray-200 scrollbar-thumb-gray-400">
+          {/* Store List */}
+          <div className="lg:col-span-1 max-h-[700px] overflow-y-auto border border-gray-200 rounded-lg">
             {filteredLocations.length > 0 ? (
-              filteredLocations.map(store => (
-                <StoreCard
+              filteredLocations.map((store) => (
+                <StoreListItem
                   key={store.id}
                   store={store}
                   isSelected={selectedStore?.id === store.id}
@@ -273,15 +209,13 @@ const StoreLocatorPage: React.FC = () => {
                     store.lat,
                     store.lng
                   ) : undefined}
-                  onClick={() => {
-                    setSelectedStore(store);
-                  }}
+                  onClick={() => setSelectedStore(store)}
                 />
               ))
             ) : (
-              <p className="text-black/50 text-center py-8">
-                No locations found matching your search.
-              </p>
+              <div className="text-center p-10">
+                <p className="text-black/60">No locations found.</p>
+              </div>
             )}
           </div>
         </div>

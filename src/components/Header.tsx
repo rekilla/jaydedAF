@@ -58,8 +58,8 @@ const Header: React.FC = () => {
   ];
 
   const navLinksRight = [
-    { path: '/cocktails/lavender', label: 'Lavender' },
     { path: '/cocktails/lemon-drop', label: 'Lemon' },
+    { path: '/cocktails/lavender', label: 'Lavender' },
     { path: '/cocktails/cucumber', label: 'Cucumber' },
   ];
 
@@ -101,7 +101,7 @@ const Header: React.FC = () => {
 
           {/* Logo */}
           <div className="flex-shrink-0 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-            <Link to="/" className="block h-9 transition-transform duration-300 ease-in-out hover:scale-105">
+            <Link to="/" className="block h-11 transition-transform duration-300 ease-in-out hover:scale-105">
               <img src="/JAF only_Wh.png" alt="Jayded AF Cocktails Logo" className="h-full w-auto" />
             </Link>
           </div>

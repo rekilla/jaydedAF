@@ -10,6 +10,14 @@ const InView: React.FC<{ children: React.ReactNode; className?: string }> = ({ c
   return <div className={className}>{children}</div>;
 };
 
+// --- Time Conversion Utility ---
+const formatTime = (time: string) => {
+  const [hour, minute] = time.split(':').map(Number);
+  const ampm = hour >= 12 ? 'PM' : 'AM';
+  const formattedHour = hour % 12 || 12;
+  return `${formattedHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
+};
+
 export const StoreLocatorSection: React.FC = () => {
   const [selectedStore, setSelectedStore] = useState<Location>(locations[0]);
   const [isMapHovered, setIsMapHovered] = useState(false);
@@ -74,7 +82,7 @@ export const StoreLocatorSection: React.FC = () => {
                       </h3>
                       <p className="text-sm text-black mb-1">{store.address}</p>
                       <div className="space-y-1">
-                        <p className="text-xs text-black">{store.hours ? `${store.hours.open} - ${store.hours.close}` : 'Hours not available'}</p>
+                        <p className="text-xs text-black">{store.hours ? `${formatTime(store.hours.open)} - ${formatTime(store.hours.close)}` : 'Hours not available'}</p>
                         <p className="text-xs text-black">{store.phone}</p>
                       </div>
                     </div>

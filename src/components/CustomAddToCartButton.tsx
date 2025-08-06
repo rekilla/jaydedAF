@@ -59,18 +59,17 @@ export const CustomAddToCartButton: React.FC<{
     <motion.button
       onClick={handleAddToCart}
       disabled={isLoading}
-      className="relative px-8 py-3 border border-white bg-white text-black
-                 hover:bg-gray-200
+      className="relative w-[127.25px] h-[56px] rounded-none border border-white bg-transparent text-white
+                 hover:bg-white hover:text-black
                  transition-all duration-300
                  uppercase tracking-wider text-sm font-light group"
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      style={{
-        boxShadow: `0 0 20px ${colorHex}10`
-      }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
     >
-      <span className={`relative z-10 transition-opacity ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+      <span className={`relative z-10 transition-opacity flex items-center justify-center gap-2 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+        <span className="w-3 h-px bg-white group-hover:bg-black"></span>
         Purchase
+        <span className="w-3 h-px bg-white group-hover:bg-black"></span>
       </span>
       
       {isLoading && (

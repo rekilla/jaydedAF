@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { InteractiveBentoGallery } from '../components/ui/interactive-bento-gallery';
 import { InView } from '../components/ui/in-view';
 import type { MediaItemType } from '../components/ui/interactive-bento-gallery';
-import { ShimmerButton } from '../components/ui/shimmer-button';
 import { Link } from 'react-router-dom';
+import StyledButton from '../components/StyledButton';
 import HeroSection from '../components/HeroSection';
 import { AwardsSection } from '../components/AwardsSection';
 // Keep Swiper CSS commented out until resolved
@@ -18,7 +18,6 @@ import { FeaturedHighlightsSection } from '../components/FeaturedHighlightsSecti
 // --- Constants --- Use actual filenames provided
 // Map feature images logically
 const FEATURE_IMAGE_LEMON = "/images/home/features/feature_Lemon Drop.png";
-const WIDE_IMAGE_URL = "/images/home/wide/all_bottle_wide.jpg";
 
 // Update gallery image paths and spans
 const galleryMediaItems: MediaItemType[] = [
@@ -50,16 +49,6 @@ const HomePage: React.FC = () => {
       <HeroSection />
       <AwardsSection />
 
-      {/* Section 2: Featured Text (Brand Essence - Moved) */}
-      <section className="py-8 sm:py-10 text-center bg-black">
-        <InView className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-5 text-white">Bold. Authentic. Individual.</h2>
-            <p className="mb-10 max-w-2xl mx-auto text-white/80">
-              Jayded AF is more than a cocktail; it's a statement. We celebrate the confidence of the modern individual.
-            </p>
-            {/* Removed blockquote */}
-        </InView>
-      </section>
 
 <LuxuryCollectionSection />
 
@@ -68,7 +57,7 @@ const HomePage: React.FC = () => {
           <InView>
               <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
                   <video autoPlay loop muted className="w-full h-full object-cover" poster={FEATURE_IMAGE_LEMON}> {/* Update poster image */}
-                      <source src="/Models4.webm" type="video/webm" />
+                      <source src="/everyday.webm" type="video/webm" />
                       Your browser does not support the video tag.
                   </video>
               </div>
@@ -85,7 +74,7 @@ const HomePage: React.FC = () => {
          <InView viewOptions={{ once: true, margin: "0px 0px -20% 0px" }}>
               <InteractiveBentoGallery
                   mediaItems={galleryMediaItems}
-                  title="Moments of Individuality"
+                  title="Martini Moments"
                   description=""
               />
          </InView>
@@ -96,22 +85,21 @@ const HomePage: React.FC = () => {
       {/* Section 7: New Wide Image Section */}
        <section className="my-8 sm:my-12">
            <InView>
-                <div className="aspect-[21/9] overflow-hidden bg-brand-dark/50">
-                    <img src={WIDE_IMAGE_URL} alt="Jayded AF wide lifestyle" className="w-full h-full object-cover"/>
+                <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
+                    <video autoPlay loop muted className="w-full h-full object-cover">
+                        <source src="/Models4.webm" type="video/webm" />
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
            </InView>
         </section>
 
       {/* Section 9: Final CTA Section - Centered */}
-      <section className="py-8 bg-brand-dark text-center">
+      <section className="py-20 bg-brand-dark text-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
                 <Link to="/store-locator">
-                  <ShimmerButton>
-                      <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brand-dark dark:text-brand-dark lg:text-base">
-                          Find Jayded AF Near You
-                      </span>
-                  </ShimmerButton>
+                  <StyledButton>Find Us</StyledButton>
                 </Link>
               </motion.div>
           </div>

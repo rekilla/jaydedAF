@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
+import StyledButton from '../components/StyledButton';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -158,12 +159,10 @@ const ContactPage: React.FC = () => {
           </div>
 
           {/* Submit Button */}
-          <motion.button
+          <StyledButton
             onClick={handleSubmit}
             disabled={isSubmitting || !formData.name || !formData.email || !formData.subject || !formData.message}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full py-4 mt-12 bg-yellow-400 text-black hover:bg-yellow-500 font-medium tracking-wide uppercase text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:shadow-lg"
+            className="w-full py-4 mt-12"
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center gap-2">
@@ -175,7 +174,7 @@ const ContactPage: React.FC = () => {
                 Send Message <Send className="w-4 h-4" />
               </span>
             )}
-          </motion.button>
+          </StyledButton>
         
         </div>
       </motion.div>
