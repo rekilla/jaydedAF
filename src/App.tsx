@@ -22,6 +22,7 @@ import CucumberPage from './pages/cocktails/CucumberPage';
 import { AgeVerificationModal } from './components/AgeVerificationModal';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
+import PressPage from './pages/PressPage';
 import { BottleNexusLoader } from './components/BottleNexusLoader';
 import { CartProvider, useCart } from './contexts/CartContext';
 import { CartSidebar } from './components/CartSidebar';
@@ -50,6 +51,7 @@ function AppContent() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+            <Route path="/press" element={<PressPage />} />
 
             {/* TODO: Add a 404 Not Found route */}
             {/* <Route path="*" element={<NotFoundPage />} /> */}

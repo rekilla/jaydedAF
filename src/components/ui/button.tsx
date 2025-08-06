@@ -21,6 +21,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         jayded:
           "text-white border border-white hover:bg-white hover:text-black",
+        collection:
+          "text-black border border-black hover:bg-black hover:text-white",
       },
       size: {
         default: "h-9 px-4 py-2",

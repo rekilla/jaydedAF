@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const solidHeaderPages = ['/store-locator', '/contact'];
+    const solidHeaderPages = ['/store-locator', '/contact', '/press'];
     
     if (solidHeaderPages.includes(pathname)) {
       setIsScrolled(true);
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
           "fixed top-0 left-0 right-0 transition-all duration-500 ease-in-out",
           isMobileMenuOpen ? "z-40" : "z-50",
           isScrolled
-            ? (['/store-locator', '/contact'].includes(pathname)
+            ? (['/store-locator', '/contact', '/press'].includes(pathname)
               ? "bg-black shadow-md border-b border-white/10"
               : "bg-black/50 backdrop-blur-lg shadow-md border-b border-white/10")
             : "bg-transparent border-b border-transparent"

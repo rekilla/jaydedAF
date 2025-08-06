@@ -56,6 +56,9 @@ export function FooterSection() {
               <a href="/contact" className="block text-white/70 transition-colors hover:text-white">
                 Contact
               </a>
+              <a href="/press" className="block text-white/70 transition-colors hover:text-white">
+                Press
+              </a>
             </nav>
           </div>
 

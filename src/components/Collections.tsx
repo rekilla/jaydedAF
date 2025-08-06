@@ -7,7 +7,7 @@ import { BottleNexusButton } from './BottleNexusButton';
 import { useCart } from '../contexts/CartContext';
 import { BottleNexusProvider } from '../contexts/BottleNexusContext';
 import { products, Product } from '../data/products';
-import { CustomAddToCartButton } from './CustomAddToCartButton';
+import CollectionButton from './CollectionButton';
 
 // Image preloader hook
 const useImagePreloader = (imageUrls: string[]) => {
@@ -71,10 +71,9 @@ const ProductCard: React.FC<{
         </div>
 
         {/* Visible Custom Button */}
-        <CustomAddToCartButton 
-          productId={product.bottleNexusId || product.id}
-          inStock={product.inStock}
-        />
+        <CollectionButton>
+          {product.inStock ? 'Purchase' : 'Out of Stock'}
+        </CollectionButton>
       </div>
 
     </motion.div>
