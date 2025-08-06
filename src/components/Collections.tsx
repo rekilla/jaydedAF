@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { BottleNexusButton } from './BottleNexusButton';
@@ -74,7 +74,6 @@ const ProductCard: React.FC<{
         <CustomAddToCartButton 
           productId={product.bottleNexusId || product.id}
           inStock={product.inStock}
-          colorHex={product.colorHex}
         />
       </div>
 
@@ -93,14 +92,6 @@ export const LuxuryCollectionSection: React.FC = () => {
   const allImageUrls = products.flatMap(product => [product.bottleImage, product.lifestyleImage]);
   useImagePreloader(allImageUrls);
 
-  const cardVariants = {
-    initial: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, delay: i * 0.2 }
-    })
-  };
 
   return (
     <BottleNexusProvider>
@@ -108,7 +99,7 @@ export const LuxuryCollectionSection: React.FC = () => {
         <InView className="relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px]">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 pb-12">
-              {products.map((product, index) => (
+              {products.map((product) => (
                 <motion.div
                   key={product.id}
                 >

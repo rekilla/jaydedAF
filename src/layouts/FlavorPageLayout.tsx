@@ -166,7 +166,7 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
             <div className="mb-8">
               <SectionTitle flavor={flavorData.key as any} lineWidth="40%" noUnderline>{unlockCta.title}</SectionTitle>
             </div>
-            <CustomAddToCartButton productId={unlockCta.productId} colorHex={flavorData.colorHex} />
+            <CustomAddToCartButton productId={unlockCta.productId} />
           </div>
         </InView>
 
@@ -243,7 +243,6 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
               <div className="flex justify-center items-center flex-col sm:flex-row gap-3 sm:gap-4">
                 <CustomAddToCartButton
                   productId={closingCta.productId}
-                  colorHex={flavorData.colorHex}
                 />
                 <div className="hidden" data-bottlenexus-id={closingCta.productId}>
                   {/* This div is intentionally left empty for BottleNexus to populate */}

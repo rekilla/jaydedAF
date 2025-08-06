@@ -7,8 +7,7 @@ import { motion } from 'framer-motion';
 export const CustomAddToCartButton: React.FC<{
   productId: number;
   inStock?: boolean;
-  colorHex: string;
-}> = ({ productId, inStock = true, colorHex }) => {
+}> = ({ productId, inStock = true }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddToCart = () => {
