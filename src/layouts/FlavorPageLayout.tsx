@@ -149,7 +149,6 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
                 className="max-w-lg"
               >
                 <SectionTitle flavor={flavorData.key as any} className="text-4xl sm:text-5xl" noUnderline>{lifestyleMoment.title}</SectionTitle>
-                <div className={`w-12 h-px bg-brand-${flavorData.key}`} />
                 <p className="text-lg xs:text-xl sm:text-2xl text-white">
                   {lifestyleMoment.subtitle}
                 </p>
@@ -158,7 +157,7 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
           </div>
         </InView>
 
-        <PerfectServeSection {...perfectServeData} />
+        <PerfectServeSection {...perfectServeData} flavor={flavorData.key as any} />
 
         {/* Call to Action */}
         <InView as="section" className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">

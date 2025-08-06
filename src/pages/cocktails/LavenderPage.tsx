@@ -4,7 +4,7 @@ import { MediaItemType } from '../../components/ui/cocktail-bento-gallery';
 const flavorData = {
   key: "lavender",
   name: "Lavender",
-  tagline: "Elegant, Aromatic & Mysteriously Alluring",
+  tagline: "",
   colorClass: "text-brand-lavender",
   colorHex: "#FFFFFF",
 };

@@ -12,6 +12,7 @@ interface ServeStyle {
 interface PerfectServeSectionProps {
   title: string;
   serveStyles: ServeStyle[];
+  flavor?: 'lemon' | 'lavender' | 'cucumber';
 }
 
 // InView component placeholder
@@ -19,7 +20,7 @@ const InView: React.FC<{ children: React.ReactNode; className?: string }> = ({ c
   return <div className={className}>{children}</div>;
 };
 
-export const PerfectServeSection: React.FC<PerfectServeSectionProps> = ({ title, serveStyles }) => {
+export const PerfectServeSection: React.FC<PerfectServeSectionProps> = ({ title, serveStyles, flavor = 'lavender' }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -39,7 +40,7 @@ export const PerfectServeSection: React.FC<PerfectServeSectionProps> = ({ title,
           <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-white mb-2">
             {title}
           </h2>
-          <div className="w-12 h-px bg-brand-lavender mx-auto mb-5" />
+          <div className={`w-12 h-px bg-brand-${flavor} mx-auto mb-5`} />
         </motion.div>
 
         {/* Serve Styles Grid */}

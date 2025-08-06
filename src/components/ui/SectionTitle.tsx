@@ -12,9 +12,9 @@ interface SectionTitleProps {
 }
 
 const flavorClasses: Record<Flavor, string> = {
-  lemon: 'after:bg-brand-gold',
-  lavender: 'after:bg-brand-lavender',
-  cucumber: 'after:bg-green-500', // Assuming a green color for cucumber
+  lemon: 'bg-brand-lemon',
+  lavender: 'bg-brand-lavender',
+  cucumber: 'bg-brand-cucumber',
 };
 
 export const SectionTitle: React.FC<SectionTitleProps> = ({ flavor = 'lemon', children, className, lineWidth, noUnderline }) => {
@@ -29,12 +29,11 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({ flavor = 'lemon', ch
     >
       <span
         className={cn(
-          'relative inline-block',
-          !noUnderline && flavorClass
+          'relative inline-block'
         )}
       >
         {children}
-        {lineWidth && !noUnderline && <div className="absolute bottom-[-8px] left-1/2 -translate-x-1/2 h-px bg-brand-lavender" style={{ width: lineWidth }} />}
+        {lineWidth && !noUnderline && <div className={cn("absolute bottom-[-8px] left-1/2 -translate-x-1/2 h-px", flavorClass)} style={{ width: lineWidth }} />}
       </span>
     </h2>
   );

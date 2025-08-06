@@ -28,6 +28,8 @@ export default {
             'brand-text': '#FFF',
             'brand-gold': '#FFE34D', // Accent yellow
             'brand-lavender': '#C7B8FF',
+            'brand-cucumber': '#84cc16',
+            'brand-lemon': '#FFE34D',
             'brand-dark': '#000',
             // Remove rainbow colors, keep monochrome
             'glow-white': '#FFF',
