@@ -23,6 +23,8 @@ const buttonVariants = cva(
           "text-white border border-white hover:bg-white hover:text-black",
         collection:
           "text-black border border-black hover:bg-black hover:text-white",
+        contact:
+          "bg-yellow-400 text-black hover:bg-yellow-500",
       },
       size: {
         default: "h-9 px-4 py-2",

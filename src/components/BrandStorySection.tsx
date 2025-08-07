@@ -108,8 +108,16 @@ export const BrandStorySection: React.FC = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="relative h-full w-full bg-black/20 rounded-lg overflow-hidden flex items-center justify-center">
-              {/* Video player will be placed here */}
-              <p className="text-white/50">Video Placeholder</p>
+              <video
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                src="/ice.webm"
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
           </motion.div>
         </div>

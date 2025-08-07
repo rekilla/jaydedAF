@@ -1,10 +1,14 @@
 [
   {
-    "title": "Gold Medal",
-    "image": "/images/awards/gold.svg"
+    "title": "Bronze Master 2023",
+    "image": "/images/awards/bronze-master-2023.png"
   },
   {
-    "title": "Best in Show",
-    "image": "/images/awards/best-in-show.svg"
+    "title": "Gold Master 2023",
+    "image": "/images/awards/gold-master-2023.png"
+  },
+  {
+    "title": "Women Owned",
+    "image": "/images/awards/Women owned (1).png"
   }
 ]

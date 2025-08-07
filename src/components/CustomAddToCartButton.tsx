@@ -65,7 +65,7 @@ export const CustomAddToCartButton: React.FC<{
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
-      <span className={`relative z-10 transition-opacity flex items-center justify-center gap-2 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+      <span className={`relative z-10 transition-opacity flex h-full w-full items-center justify-center gap-2 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
         <span className="w-3 h-px bg-white group-hover:bg-black"></span>
         Purchase
         <span className="w-3 h-px bg-white group-hover:bg-black"></span>

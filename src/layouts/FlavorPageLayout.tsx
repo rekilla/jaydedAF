@@ -6,6 +6,7 @@ import { CustomAddToCartButton } from '../components/CustomAddToCartButton';
 import { BottleNexusProvider } from '../contexts/BottleNexusContext';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { PerfectServeSection } from '../components/PerfectServeSection';
+import FlavorHeroMobile from '../components/FlavorHeroMobile';
 
 // Mock InView for now
 const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; className?: string }> = ({ children, as = 'div', className = '', ...props }) => {
@@ -90,8 +91,9 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
     <BottleNexusProvider>
       <main className="w-full bg-black text-white overflow-x-hidden">
         
+        <FlavorHeroMobile flavorData={flavorData} />
         {/* Enhanced Hero Section */}
-        <section className="relative h-auto py-24 sm:py-32 lg:py-40 w-full flex flex-col items-center justify-center bg-black">
+        <section className="relative h-auto py-24 sm:py-32 lg:py-40 w-full flex-col items-center justify-center bg-black hidden sm:flex">
           <div className="relative z-10 text-center">
             <motion.div {...heroAnimation}>
               {flavorData.heroImage ? (

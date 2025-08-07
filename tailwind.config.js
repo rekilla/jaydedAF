@@ -23,9 +23,9 @@ export default {
   theme: {
   	extend: {
   		colors: {
-            // True black theme colors
-            'brand-background': '#000',
-            'brand-text': '#FFF',
+  		    // True black theme colors
+  		    'brand-background': '#000',
+  		    'brand-text': '#FFF',
             'brand-gold': '#FFE34D', // Accent yellow
             'brand-lavender': '#C7B8FF',
             'brand-cucumber': '#84cc16',

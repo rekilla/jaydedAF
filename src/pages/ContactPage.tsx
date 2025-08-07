@@ -163,6 +163,7 @@ const ContactPage: React.FC = () => {
             onClick={handleSubmit}
             disabled={isSubmitting || !formData.name || !formData.email || !formData.subject || !formData.message}
             className="w-full py-4 mt-12"
+            variant="contact"
           >
             {isSubmitting ? (
               <span className="flex items-center justify-center gap-2">
