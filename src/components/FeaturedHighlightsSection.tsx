@@ -50,9 +50,9 @@ export const FeaturedHighlightsSection: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-white mb-2">
-            Why Us?
+            Moments of Individuality
           </h2>
-          <div className="w-12 h-px bg-white mx-auto" />
+          <div className="w-12 h-px bg-[#D4AF37] mx-auto" />
         </motion.div>
 
         {/* Highlights Grid */}

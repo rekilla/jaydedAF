@@ -5,9 +5,12 @@ export const AwardsSection: React.FC = () => {
   return (
     <section className="py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl sm:text-3xl font-light tracking-wider text-black text-center mb-8">
-          Award-Winning
-        </h2>
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl font-light tracking-wider text-black inline-block">
+            Award-Winning
+          </h2>
+          <div className="w-12 h-px bg-[#D4AF37] mx-auto mt-1" />
+        </div>
         <div className="flex justify-center gap-8 sm:gap-12 md:gap-16">
           {awards.map((award, index) => (
             <div key={index} className="flex flex-col items-center text-center">

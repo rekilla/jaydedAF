@@ -184,10 +184,10 @@ const StoreLocatorPage: React.FC = () => {
       </section>
 
       {/* Map and Results */}
-      <section className="container mx-auto px-6 pb-11">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px] pb-11">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Interactive Map */}
-          <div className="lg:col-span-2 h-[60vh] lg:h-[700px] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
+          <div className="lg:col-span-1 h-[60vh] lg:h-[700px] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
             <GoogleMap
               locations={filteredLocations}
               selectedStore={selectedStore}
@@ -196,7 +196,7 @@ const StoreLocatorPage: React.FC = () => {
           </div>
 
           {/* Store List */}
-          <div className="lg:col-span-1 max-h-[700px] overflow-y-auto border border-gray-200 rounded-lg">
+          <div className="lg:col-span-1 max-h-[700px] overflow-y-auto rounded-lg">
             {filteredLocations.length > 0 ? (
               filteredLocations.map((store) => (
                 <StoreListItem

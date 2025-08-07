@@ -4,6 +4,7 @@ import { MediaItemType } from '../../components/ui/cocktail-bento-gallery';
 const flavorData = {
   key: "cucumber",
   name: "Cucumber",
+  heroImage: "/Cucumber Title.svg",
   tagline: "",
   colorClass: "text-green-500",
   colorHex: "#84cc16",
@@ -59,7 +60,7 @@ const cucumberPageData = {
     details: [
       { delay: 0.1, value: '12%', label: 'ABV', icon: '/martini-glass-with-straw-svgrepo-com.svg' },
       { delay: 0.2, value: '90', label: 'Calories', icon: '/calories-svgrepo-com.svg' },
-      { delay: 0.3, value: 'Elderflower, Pear, Lime', label: '', icon: '/eyedropper-svgrepo-com.svg' }
+      { delay: 0.3, value: '100%', label: 'ALL NATURAL', icon: '/leaf-svgrepo-com.svg' }
     ],
   },
   closingCta: {

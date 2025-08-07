@@ -90,6 +90,9 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+  		  maxWidth: {
+  		    '6xl': '1088px', // 20% smaller than 1360px
+  		  },
         // Add keyframes and animation for Aurora
         keyframes: {
             aurora: {

@@ -220,9 +220,12 @@ export const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = (
             {(title || description) && (
                 <div className="text-center pt-8 md:pt-12 pb-6 px-4">
                     {title && (
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-wider text-white">
-                            {title}
-                        </h2>
+                        <>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-wider text-white inline-block">
+                                {title}
+                            </h2>
+                            <div className="w-12 h-px bg-[#D4AF37] mx-auto mt-2" />
+                        </>
                     )}
                     {description && (
                         <p className="mt-3 text-lg text-gray-200 max-w-2xl mx-auto">

@@ -18,6 +18,7 @@ const cn = (...classes: (string | undefined | null | false)[]) => classes.filter
 interface FlavorData {
   key: string;
   name: string;
+  heroImage?: string;
   tagline: string;
   colorClass: string;
   colorHex: string;
@@ -93,18 +94,23 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         <section className="relative h-auto py-24 sm:py-32 lg:py-40 w-full flex flex-col items-center justify-center bg-black">
           <div className="relative z-10 text-center">
             <motion.div {...heroAnimation}>
-              <h1
-                className={cn(
-                  "font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl",
-                  "drop-shadow-2xl",
-                  flavorData.colorClass,
-                )}
-              >
-                {flavorData.name}
-              </h1>
-              <p className="text-xl sm:text-2xl italic text-white mt-4">
-                {flavorData.tagline}
-              </p>
+              {flavorData.heroImage ? (
+                <img
+                  src={flavorData.heroImage}
+                  alt={`${flavorData.name} title`}
+                  className="w-full max-w-4xl mx-auto transform scale-150"
+                />
+              ) : (
+                <h1
+                  className={cn(
+                    "font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl",
+                    "drop-shadow-2xl",
+                    flavorData.colorClass,
+                  )}
+                >
+                  {flavorData.name}
+                </h1>
+              )}
             </motion.div>
           </div>
         </section>

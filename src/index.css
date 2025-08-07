@@ -7,7 +7,8 @@
 html {
   background-color: #000;
   color: #FFF;
-  font-family: Times, serif;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
 }
 
 body {
@@ -15,7 +16,8 @@ body {
   background-color: #000;
   color: #FFF;
   overflow-x: hidden;
-  line-height: 1.7;
+  line-height: 1.8;
+  font-size: 1.1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
