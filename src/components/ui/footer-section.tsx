@@ -8,7 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./tooltip"; // Revert to relative path
-import { Facebook, Instagram, Send, Twitter } from "lucide-react";
+import { Facebook, Instagram, Send, Twitter, Youtube } from "lucide-react";
 
 // Renamed component to avoid conflict if demo name is used elsewhere
 export function FooterSection() {
@@ -99,7 +99,7 @@ export function FooterSection() {
                 </Tooltip>
                  <Tooltip>
                   <TooltipTrigger asChild>
-                    <a href="#" aria-label="Instagram">
+                    <a href="https://www.instagram.com/jayded.af/" aria-label="Instagram">
                     <Button variant="outline" size="icon" className="rounded-full border-white/30 text-white hover:border-white hover:bg-white/10">
                       <Instagram className="h-4 w-4" />
                       <span className="sr-only">Instagram</span>
@@ -107,6 +107,17 @@ export function FooterSection() {
                     </a>
                   </TooltipTrigger>
                   <TooltipContent><p>Follow us on Instagram</p></TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a href="https://www.youtube.com/channel/UCeqg03eaSlqLjk8jL575HWg" aria-label="YouTube">
+                    <Button variant="outline" size="icon" className="rounded-full border-white/30 text-white hover:border-white hover:bg-white/10">
+                      <Youtube className="h-4 w-4" />
+                      <span className="sr-only">YouTube</span>
+                    </Button>
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent><p>Follow us on YouTube</p></TooltipContent>
                 </Tooltip>
               </TooltipProvider>
             </div>

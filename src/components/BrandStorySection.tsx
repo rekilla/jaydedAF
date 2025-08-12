@@ -55,7 +55,7 @@ export const BrandStorySection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-white mb-2">
+          <h2 className="text-[40.5px] leading-[50px] font-light tracking-[2.7px] text-white mb-2">
             Our Story
           </h2>
           <div className="w-12 h-px bg-[#D4AF37] mx-auto" />
@@ -87,7 +87,7 @@ export const BrandStorySection: React.FC = () => {
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2 transition-colors duration-300 text-white">
+                    <h3 className="text-[40.5px] leading-[50px] font-light tracking-[2.7px] mb-1 sm:mb-2 transition-colors duration-300 text-white">
                       {point.title}
                     </h3>
                     <p className="text-xs sm:text-sm leading-relaxed transition-all duration-300 text-white/70 whitespace-pre-line">

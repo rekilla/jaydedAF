@@ -14,6 +14,7 @@ import { LuxuryCollectionSection } from '../components/Collections';
 import OurStorySection from '../components/OurStorySection';
 import { StoreLocatorSection } from '../components/StoreLocatorSection';
 import { FeaturedHighlightsSection } from '../components/FeaturedHighlightsSection';
+import { MessageFromAlexa } from '../components/MessageFromAlexa';
 
 // --- Constants --- Use actual filenames provided
 // Map feature images logically
@@ -51,6 +52,8 @@ const HomePage: React.FC = () => {
 
 
 <LuxuryCollectionSection />
+
+<MessageFromAlexa />
 
       {/* Section 5: Placeholder Video Section */}
       <section>

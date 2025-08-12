@@ -6,7 +6,7 @@ export const AwardsSection: React.FC = () => {
     <section className="py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-light tracking-wider text-black inline-block">
+          <h2 className="text-[40.5px] leading-[50px] font-light tracking-[2.7px] text-black inline-block">
             Award-Winning
           </h2>
           <div className="w-12 h-px bg-[#D4AF37] mx-auto mt-1" />

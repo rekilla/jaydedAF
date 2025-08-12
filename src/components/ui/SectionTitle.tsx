@@ -23,7 +23,7 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({ flavor = 'lemon', ch
   return (
     <h2
       className={cn(
-        'text-3xl sm:text-4xl font-bold text-white',
+        'text-[40.5px] leading-[50px] font-light tracking-[2.7px] text-white',
         className
       )}
     >
@@ -33,7 +33,7 @@ export const SectionTitle: React.FC<SectionTitleProps> = ({ flavor = 'lemon', ch
         )}
       >
         {children}
-        {lineWidth && !noUnderline && <div className={cn("absolute bottom-[-8px] left-1/2 -translate-x-1/2 h-px", flavorClass)} style={{ width: lineWidth }} />}
+        {lineWidth && !noUnderline && <div className={cn("absolute bottom-[-8px] left-1/2 -translate-x-1/2 h-[2px]", flavorClass)} style={{ width: lineWidth }} />}
       </span>
     </h2>
   );

@@ -33,7 +33,7 @@ export const StoreLocatorSection: React.FC = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-black mb-2">
+          <h2 className="text-[40.5px] leading-[50px] font-light tracking-[2.7px] text-black mb-2">
             Our Locations
           </h2>
           <div className="w-12 h-px bg-[#D4AF37] mx-auto mb-4" />
