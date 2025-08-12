@@ -11,22 +11,22 @@ const flavorData = {
 };
 
 const perfectServeData = {
-  title: "Your Perfect Serve",
+  title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Chilled", description: "18°C Coupe - Chill perfection for the multifaceted." },
-    { id: 2, title: "Shaken", description: "2°C martini - A floral rebellion" },
-    { id: 3, title: "On The Rocks", description: "4°C Rocks Glass - A lavender haze" }
+    { id: 1, title: "Chilled.", description: "Is the Moment" },
+    { id: 2, title: "Shaken.", description: "New Age Bombshell" },
+    { id: 3, title: "On The Rocks", description: "A Lavender Haze" }
   ]
 };
 
 const curatedMomentsMedia: MediaItemType[] = [
   { id: 'lv1', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_06d12f3f2e.jpg" },
   { id: 'lv2', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_069d4c71ba.jpg" },
-  { id: 'lv3', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_6394e9d2b6.jpg" },
-  { id: 'lv4', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_84528a668d.jpg" },
-  { id: 'lv5', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_923316f1e8.jpg" },
   { id: 'lv6', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_ac02859538.jpg" },
+  { id: 'lv5', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_923316f1e8.jpg" },
+  { id: 'lv3', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_6394e9d2b6.jpg" },
   { id: 'lv7', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_ba998da4da.jpg" },
+  { id: 'lv4', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_84528a668d.jpg" },
   { id: 'lv8', type: 'image', title: '', desc: '', url: "/images/lavender/Whisk_cc6a11bb08.jpg" }
 ];
 
@@ -37,22 +37,20 @@ const lavenderPageData = {
   interimTitle: "The Interim",
   interimDescription: (
     <>
-      Sexy, Subtle and Incredibly Chic. Your interlude in elegance. The Lavender Martini Cocktail excites the senses with the hypnotic allure of the vibrant bloom, ending naturally on the sweet note of Mandarin Orange.
-      <br /><br />
-      Hand-curated for those who understand that true power whispers, never shouts. You are layered, authentic, and unapologetically bold.
+      Sexy, subtle and incredibly chic. Your interlude in elegance. The Lavender Martini excites the senses with the hypnotic allure of the vibrant bloom. Ending naturally on the sweet note of Mandarin Orange
     </>
   ),
   lifestyleMoment: {
     image: "/images/lavender/Whisk_c146dc0301.jpg",
     title: "Enigma.",
-    subtitle: "where subtle mystery meets chic.",
+    subtitle: "...Yet when you get it, you get it.",
   },
   unlockCta: {
     title: "Unlock the Calm",
     productId: 47036,
   },
   curatedMoments: {
-    title: "Curated Moments",
+    title: "A Curation",
     wideImage: "/images/lavender/Whisk_18e89e678e.jpg",
   },
   specifications: {
@@ -64,7 +62,7 @@ const lavenderPageData = {
     ],
   },
   closingCta: {
-    title: "Embrace Your Mystique",
+    title: "",
     image: "/images/lavender/Whisk_feecfdbb1c.jpg",
     productId: 47035,
   },

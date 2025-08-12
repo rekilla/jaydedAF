@@ -41,18 +41,18 @@ const ProductCard: React.FC<{
 
   return (
     <motion.div
-      className="relative flex flex-col items-center"
+      className="relative flex flex-col items-center group group-hover:z-20"
     >
 
       {/* Product Image Container */}
-      <Link to={product.path}>
+      <Link to={product.path} className="group">
         <div
           className="relative z-10 w-64 h-80 mb-8 cursor-pointer transform-gpu"
         >
           <motion.img
             src={product.bottleImage}
             alt={`${product.name} bottle`}
-            className="absolute inset-0 w-full h-full object-contain"
+            className="absolute inset-0 w-full h-full object-contain transform transition-transform duration-300 ease-in-out scale-125 group-hover:scale-[1.35] group-hover:opacity-100"
           />
         </div>
       </Link>
@@ -101,6 +101,7 @@ export const LuxuryCollectionSection: React.FC = () => {
               {products.map((product) => (
                 <motion.div
                   key={product.id}
+                  className="group"
                 >
                   <ProductCard
                     product={product}

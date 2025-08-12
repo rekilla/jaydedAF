@@ -13,21 +13,21 @@ const flavorData = {
 const perfectServeData = {
   title: "Your Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Chilled", description: "18°C Coupe - Chill perfection for the multifaceted." },
-    { id: 2, title: "Shaken", description: "2°C martini - A floral rebellion" },
-    { id: 3, title: "On The Rocks", description: "4°C Rocks Glass - A lavender haze" }
+    { id: 1, title: "Chilled.", description: "Beyond the Moment" },
+    { id: 2, title: "Shaken.", description: "Finally. A twist." },
+    { id: 3, title: "On The Rocks", description: "Spa Day Reimagined" }
   ]
 };
 
 const curatedMomentsMedia: MediaItemType[] = [
-    { id: 'cu1', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_3d7bb4c753.jpg" },
-    { id: 'cu2', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_43c68645c0.jpg" },
-    { id: 'cu3', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_94f02a652d.jpg" },
-    { id: 'cu4', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_407c1299b7.jpg" },
-    { id: 'cu5', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_717dcefee8.jpg" },
-    { id: 'cu6', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_735ceadfeb.jpg" },
-    { id: 'cu7', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_aceae8968e.jpg" },
-    { id: 'cu8', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_bcbd4f271b.jpg" }
+    { id: 'cu1', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_634ea23028.jpg" },
+    { id: 'cu2', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_5fec71df79.jpg" },
+    { id: 'cu3', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_494461be83.jpg" },
+    { id: 'cu4', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_79687110ca.jpg" },
+    { id: 'cu5', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_a577fabf7b.jpg" },
+    { id: 'cu6', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_ad0d81dcf7.jpg" },
+    { id: 'cu7', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_cbef435bee.jpg" },
+    { id: 'cu8', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_94f02a652d.jpg" }
 ];
 
 const cucumberPageData = {
@@ -37,22 +37,20 @@ const cucumberPageData = {
   interimTitle: "The Final Chapter",
   interimDescription: (
     <>
-      Centered, Poised and Effortlessly Cool. The Laxly Cucumber Martini Cocktail embodies the very essence of the Jayded AF brand.
-      <br /><br />
-      Artisan-designed with essences of Elderflower, Pear and a hint of Lime. For the woman who has arrived, who knows her worth, and radiates authenticity without trying. This is liquid zen with an edge.
+      Centered, Poised and Effortlessly Cool. The Laxly Cucumber Martini is liquid Zen, with an edge. Aura for days with a flavor profile boasting the essences of Elderflower, Pear and a hint of Lime.
     </>
   ),
   lifestyleMoment: {
     image: "/images/cucumber/Whisk_9070bc219a.jpg",
     title: "Zenith.",
-    subtitle: "Where serenity meets strength",
+    subtitle: "A cut above",
   },
   unlockCta: {
     title: "Spa-Fresh / Sophisticated",
     productId: 47037,
   },
   curatedMoments: {
-    title: "Curated Moments",
+    title: "A Curation",
     wideImage: "/images/cucumber/Whisk_73e915b469.jpg",
   },
   specifications: {
@@ -64,7 +62,6 @@ const cucumberPageData = {
     ],
   },
   closingCta: {
-    title: "Complete Your Journey",
     image: "/images/cucumber/Whisk_6a2ef6e3f3.jpg",
     productId: 47037,
   },

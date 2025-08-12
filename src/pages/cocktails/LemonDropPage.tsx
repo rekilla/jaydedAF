@@ -11,11 +11,11 @@ const flavorData = {
 };
 
 const perfectServeData = {
-  title: "Your Perfect Serve",
+  title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Neat", description: "16°C Shot Glass - Pure citrus courage" },
-    { id: 2, title: "On the Rocks", description: "4°C Rocks Glass - Chilled perfection for the unbridled" },
-    { id: 3, title: "Lemon Drop Martini", description: "2°C Martini Glass - The ultimate sophisticated statement" }
+    { id: 1, title: "Chilled.", description: "Meets the Moment" },
+    { id: 2, title: "Shaken.", description: "Classic Martini" },
+    { id: 3, title: "On The Rocks", description: "A Tart Statement" }
   ]
 };
 
@@ -37,24 +37,20 @@ const lemonPageData = {
   interimTitle: "The Genesis",
   interimDescription: (
     <>
-      Classic, Sophisticated and Sinfully Edgy. The Lemon Drop Martini Cocktail is simply the prototype of the art of a cocktail.
-      <br /><br />
-      Start your story with a flavor that commands attention. Tart Meyer Lemons, bold Juniper, and a kiss of Triple Sec—this is citrus swagger in a glass. You are the sun, so radiate.
-      <br /><br />
-      <span className="italic">Confidence distilled.</span>
+      Classic, Sophisticated and Sinfully Edgy. The Lemon Drop Martini is simply the prototype of the art of a cocktail. It commands attention. Well deserved. Embodying a flavor profile consisting of Meyer Lemons, Juniper Berries and Triple Sec.
     </>
   ),
   lifestyleMoment: {
     image: "/images/Lemon/Whisk_d9cd8f895e.jpg",
-    title: "Your Power Hour Moment",
-    subtitle: "Where audacity meets sophistication",
+    title: "Power.",
+    subtitle: "Where audacity meets sophistication.",
   },
   unlockCta: {
     title: "Bright & Playful",
     productId: 47035,
   },
   curatedMoments: {
-    title: "Curated Moments",
+    title: "A Curation",
     wideImage: "/images/Lemon/Whisk_4e25346a05.jpg",
   },
   specifications: {
@@ -66,7 +62,7 @@ const lemonPageData = {
     ],
   },
   closingCta: {
-    title: "Own Your Moment",
+    title: "",
     image: "/images/Lemon/Whisk_3aac0a8433.jpg",
     productId: 47035,
   },

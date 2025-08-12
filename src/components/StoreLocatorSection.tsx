@@ -34,7 +34,7 @@ export const StoreLocatorSection: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-black mb-2">
-            Find Us
+            Our Locations
           </h2>
           <div className="w-12 h-px bg-[#D4AF37] mx-auto mb-4" />
           <p className="text-sm sm:text-base text-black">

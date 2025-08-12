@@ -23,7 +23,7 @@ const highlights: Highlight[] = [
   {
     id: 3,
     title: "12.5% ABV",
-    icon: "/check-mark-svgrepo-com.svg"
+    icon: "/percentage-svgrepo-com.svg"
   }
 ];
 
@@ -50,13 +50,13 @@ export const FeaturedHighlightsSection: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-white mb-2">
-            Moments of Individuality
+            Our Promise
           </h2>
           <div className="w-12 h-px bg-[#D4AF37] mx-auto" />
         </motion.div>
 
         {/* Highlights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto mb-8">
           {highlights.map((highlight, index) => (
             <motion.div
               key={highlight.id}
@@ -80,8 +80,8 @@ export const FeaturedHighlightsSection: React.FC = () => {
               <div className="relative p-6 sm:p-8">
                 {/* Icon */}
                 <div className="mb-4 flex justify-center">
-                  <img 
-                    src={highlight.icon} 
+                  <img
+                    src={highlight.icon}
                     alt={highlight.title}
                     className="w-8 h-8 sm:w-10 sm:h-10 opacity-80"
                   />
@@ -103,6 +103,9 @@ export const FeaturedHighlightsSection: React.FC = () => {
             </motion.div>
           ))}
         </div>
+        <p className="text-lg text-white/80 px-8 py-8 text-center">
+          We create a qualitative product that is ethically sourced, premium, exclusive and modern
+        </p>
 
       </InView>
     </section>

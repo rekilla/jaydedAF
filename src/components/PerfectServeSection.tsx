@@ -37,7 +37,7 @@ export const PerfectServeSection: React.FC<PerfectServeSectionProps> = ({ title,
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-white mb-2">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-wider text-white mb-2">
             {title}
           </h2>
           <div className={`w-12 h-px bg-brand-${flavor} mx-auto mb-5`} />

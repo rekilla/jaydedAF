@@ -42,8 +42,8 @@ interface FlavorPageLayoutProps {
   interimDescription: React.ReactNode;
   lifestyleMoment: {
     image: string;
-    title: string;
-    subtitle: string;
+    title: React.ReactNode;
+    subtitle?: string;
   };
   unlockCta: {
     title: string;
@@ -63,7 +63,7 @@ interface FlavorPageLayoutProps {
     }[];
   };
   closingCta: {
-    title: string;
+    title?: string;
     image: string;
     productId: number;
   };

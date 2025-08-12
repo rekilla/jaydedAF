@@ -11,7 +11,7 @@ import { AwardsSection } from '../components/AwardsSection';
 // import '../styles/vendor/swiper/swiper.css';
 // import '../styles/vendor/swiper/pagination.css';
 import { LuxuryCollectionSection } from '../components/Collections';
-import { BrandStorySection } from '../components/BrandStorySection';
+import OurStorySection from '../components/OurStorySection';
 import { StoreLocatorSection } from '../components/StoreLocatorSection';
 import { FeaturedHighlightsSection } from '../components/FeaturedHighlightsSection';
 
@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
           </InView>
       </section>
 
-<BrandStorySection />
+<OurStorySection />
 
 <FeaturedHighlightsSection />
 
@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
          <InView viewOptions={{ once: true, margin: "0px 0px -20% 0px" }}>
               <InteractiveBentoGallery
                   mediaItems={galleryMediaItems}
-                  title="Martini Moments"
+                  title="Set Apart"
                   description=""
               />
          </InView>
@@ -99,7 +99,7 @@ const HomePage: React.FC = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
                 <Link to="/store-locator">
-                  <StyledButton>Find Us</StyledButton>
+                  <StyledButton>Our Locations</StyledButton>
                 </Link>
               </motion.div>
           </div>

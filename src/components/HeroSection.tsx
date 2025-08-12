@@ -154,7 +154,11 @@ const HeroSection: React.FC = () => {
                       >
                         <motion.div
                           variants={itemVariants}
+                          className="flex items-center gap-4"
                         >
+                          <p className="text-white text-lg font-medium">
+                            Martinis with Flavor | For People with Taste
+                          </p>
                           <Link to={flavor.ctaLink}>
                             <StyledButton>
                               DELVE
