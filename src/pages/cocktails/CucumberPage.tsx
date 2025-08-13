@@ -45,10 +45,6 @@ const cucumberPageData = {
     title: "Zenith.",
     subtitle: "A cut above",
   },
-  unlockCta: {
-    title: "Spa-Fresh / Sophisticated",
-    productId: 47037,
-  },
   curatedMoments: {
     title: "A Curation",
     wideImage: "/images/cucumber/Whisk_73e915b469.jpg",

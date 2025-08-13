@@ -45,10 +45,6 @@ const lemonPageData = {
     title: "Power.",
     subtitle: "Where audacity meets sophistication.",
   },
-  unlockCta: {
-    title: "Bright & Playful",
-    productId: 47035,
-  },
   curatedMoments: {
     title: "A Curation",
     wideImage: "/images/Lemon/Whisk_4e25346a05.jpg",

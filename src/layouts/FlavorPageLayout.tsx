@@ -40,7 +40,7 @@ interface FlavorPageLayoutProps {
     title: React.ReactNode;
     subtitle?: string;
   };
-  unlockCta: {
+  unlockCta?: {
     title: string;
     productId: number;
   };
@@ -165,14 +165,16 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         <PerfectServeSection {...perfectServeData} flavor={flavorData.key as any} />
 
         {/* Call to Action */}
-        <section className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="mb-8">
-              <SectionTitle flavor={flavorData.key as any} lineWidth="40%" noUnderline>{unlockCta.title}</SectionTitle>
+        {unlockCta && (
+          <section className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-8">
+                <SectionTitle flavor={flavorData.key as any} lineWidth="40%" noUnderline>{unlockCta.title}</SectionTitle>
+              </div>
+              <CustomAddToCartButton productId={unlockCta.productId} />
             </div>
-            <CustomAddToCartButton productId={unlockCta.productId} />
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Curated Moments */}
         <section className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">

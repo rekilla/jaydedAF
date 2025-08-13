@@ -45,10 +45,6 @@ const lavenderPageData = {
     title: "Enigma.",
     subtitle: "...Yet when you get it, you get it.",
   },
-  unlockCta: {
-    title: "Unlock the Calm",
-    productId: 47036,
-  },
   curatedMoments: {
     title: "A Curation",
     wideImage: "/images/lavender/Whisk_18e89e678e.jpg",
