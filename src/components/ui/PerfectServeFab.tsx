@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef, ReactNode } from 'react';
+import React, { useState, useEffect, useMemo, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 // --- Constants ---
