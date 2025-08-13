@@ -6,13 +6,8 @@ import { CustomAddToCartButton } from '../components/CustomAddToCartButton';
 import { BottleNexusProvider } from '../contexts/BottleNexusContext';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { PerfectServeSection } from '../components/PerfectServeSection';
+import { PerfectServeFab } from '../components/ui/PerfectServeFab';
 import FlavorHeroMobile from '../components/FlavorHeroMobile';
-
-// Mock InView for now
-const InView: React.FC<{ children: React.ReactNode; as?: React.ElementType; className?: string }> = ({ children, as = 'div', className = '', ...props }) => {
-  const Component = as;
-  return <Component className={className} {...props}>{children}</Component>;
-};
 
 const cn = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(' ');
 
@@ -89,11 +84,12 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
 
   return (
     <BottleNexusProvider>
-      <main className="w-full bg-black text-white overflow-x-hidden">
+      <main id="main-content" className="w-full bg-black text-white overflow-x-hidden">
         
-        <FlavorHeroMobile flavorData={flavorData} />
-        {/* Enhanced Hero Section */}
-        <section className="relative h-auto py-24 sm:py-32 lg:py-40 w-full flex-col items-center justify-center bg-black hidden sm:flex">
+        <div id="page-hero">
+          <FlavorHeroMobile flavorData={flavorData} />
+          {/* Enhanced Hero Section */}
+          <section className="relative h-auto py-24 sm:py-32 lg:py-40 w-full flex-col items-center justify-center bg-black hidden sm:flex">
           <div className="relative z-10 text-center">
             <motion.div {...heroAnimation}>
               {flavorData.heroImage ? (
@@ -115,10 +111,11 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
               )}
             </motion.div>
           </div>
-        </section>
+          </section>
+        </div>
 
         {/* The Interim Section */}
-        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/10">
+        <section className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -135,10 +132,10 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
               </p>
             </motion.div>
           </div>
-        </InView>
+        </section>
 
         {/* Full-Width Lifestyle Moment */}
-        <InView as="section" className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
+        <section className="relative h-[50vh] xs:h-[55vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <img
               src={lifestyleMoment.image}
@@ -163,22 +160,22 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
               </motion.div>
             </div>
           </div>
-        </InView>
+        </section>
 
         <PerfectServeSection {...perfectServeData} flavor={flavorData.key as any} />
 
         {/* Call to Action */}
-        <InView as="section" className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">
+        <section className="py-8 xs:py-10 sm:py-12 lg:py-16 bg-gray-900/20 text-white text-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-8">
               <SectionTitle flavor={flavorData.key as any} lineWidth="40%" noUnderline>{unlockCta.title}</SectionTitle>
             </div>
             <CustomAddToCartButton productId={unlockCta.productId} />
           </div>
-        </InView>
+        </section>
 
         {/* Curated Moments */}
-        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">
+        <section className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-black text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="mb-8">
               <SectionTitle flavor={flavorData.key as any} lineWidth="40%">{curatedMoments.title}</SectionTitle>
@@ -198,10 +195,10 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
             </motion.div>
             <CocktailBentoGallery mediaItems={curatedMomentsMedia} />
           </div>
-        </InView>
+        </section>
 
         {/* Specifications */}
-        <InView as="section" className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900/20 to-black">
+        <section className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900/20 to-black">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="mb-8">
@@ -225,10 +222,10 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
               </div>
             </div>
           </div>
-        </InView>
+        </section>
 
         {/* Closing CTA Section */}
-        <InView as="section" className="relative py-12 xs:py-16 sm:py-20 lg:py-24 xl:py-32 overflow-hidden">
+        <section id="page-footer" className="relative py-12 xs:py-16 sm:py-20 lg:py-24 xl:py-32 overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <img
               src={closingCta.image}
@@ -257,8 +254,14 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
               </div>
             </motion.div>
           </div>
-        </InView>
+        </section>
 
+        <PerfectServeFab
+          showZoneId="main-content"
+          hideZoneIds={['page-hero', 'page-footer']}
+          flavor={flavorData.key}
+          onClick={() => alert(`Added ${flavorData.name} to cart!`)}
+        />
       </main>
     </BottleNexusProvider>
   );
