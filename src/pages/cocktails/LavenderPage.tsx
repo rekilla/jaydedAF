@@ -13,9 +13,9 @@ const flavorData = {
 const perfectServeData = {
   title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Chilled: 18°C", description: "Is the Moment" },
-    { id: 2, title: "Shaken: 2°C", description: "New Age Bombshell" },
-    { id: 3, title: "On The Rocks: 4°C", description: "A Lavender Haze" }
+    { id: 1, title: "Neat", body: "16°C Shot Glass", subBody: "A floral dare" },
+    { id: 2, title: "On the Rocks", body: "4°C Rocks Glass", subBody: "An elegant chill" },
+    { id: 3, title: "Lavender Martini", body: "2°C Martini Glass", subBody: "The essence of chic" }
   ]
 };
 

@@ -26,7 +26,8 @@ interface PerfectServeData {
   serveStyles: {
     id: number;
     title: string;
-    description: string;
+    body: string;
+    subBody: string;
   }[];
 }
 
@@ -204,7 +205,7 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         <section className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-900/20 to-black">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="mb-8">
+              <div className="mb-8" style={{ paddingBottom: '3rem' }}>
                 <SectionTitle flavor={flavorData.key as any} className="text-center" lineWidth="40%">{specifications.title}</SectionTitle>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

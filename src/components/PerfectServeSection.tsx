@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 interface ServeStyle {
   id: number;
   title: string;
-  description: string;
+  body: string;
+  subBody: string;
 }
 
 interface PerfectServeSectionProps {
@@ -68,11 +69,15 @@ export const PerfectServeSection: React.FC<PerfectServeSectionProps> = ({ title,
               <div className="relative p-6 sm:p-8">
                 {/* Title */}
                 <h3 className="text-lg sm:text-xl font-light text-white mb-2 tracking-wider">
-                  {style.title}
+                  {style.title.replace(/-/g, ' ')}
                 </h3>
-                {/* Description */}
+                {/* Body */}
                 <p className="text-xs sm:text-sm text-gray-400">
-                  {style.description}
+                  {style.body.replace(/-/g, ' ')}
+                </p>
+                {/* Sub-body */}
+                <p className="text-xs text-gray-500">
+                  {style.subBody.replace(/-/g, ' ')}
                 </p>
               </div>
               
