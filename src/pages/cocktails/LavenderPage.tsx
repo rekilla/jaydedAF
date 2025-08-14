@@ -13,9 +13,9 @@ const flavorData = {
 const perfectServeData = {
   title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Chilled: 18°C", description: "" },
-    { id: 2, title: "Shaken: 2°C", description: "" },
-    { id: 3, title: "On The Rocks: 4°C", description: "" }
+    { id: 1, title: "Chilled: 18°C", description: "Is the Moment" },
+    { id: 2, title: "Shaken: 2°C", description: "New Age Bombshell" },
+    { id: 3, title: "On The Rocks: 4°C", description: "A Lavender Haze" }
   ]
 };
 

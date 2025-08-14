@@ -24,20 +24,20 @@ const FEATURE_IMAGE_LEMON = "/images/home/features/feature_Lemon Drop.png";
 const galleryMediaItems: MediaItemType[] = [
     { id: 1, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(5).png' },
     { id: 2, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(2).png' },
-    { id: 3, type: 'image', title: 'Lemon Drop', desc: '', url: '/images/home/products/lemon_drop.png' },
+    { id: 3, type: 'image', title: 'Lemon Drop', desc: '', url: '/Product Shot of Jayded AF-2.jpg' },
     { id: 4, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(6).png' },
     { id: 5, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_5843d695ae.jpg' },
     { id: 6, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(3).png' },
     { id: 7, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_69ab59d35a.jpg' },
     { id: 8, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_4f54a30070.jpg' },
     { id: 9, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_7372d1a620.jpg' },
-    { id: 10, type: 'image', title: 'Lavender Bottle', desc: '', url: '/images/home/products/lavender_bottle.png' },
+    { id: 10, type: 'image', title: 'Lavender Bottle', desc: '', url: '/Product Shot of Jayded AF-1.jpg' },
     { id: 11, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_c38b2e7e1c.jpg' },
     { id: 12, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_d497ed3c74.jpg' },
     { id: 13, type: 'image', title: 'Man in Museum', desc: '', url: '/images/cucumber/grid/Whisk_94f02a652d.jpg' },
     { id: 14, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_c31d294d3a.jpg' },
     { id: 15, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_e6e7cad612.jpg' },
-    { id: 16, type: 'image', title: 'Cucumber Bottle', desc: '', url: '/images/home/products/cucumber_bottle.png' },
+    { id: 16, type: 'image', title: 'Cucumber Bottle', desc: '', url: '/Product Shot of Jayded AF-3.jpg' },
 ];
 
 

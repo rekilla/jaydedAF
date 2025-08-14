@@ -15,8 +15,8 @@ const DEFAULT_CARDS: StoryCard[] = [
     id: 'epiphany',
     subtitle: 'The Epiphany',
     text:
-      'Life gave her lemons, and she made a Martini. Alexa Jayde Fitzpatrick did not have the traditional pathway, rather an epiphany. On October 5th, 2020, a medical emergency led to her being figuratively, physically, emotionally, and creatively reborn. Alexa always knew her love of the eclectic, the unique, and the embrace of unbridled imagination would eventually lead her to this moment.',
-    image: { src: '/images/story/1.jpg', alt: 'Alexa Jayde Fitzpatrick - The beginning of Jayded AF' }
+      'Life gave her lemons, and she made a Martini. Alexa Jayde Fitzpatrick did not have the traditional pathway, rather an epiphany. On October 5th, 2020, a medical emergency led to her being figuratively, physically, emotionally, and creatively reborn. Emphasizing love of the eclectic and unique, along with unbridled imagination, would lead to this moment',
+    image: { src: '/images/ALEXA/A woman sits in a chair in the shadows drinking a martini.jpg', alt: 'Alexa Jayde Fitzpatrick - The beginning of Jayded AF' }
   },
   {
     id: 'vision',
@@ -26,10 +26,10 @@ const DEFAULT_CARDS: StoryCard[] = [
   },
   {
     id: 'perfection',
-    subtitle: 'Crafted to Perfection',
+    subtitle: 'The Craft',
     text:
       'Little can compare to a perfect Martini. When great crafting produces a flavor profile so inspired and pointed, one can only applaud. Jayded AF Cocktails is the answer for consumers seeking libations outside of the cyclical.',
-    image: { src: '/images/story/2.jpg', alt: 'Perfectly crafted cocktail' }
+    image: { src: '/images/ALEXA/A woman in a pink dress holds a martini glass in the shadows.jpg', alt: 'Perfectly crafted cocktail' }
   },
   {
     id: 'mission',
@@ -41,7 +41,7 @@ const DEFAULT_CARDS: StoryCard[] = [
     id: 'future',
     subtitle: 'The Future',
     text: 'Where do we go from here? The stars.',
-    image: { src: '/images/story/5.jpg', alt: 'Future aspirations - reaching for the stars' }
+    image: { src: '/images/ALEXA/A women in white dress holding a lemon drop martini.jpg', alt: 'Future aspirations - reaching for the stars' }
   }
 ];
 
@@ -49,30 +49,38 @@ const DEFAULT_CARDS: StoryCard[] = [
 const CardContent: React.FC<{
   card: StoryCard;
   even: boolean;
-}> = ({ card, even }) => (
-  <article
-    className={`h-full w-full grid grid-cols-1 ${card.image ? 'md:grid-cols-2' : 'md:grid-cols-1'} overflow-hidden bg-black border-2 border-yellow-400`}
-    aria-labelledby={`story-card-title-${card.id}`}
-  >
-    {/* Mobile stacked */}
-    <div className="md:hidden flex flex-col h-full">
-      <div className="flex-1 p-8 flex flex-col justify-center">
-        <h3 id={`story-card-title-${card.id}`} className="text-white text-3xl font-bold mb-6 leading-tight">
-          {card.subtitle}
-        </h3>
-        <p className="text-gray-300 text-base leading-relaxed">{card.text}</p>
-      </div>
-      {card.image && (
-        <div className="h-[40%]">
-          <img src={card.image.src} alt={card.image.alt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+}> = ({ card, even }) => {
+  const isEpiphanyCard = card.id === 'epiphany';
+  const borderColor = isEpiphanyCard ? '#F9F02F' : '#D4AF37';
+  const headingColor = '#F9F02F';
+
+  return (
+    <article
+      className={`h-full w-full grid grid-cols-1 ${card.image ? 'md:grid-cols-2' : 'md:grid-cols-1'} overflow-hidden bg-black border-2`}
+      style={{ borderColor }}
+      aria-labelledby={`story-card-title-${card.id}`}
+    >
+      {/* Mobile stacked */}
+      <div className="md:hidden flex flex-col h-full">
+        <div className="flex-1 p-8 flex flex-col justify-center">
+          <h3 id={`story-card-title-${card.id}`} className="text-3xl font-bold mb-6 leading-tight" style={{ color: headingColor }}>
+            {card.subtitle}
+          </h3>
+          <p className="text-gray-300 text-base leading-relaxed">{card.text}</p>
         </div>
-      )}
-    </div>
+        {card.image && (
+          <div className="aspect-video">
+            <img src={card.image.src} alt={card.image.alt} className="w-full h-full object-contain" loading="lazy" decoding="async" />
+          </div>
+        )}
+      </div>
 
     {/* Desktop split, alternating sides */}
     <div className="hidden md:contents">
       <div className={`p-12 lg:p-16 flex flex-col justify-center ${even && card.image ? 'order-2' : 'order-1'} ${!card.image ? 'text-center' : ''}`}>
-        <h3 className="text-white text-4xl lg:text-5xl font-bold mb-8 leading-tight">{card.subtitle}</h3>
+        <h3 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight" style={{ color: headingColor }}>
+          {card.subtitle}
+        </h3>
         <p className="text-gray-300 text-lg leading-relaxed">{card.text}</p>
       </div>
       {card.image && (
@@ -82,7 +90,8 @@ const CardContent: React.FC<{
       )}
     </div>
   </article>
-);
+  );
+};
 
 /* ---------- Main Component ---------- */
 const OurStoryCards: React.FC<OurStoryCardsProps> = ({

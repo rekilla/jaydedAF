@@ -154,18 +154,18 @@ const HeroSection: React.FC = () => {
                       >
                         <motion.div
                           variants={itemVariants}
-                          className="flex flex-col-reverse md:flex-row items-start md:items-center gap-4"
+                          className="flex flex-col items-start md:items-end gap-4"
                         >
-                          <div className="md:mb-0 mb-4">
-                            <p className="text-white text-lg font-medium text-left">
-                              Martinis with Flavor For People with Taste
-                            </p>
-                          </div>
                           <Link to={flavor.ctaLink}>
                             <StyledButton>
                               DELVE
                             </StyledButton>
                           </Link>
+                          <div className="md:mb-0 mb-4">
+                            <p className="text-white text-lg font-medium text-left md:text-right">
+                              Martinis with Flavor For People with Taste
+                            </p>
+                          </div>
                         </motion.div>
                       </motion.div>
                     </div>
