@@ -8,6 +8,7 @@ import { SectionTitle } from '../components/ui/SectionTitle';
 import { PerfectServeSection } from '../components/PerfectServeSection';
 import { PerfectServeFab } from '../components/ui/PerfectServeFab';
 import FlavorHeroMobile from '../components/FlavorHeroMobile';
+import { FlavorNavigation } from '../components/FlavorNavigation';
 
 const cn = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(' ');
 
@@ -115,7 +116,7 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         </div>
 
         {/* The Interim Section */}
-        <section className="py-12 xs:py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-black to-gray-900/10">
+        <section className="pb-12 xs:pb-16 sm:pb-20 lg:pb-24 bg-gradient-to-b from-black to-gray-900/10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -261,9 +262,9 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         <PerfectServeFab
           showZoneId="main-content"
           hideZoneIds={['page-hero', 'page-footer']}
-          flavor={flavorData.key}
           onClick={() => alert(`Added ${flavorData.name} to cart!`)}
         />
+        <FlavorNavigation currentProductId={closingCta.productId} />
       </main>
     </BottleNexusProvider>
   );

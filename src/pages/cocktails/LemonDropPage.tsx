@@ -13,9 +13,9 @@ const flavorData = {
 const perfectServeData = {
   title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Chilled.", description: "Meets the Moment" },
-    { id: 2, title: "Shaken.", description: "Classic Martini" },
-    { id: 3, title: "On The Rocks", description: "A Tart Statement" }
+    { id: 1, title: "Chilled: 18°C", description: "" },
+    { id: 2, title: "Shaken: 2°C", description: "" },
+    { id: 3, title: "On The Rocks: 4°C", description: "" }
   ]
 };
 
@@ -42,8 +42,8 @@ const lemonPageData = {
   ),
   lifestyleMoment: {
     image: "/images/Lemon/Whisk_d9cd8f895e.jpg",
-    title: "Power.",
-    subtitle: "Where audacity meets sophistication.",
+    title: "Power",
+    subtitle: "Audacity meets sophistication.",
   },
   curatedMoments: {
     title: "A Curation",
@@ -52,9 +52,9 @@ const lemonPageData = {
   specifications: {
     title: "The Details",
     details: [
-      { delay: 0.1, value: '12%', label: 'ABV', icon: '/martini-glass-with-straw-svgrepo-com.svg' },
-      { delay: 0.2, value: '90', label: 'Calories', icon: '/calories-svgrepo-com.svg' },
-      { delay: 0.3, value: '100%', label: 'ALL NATURAL', icon: '/leaf-svgrepo-com.svg' }
+      { delay: 0.1, value: '12.5%', label: 'ABV', icon: '/martini-glass-with-straw-svgrepo-com.svg' },
+      { delay: 0.2, value: '150', label: 'Calories', icon: '/calories-svgrepo-com.svg' },
+      { delay: 0.3, value: '100%', label: 'All Natural Flavors & Gluten Free', icon: '/leaf-svgrepo-com.svg' }
     ],
   },
   closingCta: {

@@ -8,7 +8,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./tooltip"; // Revert to relative path
-import { Facebook, Instagram, Send, Twitter, Youtube } from "lucide-react";
+import { Instagram, Send, Twitter, Youtube } from "lucide-react";
+import { products } from "../../data/products";
 
 // Renamed component to avoid conflict if demo name is used elsewhere
 export function FooterSection() {
@@ -62,6 +63,22 @@ export function FooterSection() {
             </nav>
           </div>
 
+          {/* Cocktails */}
+          <div>
+            <h3 className="mb-4 text-lg font-semibold text-white/90">Cocktails</h3>
+            <nav className="space-y-2 text-sm">
+              {products.map((product) => (
+                <a
+                  key={product.id}
+                  href={product.path}
+                  className="block text-white/70 transition-colors hover:text-white"
+                >
+                  {product.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+
           {/* Contact Us */}
           <div>
             <h3 className="mb-4 text-lg font-semibold text-white/90">Contact Us</h3>
@@ -75,17 +92,6 @@ export function FooterSection() {
             <h3 className="mb-4 text-lg font-semibold text-white/90">Follow Us</h3>
             <div className="mb-6 flex space-x-4">
               <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a href="#" aria-label="Facebook">
-                    <Button variant="outline" size="icon" className="rounded-full border-white/30 text-white hover:border-white hover:bg-white/10">
-                      <Facebook className="h-4 w-4" />
-                      <span className="sr-only">Facebook</span>
-                    </Button>
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent><p>Follow us on Facebook</p></TooltipContent>
-                </Tooltip>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a href="#" aria-label="Twitter">

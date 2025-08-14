@@ -1,39 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, ReactNode } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-
-// --- Constants ---
-const FLAVOR_COLORS: Record<string, string> = {
-  cucumber: '#9ACD32',
-  lemon: '#FFD700',
-  lavender: '#B57EDC',
-};
-const DEFAULT_COLOR = '#888888';
-
-// --- Helper Functions ---
-const getContrastingColor = (hex: string): '#FFFFFF' | '#1A1A1A' => {
-  if (hex.startsWith('#')) {
-    hex = hex.slice(1);
-  }
-  if (hex.length === 3) {
-    hex = hex.split('').map(char => char + char).join('');
-  }
-  const r = parseInt(hex.substring(0, 2), 16);
-  const g = parseInt(hex.substring(2, 4), 16);
-  const b = parseInt(hex.substring(4, 6), 16);
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.5 ? '#1A1A1A' : '#FFFFFF';
-};
 
 // --- Component Props ---
 export interface PerfectServeFabProps {
   showZoneId: string;      // The section where FAB should be visible
   hideZoneIds?: string[];  // Sections where FAB should be hidden (overrides show)
-  flavor?: "cucumber" | "lemon" | "lavender" | string;
-  colorHex?: string;
-  label?: string;
-  icon?: ReactNode;
   onClick: () => void;
   position?: { bottom?: number; right?: number; left?: number };
   zIndex?: number;
@@ -44,10 +17,6 @@ export interface PerfectServeFabProps {
 export const PerfectServeFab: React.FC<PerfectServeFabProps> = ({
   showZoneId,
   hideZoneIds = [],
-  flavor,
-  colorHex,
-  label = "PURCHASE",
-  icon = "PURCHASE",
   onClick,
   position = { bottom: 24, right: 24 },
   zIndex = 1000,
@@ -143,29 +112,19 @@ export const PerfectServeFab: React.FC<PerfectServeFabProps> = ({
   }, [showZoneId, hideZoneIds, isMounted]);
 
   const fabStyle = useMemo(() => {
-    const backgroundColor = colorHex || (flavor && FLAVOR_COLORS[flavor]) || DEFAULT_COLOR;
-    if (!colorHex && flavor && !FLAVOR_COLORS[flavor] && process.env.NODE_ENV === 'development') {
-      console.warn(`[PerfectServeFab] Unknown flavor "${flavor}" provided. Falling back to default color.`);
-    }
-    const foregroundColor = getContrastingColor(backgroundColor);
-
     return {
-      '--ps-fab-bg': backgroundColor,
-      '--ps-fab-fg': foregroundColor,
-      '--ps-fab-shadow': `0 8px 20px -2px ${backgroundColor}55`,
       bottom: position.bottom ? `${position.bottom}px` : undefined,
       right: position.right ? `${position.right}px` : undefined,
       left: position.left ? `${position.left}px` : undefined,
       zIndex,
     } as React.CSSProperties;
-  }, [colorHex, flavor, position, zIndex]);
+  }, [position, zIndex]);
 
   const fabClasses = `
-    fixed rounded-lg flex items-center justify-center
-    px-6 h-14 sm:h-16
-    cursor-pointer transition-all duration-300 ease-in-out
-    focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-offset-black
-    bg-[var(--ps-fab-bg)] text-[var(--ps-fab-fg)] shadow-[var(--ps-fab-shadow)]
+    fixed w-[127.25px] h-[56px] rounded-none border border-white bg-transparent text-white
+    hover:bg-white hover:text-black
+    transition-all duration-300
+    uppercase tracking-wider text-sm font-light group
     transform
     ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'}
     motion-reduce:transition-none
@@ -175,14 +134,18 @@ export const PerfectServeFab: React.FC<PerfectServeFabProps> = ({
     <button
       type="button"
       role="button"
-      aria-label={label}
-      title={label}
+      aria-label="Purchase"
+      title="Purchase"
       style={fabStyle}
       className={fabClasses}
       onClick={onClick}
       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onClick()}
     >
-      {icon}
+      <span className="relative z-10 transition-opacity flex h-full w-full items-center justify-center gap-2">
+        <span className="w-3 h-px bg-white group-hover:bg-black"></span>
+        Purchase
+        <span className="w-3 h-px bg-white group-hover:bg-black"></span>
+      </span>
     </button>
   );
 

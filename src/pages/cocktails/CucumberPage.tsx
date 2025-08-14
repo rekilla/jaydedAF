@@ -7,15 +7,15 @@ const flavorData = {
   heroImage: "/Cucumber Title.svg",
   tagline: "",
   colorClass: "text-green-500",
-  colorHex: "#84cc16",
+  colorHex: "#038264",
 };
 
 const perfectServeData = {
-  title: "Your Perfect Serve",
+  title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Chilled.", description: "Beyond the Moment" },
-    { id: 2, title: "Shaken.", description: "Finally. A twist." },
-    { id: 3, title: "On The Rocks", description: "Spa Day Reimagined" }
+    { id: 1, title: "Chilled: 18°C", description: "" },
+    { id: 2, title: "Shaken: 2°C", description: "" },
+    { id: 3, title: "On The Rocks: 4°C", description: "" }
   ]
 };
 
@@ -42,7 +42,7 @@ const cucumberPageData = {
   ),
   lifestyleMoment: {
     image: "/images/cucumber/Whisk_9070bc219a.jpg",
-    title: "Zenith.",
+    title: "Zenith",
     subtitle: "A cut above",
   },
   curatedMoments: {
@@ -52,9 +52,9 @@ const cucumberPageData = {
   specifications: {
     title: "The Details",
     details: [
-      { delay: 0.1, value: '12%', label: 'ABV', icon: '/martini-glass-with-straw-svgrepo-com.svg' },
+      { delay: 0.1, value: '12.5%', label: 'ABV', icon: '/martini-glass-with-straw-svgrepo-com.svg' },
       { delay: 0.2, value: '90', label: 'Calories', icon: '/calories-svgrepo-com.svg' },
-      { delay: 0.3, value: '100%', label: 'ALL NATURAL', icon: '/leaf-svgrepo-com.svg' }
+      { delay: 0.3, value: '100%', label: 'All Natural Flavors & Gluten Free', icon: '/leaf-svgrepo-com.svg' }
     ],
   },
   closingCta: {

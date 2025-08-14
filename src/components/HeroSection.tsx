@@ -146,7 +146,7 @@ const HeroSection: React.FC = () => {
               return (
                 <SwiperSlide key={flavor.key}>
                   {({ isActive }) => (
-                    <div className="w-full h-full flex justify-end items-end p-16">
+                    <div className="w-full h-full flex justify-start md:justify-end items-end p-16">
                       <motion.div
                         variants={containerVariants}
                         initial="hidden"
@@ -154,11 +154,13 @@ const HeroSection: React.FC = () => {
                       >
                         <motion.div
                           variants={itemVariants}
-                          className="flex items-center gap-4"
+                          className="flex flex-col-reverse md:flex-row items-start md:items-center gap-4"
                         >
-                          <p className="text-white text-lg font-medium">
-                            Martinis with Flavor | For People with Taste
-                          </p>
+                          <div className="md:mb-0 mb-4">
+                            <p className="text-white text-lg font-medium text-left">
+                              Martinis with Flavor For People with Taste
+                            </p>
+                          </div>
                           <Link to={flavor.ctaLink}>
                             <StyledButton>
                               DELVE

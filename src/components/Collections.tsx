@@ -41,23 +41,22 @@ const ProductCard: React.FC<{
 
   return (
     <motion.div
-      className="relative flex flex-col items-center group group-hover:z-20"
+      className="relative flex flex-col items-center group pt-12 pb-12"
     >
-
-      {/* Product Image Container */}
+      {/* Media Block */}
       <Link to={product.path} className="group">
         <div
-          className="relative z-10 w-64 h-80 mb-8 cursor-pointer transform-gpu"
+          className="relative w-64 h-80 cursor-pointer"
         >
           <motion.img
             src={product.bottleImage}
             alt={`${product.name} bottle`}
-            className="absolute inset-0 w-full h-full object-contain transform transition-transform duration-300 ease-in-out scale-125 group-hover:scale-[1.35] group-hover:opacity-100"
+            className="absolute inset-0 w-full h-full object-contain transform transition-transform duration-300 ease-in-out scale-125 origin-bottom group-hover:scale-[1.45]" // Slightly larger scale for visibility
           />
         </div>
       </Link>
 
-      {/* Product Info */}
+      {/* Content Block */}
       <div className="text-center z-10">
         <p className="text-sm text-black/80 max-w-xs mx-auto mb-4 leading-relaxed">
           {product.description}
@@ -75,7 +74,6 @@ const ProductCard: React.FC<{
           {product.inStock ? 'Purchase' : 'Out of Stock'}
         </CollectionButton>
       </div>
-
     </motion.div>
   );
 };
@@ -94,7 +92,7 @@ export const LuxuryCollectionSection: React.FC = () => {
 
   return (
     <BottleNexusProvider>
-      <section className="relative py-20 sm:py-24 pb-32 bg-white overflow-hidden">
+      <section className="relative py-20 sm:py-24 pb-32 bg-white">
         <InView className="relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px]">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 pb-12">

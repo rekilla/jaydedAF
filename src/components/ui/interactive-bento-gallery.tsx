@@ -237,7 +237,7 @@ export const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = (
 
             {/* Grid Gallery */}
             <div className="w-full px-4 md:px-8 lg:px-12">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1">
                     {mediaItems.map((item, index) => (
                         <GalleryItem
                             key={item.id}
