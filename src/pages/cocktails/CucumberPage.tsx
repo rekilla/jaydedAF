@@ -43,7 +43,7 @@ const cucumberPageData = {
   lifestyleMoment: {
     image: "/images/cucumber/Whisk_73e915b469.jpg",
     title: "Zenith",
-    subtitle: "A cut above",
+    subtitle: "A cut above.",
   },
   curatedMoments: {
     title: "A Curation",
