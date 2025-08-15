@@ -163,7 +163,7 @@ const HeroSection: React.FC = () => {
                           </Link>
                           <div className="md:mb-0 mb-4">
                             <p className="text-white text-lg font-medium text-left md:text-right">
-                              Martinis with Flavor For People with Taste
+                              Martinis with Flavor—For People with Taste
                             </p>
                           </div>
                         </motion.div>
