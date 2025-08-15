@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'; // Import hooks
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import './index.css';
 
@@ -98,13 +98,13 @@ function App() {
 
   // Render the main app content if verified
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <BottleNexusLoader />
       <CartProvider>
         <AppContent />
       </CartProvider>
-    </Router>
+    </>
   );
 }
 
