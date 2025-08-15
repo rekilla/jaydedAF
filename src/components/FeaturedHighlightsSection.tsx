@@ -22,7 +22,7 @@ const highlights: Highlight[] = [
   },
   {
     id: 3,
-    title: "12.5% ABV",
+    title: "12.5 ABV",
     icon: "/percentage-svgrepo-com.svg"
   }
 ];
@@ -52,11 +52,11 @@ export const FeaturedHighlightsSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-light tracking-wider text-white mb-2">
             Our Promise
           </h2>
-          <div className="w-12 h-px bg-[#D4AF37] mx-auto" />
+          <div className="w-12 h-px bg-brand-lemon mx-auto" />
         </motion.div>
 
         {/* Highlights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto mb-8">
+        <div className="grid grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto mb-8">
           {highlights.map((highlight, index) => (
             <motion.div
               key={highlight.id}

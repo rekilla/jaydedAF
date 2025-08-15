@@ -36,7 +36,7 @@ export const StoreLocatorSection: React.FC = () => {
           <h2 className="text-[40.5px] leading-[50px] font-light tracking-[2.7px] text-black mb-2">
             Our Locations
           </h2>
-          <div className="w-12 h-px bg-[#D4AF37] mx-auto mb-4" />
+          <div className="w-12 h-px bg-brand-gold mx-auto mb-4" />
           <p className="text-sm sm:text-base text-black">
             Experience Jayded AF at our exclusive locations
           </p>
@@ -51,8 +51,8 @@ export const StoreLocatorSection: React.FC = () => {
                   className={`
                     p-4 sm:p-6 rounded-lg cursor-pointer transition-all duration-300 border-2
                     ${selectedStore.id === store.id
-                      ? 'border-yellow-400 bg-transparent'
-                      : 'border-transparent hover:border-yellow-400'
+                      ? 'border-brand-gold bg-transparent'
+                      : 'border-transparent hover:border-brand-gold'
                     }
                   `}
                   onClick={() => setSelectedStore(store)}
@@ -75,7 +75,7 @@ export const StoreLocatorSection: React.FC = () => {
                       <h3 className="text-lg sm:text-xl font-light text-black mb-1">
                         {store.name}
                         {store.featured && (
-                          <span className="ml-2 text-xs text-[#D4AF37] uppercase tracking-wider">
+                          <span className="ml-2 text-xs text-brand-gold uppercase tracking-wider">
                             Flagship
                           </span>
                         )}
@@ -90,7 +90,7 @@ export const StoreLocatorSection: React.FC = () => {
                     {/* Selection indicator */}
                     <div className={`
                       w-2 h-2 rounded-full mt-2 transition-all duration-300
-                      ${selectedStore.id === store.id ? 'bg-yellow-400' : 'bg-gray-200'}
+                      ${selectedStore.id === store.id ? 'bg-brand-gold' : 'bg-gray-200'}
                     `} />
                   </div>
                 </motion.div>
@@ -136,7 +136,7 @@ export const StoreLocatorSection: React.FC = () => {
                   }}
                 >
                   <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="mx-auto">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#D4AF37" opacity="0.3"/>
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#F9F02F" opacity="0.3"/>
                   </svg>
                 </div>
                 <p className="text-sm text-black mb-2">Interactive Map</p>
@@ -154,13 +154,13 @@ export const StoreLocatorSection: React.FC = () => {
               <p className="text-sm text-black">
                 {selectedStore.address}
               </p>
-              <button className="mt-3 text-xs text-yellow-400 hover:text-yellow-500 transition-colors">
+              <button className="mt-3 text-xs text-brand-gold hover:text-yellow-500 transition-colors">
                 Get Directions →
               </button>
             </div>
             
             {/* Corner accent */}
-            <div className="absolute top-4 right-4 w-8 h-8 border-t border-r border-[#D4AF37]/30" />
+            <div className="absolute top-4 right-4 w-8 h-8 border-t border-r border-brand-gold/30" />
           </motion.div>
         </div>
       </InView>

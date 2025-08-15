@@ -13,9 +13,9 @@ const flavorData = {
 const perfectServeData = {
   title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Neat", body: "16°C Shot Glass", subBody: "A floral dare" },
-    { id: 2, title: "On the Rocks", body: "4°C Rocks Glass", subBody: "An elegant chill" },
-    { id: 3, title: "Lavender Martini", body: "2°C Martini Glass", subBody: "The essence of chic" }
+    { id: 1, title: "Chilled", body: "18 °C Coupe", subBody: "Chill perfection for the multifaceted." },
+    { id: 2, title: "Shaken", body: "2 °C Martini", subBody: "A floral rebellion." },
+    { id: 3, title: "On The Rocks", body: "4 °C Rocks Glass", subBody: "A lavender haze." }
   ]
 };
 
@@ -41,7 +41,7 @@ const lavenderPageData = {
     </>
   ),
   lifestyleMoment: {
-    image: "/images/lavender/Whisk_c146dc0301.jpg",
+    image: "/images/lavender/Whisk_c146dc0301.jpeg",
     title: "Enigma",
     subtitle: "...Yet when you get it, you get it.",
   },

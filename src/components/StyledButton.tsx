@@ -10,7 +10,7 @@ const StyledButton: React.FC<StyledButtonProps> = ({ children, className, varian
   return (
     <Button
       variant={variant}
-      className={`px-4 py-6 rounded-none group ${className}`}
+      className={`p-6 rounded-none group ${className}`}
       {...props}
     >
       <span className="relative flex h-full w-full items-center justify-center gap-4 transition-all duration-300">

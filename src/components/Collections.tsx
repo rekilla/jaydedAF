@@ -8,6 +8,7 @@ import { useCart } from '../contexts/CartContext';
 import { BottleNexusProvider } from '../contexts/BottleNexusContext';
 import { products, Product } from '../data/products';
 import CollectionButton from './CollectionButton';
+import { SectionTitle } from './ui/SectionTitle';
 
 // Image preloader hook
 const useImagePreloader = (imageUrls: string[]) => {
@@ -95,6 +96,9 @@ export const LuxuryCollectionSection: React.FC = () => {
       <section className="relative py-20 sm:py-24 pb-32 bg-white">
         <InView className="relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px]">
+            <div className="text-center mb-12">
+              <SectionTitle flavor="lemon" lineWidth="40%" noUnderline>The Collection</SectionTitle>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 pb-12">
               {products.map((product) => (
                 <motion.div

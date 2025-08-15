@@ -91,7 +91,7 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         <div id="page-hero">
           <FlavorHeroMobile flavorData={flavorData} />
           {/* Enhanced Hero Section */}
-          <section className="relative h-auto py-24 sm:py-32 lg:py-40 w-full flex-col items-center justify-center bg-black hidden sm:flex">
+          <section className="relative h-auto pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-20 w-full flex-col items-center justify-center bg-black hidden sm:flex">
           <div className="relative z-10 text-center">
             <motion.div {...heroAnimation}>
               {flavorData.heroImage ? (
@@ -117,7 +117,7 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         </div>
 
         {/* The Interim Section */}
-        <section className="pb-12 xs:pb-16 sm:pb-20 lg:pb-24 bg-gradient-to-b from-black to-gray-900/10">
+        <section className="pt-12 xs:pt-16 sm:pt-0 pb-12 xs:pb-16 sm:pb-20 lg:pb-24 bg-gradient-to-b from-black to-gray-900/10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -208,7 +208,7 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
               <div className="mb-8" style={{ paddingBottom: '3rem' }}>
                 <SectionTitle flavor={flavorData.key as any} className="text-center" lineWidth="40%">{specifications.title}</SectionTitle>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-3 gap-8">
                 {specifications.details.map((spec) => (
                   <motion.div
                     key={spec.label}
@@ -218,9 +218,9 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
                     transition={{ delay: spec.delay }}
                     viewport={{ once: true }}
                   >
-                    <img src={spec.icon} alt={spec.label} className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-8 opacity-80" />
-                    <div className={`${spec.label === '' ? "text-xs xs:text-sm sm:text-base text-white" : "text-xl xs:text-2xl sm:text-3xl lg:text-4xl text-white mb-1 sm:mb-2"} mb-8`}>{spec.value}</div>
-                    {spec.label && <div className="text-xs xs:text-sm sm:text-base text-white mt-2">{spec.label}</div>}
+                    <img src={spec.icon} alt={spec.label} className="w-8 h-8 sm:w-10 sm:h-10 mx-auto mb-4 opacity-80" />
+                    <div className={`${spec.label === '' ? "text-xs xs:text-sm sm:text-base text-white" : "text-xl xs:text-2xl sm:text-3xl lg:text-4xl text-white mb-1 sm:mb-2"} mb-4`}>{spec.value}</div>
+                    {spec.label && <div className="text-xs xs:text-sm sm:text-base text-white mt-1">{spec.label}</div>}
                   </motion.div>
                 ))}
               </div>

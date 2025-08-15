@@ -13,9 +13,9 @@ const flavorData = {
 const perfectServeData = {
   title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Neat", body: "16°C Shot Glass", subBody: "A crisp beginning" },
-    { id: 2, title: "On the Rocks", body: "4°C Rocks Glass", subBody: "Cool, calm, and collected" },
-    { id: 3, title: "Cucumber Martini", body: "2°C Martini Glass", subBody: "The epitome of smooth" }
+    { id: 1, title: "Chilled", body: "18 °C Coupe", subBody: "A crisp, clean slate." },
+    { id: 2, title: "Shaken", body: "2 °C Martini", subBody: "A refreshing rebellion." },
+    { id: 3, title: "On The Rocks", body: "4 °C Rocks Glass", subBody: "A cool cucumber haze." }
   ]
 };
 

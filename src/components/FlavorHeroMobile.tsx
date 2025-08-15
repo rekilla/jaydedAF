@@ -20,7 +20,7 @@ const FlavorHeroMobile: React.FC<FlavorHeroMobileProps> = ({ flavorData }) => {
   };
 
   return (
-    <section className="relative h-auto pt-24 pb-20 w-full flex flex-col items-center justify-center bg-black sm:hidden">
+    <section className="relative h-auto pt-24 pb-0 w-full flex flex-col items-center justify-center bg-black sm:hidden">
       <div className="relative z-10 text-center">
         <motion.div {...heroAnimation}>
           {flavorData.heroImage ? (

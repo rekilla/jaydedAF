@@ -9,7 +9,7 @@ export const AwardsSection: React.FC = () => {
           <h2 className="text-[40.5px] leading-[50px] font-light tracking-[2.7px] text-black inline-block">
             Award-Winning
           </h2>
-          <div className="w-12 h-px bg-[#D4AF37] mx-auto mt-1" />
+          <div className="w-12 h-px bg-brand-gold mx-auto mt-1" />
         </div>
         <div className="flex justify-center gap-8 sm:gap-12 md:gap-16">
           {awards.map((award, index) => (

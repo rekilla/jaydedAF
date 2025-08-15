@@ -45,7 +45,7 @@ export const PerfectServeSection: React.FC<PerfectServeSectionProps> = ({ title,
         </motion.div>
 
         {/* Serve Styles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 max-w-4xl mx-auto">
           {serveStyles.map((style, index) => (
             <motion.div
               key={style.id}
@@ -66,7 +66,7 @@ export const PerfectServeSection: React.FC<PerfectServeSectionProps> = ({ title,
                 }}
               />
               
-              <div className="relative p-6 sm:p-8">
+              <div className="relative p-4 sm:p-8">
                 {/* Title */}
                 <h3 className="text-lg sm:text-xl font-light text-white mb-2 tracking-wider">
                   {style.title.replace(/-/g, ' ')}

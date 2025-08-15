@@ -23,8 +23,8 @@ export const StoreListItem: React.FC<StoreListItemProps> = ({ store, isSelected,
       className={cn(
         "p-4 sm:p-6 rounded-lg cursor-pointer transition-all duration-300 border-2",
         isSelected
-          ? 'border-yellow-400 bg-transparent'
-          : 'border-transparent hover:border-yellow-400'
+          ? 'border-brand-gold bg-transparent'
+          : 'border-transparent hover:border-brand-gold'
       )}
       onClick={onClick}
       initial={{ opacity: 0, x: -20 }}
@@ -37,7 +37,7 @@ export const StoreListItem: React.FC<StoreListItemProps> = ({ store, isSelected,
           <h3 className="text-lg sm:text-xl font-bold text-black mb-1">
             {store.name}
             {store.featured && (
-              <span className="ml-2 text-xs text-[#D4AF37] uppercase tracking-wider">
+              <span className="ml-2 text-xs text-brand-gold uppercase tracking-wider">
                 Flagship
               </span>
             )}
@@ -50,7 +50,7 @@ export const StoreListItem: React.FC<StoreListItemProps> = ({ store, isSelected,
         </div>
         <div className={cn(
           "w-2 h-2 rounded-full mt-2 transition-all duration-300",
-          isSelected ? 'bg-yellow-400' : 'bg-gray-200'
+          isSelected ? 'bg-brand-gold' : 'bg-gray-200'
         )} />
       </div>
     </motion.div>

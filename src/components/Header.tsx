@@ -58,17 +58,18 @@ const Header: React.FC = () => {
   ];
 
   const navLinksRight = [
-    { path: '/cocktails/lemon-drop', label: 'Lemon' },
-    { path: '/cocktails/lavender', label: 'Lavender' },
-    { path: '/cocktails/cucumber', label: 'Cucumber' },
+    { path: '/cocktails/lemon-drop', label: 'Lemon', hoverColorClass: 'after:bg-brand-lemon' },
+    { path: '/cocktails/lavender', label: 'Lavender', hoverColorClass: 'after:bg-brand-lavender' },
+    { path: '/cocktails/cucumber', label: 'Cucumber', hoverColorClass: 'after:bg-brand-cucumber' },
   ];
 
   const mobileNavLinks = [...navLinksLeft, ...navLinksRight];
 
-  const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+  const getNavLinkClass = ({ isActive }: { isActive: boolean }, hoverColorClass = 'after:bg-white') =>
     cn(
       "relative uppercase tracking-wide text-sm font-medium pb-1 transition-colors duration-300 ease-in-out",
-      "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
+      "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
+      hoverColorClass,
       isActive ? "text-white after:scale-x-100" : "text-white/80 hover:text-white"
     );
 
@@ -111,7 +112,7 @@ const Header: React.FC = () => {
             <ul className="flex space-x-8">
               {navLinksRight.map((link) => (
                 <li key={link.path}>
-                  <NavLink to={link.path} className={getNavLinkClass}>
+                  <NavLink to={link.path} className={(props) => getNavLinkClass(props, link.hoverColorClass)}>
                     {link.label}
                   </NavLink>
                 </li>

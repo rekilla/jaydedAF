@@ -50,8 +50,7 @@ const CardContent: React.FC<{
   card: StoryCard;
   even: boolean;
 }> = ({ card, even }) => {
-  const isEpiphanyCard = card.id === 'epiphany';
-  const borderColor = isEpiphanyCard ? '#F9F02F' : '#D4AF37';
+  const borderColor = '#212529';
   const headingColor = '#F9F02F';
 
   return (
@@ -60,36 +59,45 @@ const CardContent: React.FC<{
       style={{ borderColor }}
       aria-labelledby={`story-card-title-${card.id}`}
     >
-      {/* Mobile stacked */}
-      <div className="md:hidden flex flex-col h-full">
-        <div className="flex-1 p-8 flex flex-col justify-center">
-          <h3 id={`story-card-title-${card.id}`} className="text-3xl font-bold mb-6 leading-tight" style={{ color: headingColor }}>
-            {card.subtitle}
-          </h3>
+      {/* Mobile View */}
+      <div className="md:hidden flex flex-col">
+        {card.image && (
+          <div className="grid grid-cols-2 items-center">
+            <div className="p-8">
+              <h3 id={`story-card-title-${card.id}-mobile`} className="text-3xl font-bold leading-tight" style={{ color: headingColor }}>
+                {card.subtitle}
+              </h3>
+            </div>
+            <div className="aspect-w-1 aspect-h-1">
+              <img src={card.image.src} alt={card.image.alt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        )}
+        <div className="p-8">
+          {!card.image && (
+            <h3 id={`story-card-title-${card.id}-mobile`} className="text-3xl font-bold mb-6 leading-tight" style={{ color: headingColor }}>
+              {card.subtitle}
+            </h3>
+          )}
           <p className="text-gray-300 text-base leading-relaxed">{card.text}</p>
         </div>
+      </div>
+
+      {/* Desktop View */}
+      <div className="hidden md:contents">
+        <div className={`p-12 lg:p-16 flex flex-col justify-center ${even && card.image ? 'order-2' : 'order-1'} ${!card.image ? 'text-center' : ''}`}>
+          <h3 id={`story-card-title-${card.id}-desktop`} className="text-4xl lg:text-5xl font-bold mb-8 leading-tight" style={{ color: headingColor }}>
+            {card.subtitle}
+          </h3>
+          <p className="text-gray-300 text-lg leading-relaxed">{card.text}</p>
+        </div>
         {card.image && (
-          <div className="aspect-video">
-            <img src={card.image.src} alt={card.image.alt} className="w-full h-full object-contain" loading="lazy" decoding="async" />
+          <div className={`${even ? 'order-1' : 'order-2'}`}>
+            <img src={card.image.src} alt={card.image.alt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
         )}
       </div>
-
-    {/* Desktop split, alternating sides */}
-    <div className="hidden md:contents">
-      <div className={`p-12 lg:p-16 flex flex-col justify-center ${even && card.image ? 'order-2' : 'order-1'} ${!card.image ? 'text-center' : ''}`}>
-        <h3 className="text-4xl lg:text-5xl font-bold mb-8 leading-tight" style={{ color: headingColor }}>
-          {card.subtitle}
-        </h3>
-        <p className="text-gray-300 text-lg leading-relaxed">{card.text}</p>
-      </div>
-      {card.image && (
-        <div className={`${even ? 'order-1' : 'order-2'}`}>
-          <img src={card.image.src} alt={card.image.alt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
-        </div>
-      )}
-    </div>
-  </article>
+    </article>
   );
 };
 
@@ -120,7 +128,7 @@ const OurStoryCards: React.FC<OurStoryCardsProps> = ({
             <h2 id="our-story-heading" className="text-white text-[40.5px] leading-[50px] font-light tracking-[2.7px] inline-block">
               Our Story
             </h2>
-            <div className="w-12 h-px bg-[#D4AF37] mx-auto mt-1" />
+            <div className="w-12 h-px bg-brand-lemon mx-auto mt-1" />
           </div>
         </header>
       </div>
@@ -173,7 +181,7 @@ const OurStoryCards: React.FC<OurStoryCardsProps> = ({
               return (
                 <motion.div
                   key={card.id}
-                  className="absolute inset-0"
+                  className="absolute inset-y-0 inset-x-4 md:inset-x-0"
                   style={{
                     zIndex,
                     y,

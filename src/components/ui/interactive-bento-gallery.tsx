@@ -224,7 +224,7 @@ export const InteractiveBentoGallery: React.FC<InteractiveBentoGalleryProps> = (
                             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-wider text-white inline-block">
                                 {title}
                             </h2>
-                            <div className="w-12 h-px bg-[#D4AF37] mx-auto mt-2" />
+                            <div className="w-12 h-px bg-brand-gold mx-auto mt-2" />
                         </>
                     )}
                     {description && (
