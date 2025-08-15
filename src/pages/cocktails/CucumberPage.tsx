@@ -1,3 +1,4 @@
+import { Seo } from '../../seo/Seo';
 import FlavorPageLayout from '../../layouts/FlavorPageLayout';
 import { MediaItemType } from '../../components/ui/cocktail-bento-gallery';
 
@@ -64,7 +65,17 @@ const cucumberPageData = {
 };
 
 const CucumberPage = () => {
-  return <FlavorPageLayout {...cucumberPageData} />;
+  return (
+    <>
+      <Seo
+        title="Jayded AF - Cucumber Martini"
+        description="Centered, Poised and Effortlessly Cool. The Laxly Cucumber Martini is liquid Zen, with an edge."
+        path="/cocktails/cucumber"
+        image="/og-cucumber.jpg"
+      />
+      <FlavorPageLayout {...cucumberPageData} />
+    </>
+  );
 };
 
 export default CucumberPage;

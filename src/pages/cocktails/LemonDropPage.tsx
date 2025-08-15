@@ -1,3 +1,4 @@
+import { Seo } from '../../seo/Seo';
 import FlavorPageLayout from '../../layouts/FlavorPageLayout';
 import { MediaItemType } from '../../components/ui/cocktail-bento-gallery';
 
@@ -65,7 +66,17 @@ const lemonPageData = {
 };
 
 const LemonDropPage = () => {
-  return <FlavorPageLayout {...lemonPageData} />;
+  return (
+    <>
+      <Seo
+        title="Jayded AF - Lemon Drop Martini"
+        description="Classic, Sophisticated and Sinfully Edgy. The Lemon Drop Martini is simply the prototype of the art of a cocktail."
+        path="/cocktails/lemon-drop"
+        image="/og-lemon-drop.jpg"
+      />
+      <FlavorPageLayout {...lemonPageData} />
+    </>
+  );
 };
 
 export default LemonDropPage;

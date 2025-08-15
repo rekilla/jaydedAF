@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Seo } from '../seo/Seo';
 import { MapPin } from 'lucide-react';
 import { locations, Location } from '../data/locations';
 import { StoreListItem } from '../components/StoreListItem';
@@ -155,8 +156,14 @@ const StoreLocatorPage: React.FC = () => {
   }, [searchTerm, userLocation]);
 
   return (
-    <main className="w-full min-h-screen bg-white text-black pt-32">
-      {/* Hero Section - Minimal */}
+    <>
+      <Seo
+        title="Jayded AF - Store Locator"
+        description="Find Jayded AF near you. Use our store locator to find a store near you."
+        path="/store-locator"
+      />
+      <main className="w-full min-h-screen bg-white text-black pt-32">
+        {/* Hero Section - Minimal */}
 
       {/* Search Section - Clean */}
       <section className="container mx-auto px-6 max-w-xl mb-12">
@@ -249,7 +256,8 @@ const StoreLocatorPage: React.FC = () => {
           </div>
         </div>
       )}
-    </main>
+      </main>
+    </>
   );
 };
 

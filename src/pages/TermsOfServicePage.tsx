@@ -1,9 +1,17 @@
 import React from 'react';
+import { Seo } from '../seo/Seo';
 
 const TermsOfServicePage: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-brand-background">
-      <div className="container mx-auto px-4">
+    <>
+      <Seo
+        title="Jayded AF - Terms of Service"
+        description="Terms of Service for Jayded AF Cocktails."
+        path="/terms-of-service"
+        noindex={true}
+      />
+      <section className="py-16 md:py-24 bg-brand-background">
+        <div className="container mx-auto px-4">
         <div className="prose prose-lg mx-auto text-brand-text">
           <h1 className="text-4xl font-bold mb-8 text-center">Terms of Service</h1>
           
@@ -41,8 +49,9 @@ const TermsOfServicePage: React.FC = () => {
             If you have any questions about our Terms of Service, please contact us at <a href="mailto:INFO@JAYDEDAF.COM" className="text-brand-primary hover:underline">INFO@JAYDEDAF.COM</a>.
           </p>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
 

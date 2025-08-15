@@ -1,9 +1,17 @@
 import React from 'react';
+import { Seo } from '../seo/Seo';
 
 const PrivacyPolicyPage: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-brand-background">
-      <div className="container mx-auto px-4">
+    <>
+      <Seo
+        title="Jayded AF - Privacy Policy"
+        description="Privacy Policy for Jayded AF Cocktails."
+        path="/privacy-policy"
+        noindex={true}
+      />
+      <section className="py-16 md:py-24 bg-brand-background">
+        <div className="container mx-auto px-4">
         <div className="prose prose-lg mx-auto text-brand-text">
           <h1 className="text-4xl font-bold mb-8 text-center">Privacy Policy</h1>
           
@@ -41,8 +49,9 @@ const PrivacyPolicyPage: React.FC = () => {
             If you have any questions about our Privacy Policy, please contact us at <a href="mailto:INFO@JAYDEDAF.COM" className="text-brand-primary hover:underline">INFO@JAYDEDAF.COM</a>.
           </p>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
 

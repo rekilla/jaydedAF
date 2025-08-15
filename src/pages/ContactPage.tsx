@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Seo } from '../seo/Seo';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import StyledButton from '../components/StyledButton';
@@ -37,9 +38,15 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <main className="w-full min-h-screen bg-white text-black flex items-center justify-center pt-32 pb-32">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+    <>
+      <Seo
+        title="Jayded AF - Contact"
+        description="Get in touch with Jayded AF. We'd love to hear from you."
+        path="/contact"
+      />
+      <main className="w-full min-h-screen bg-white text-black flex items-center justify-center pt-32 pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-md"
@@ -178,8 +185,9 @@ const ContactPage: React.FC = () => {
           </StyledButton>
         
         </div>
-      </motion.div>
-    </main>
+        </motion.div>
+      </main>
+    </>
   );
 };
 

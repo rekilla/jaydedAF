@@ -1,4 +1,5 @@
 import React from 'react';
+import { Seo } from '../seo/Seo';
 import { motion } from 'framer-motion';
 import { InteractiveBentoGallery } from '../components/ui/interactive-bento-gallery';
 import { InView } from '../components/ui/in-view';
@@ -44,9 +45,15 @@ const galleryMediaItems: MediaItemType[] = [
 const HomePage: React.FC = () => {
 
   return (
-    <main className="w-full">
+    <>
+      <Seo
+        title="Jayded AF - Home"
+        description="Welcome to Jayded AF, your go-to place for amazing cocktails."
+        path="/"
+      />
+      <main className="w-full">
 
-      {/* Section 1: New Dynamic Hero Section */}
+        {/* Section 1: New Dynamic Hero Section */}
       <HeroSection />
       <AwardsSection />
 
@@ -110,7 +117,8 @@ const HomePage: React.FC = () => {
 
       {/* Section 10: Footer is handled globally in App.tsx */}
 
-    </main>
+      </main>
+    </>
   );
 };
 

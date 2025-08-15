@@ -1,3 +1,4 @@
+import { Seo } from '../../seo/Seo';
 import FlavorPageLayout from '../../layouts/FlavorPageLayout';
 import { MediaItemType } from '../../components/ui/cocktail-bento-gallery';
 
@@ -65,7 +66,17 @@ const lavenderPageData = {
 };
 
 const LavenderPage = () => {
-  return <FlavorPageLayout {...lavenderPageData} />;
+  return (
+    <>
+      <Seo
+        title="Jayded AF - Lavender Martini"
+        description="Sexy, subtle and incredibly chic. Your interlude in elegance. The Lavender Martini excites the senses with the hypnotic allure of the vibrant bloom."
+        path="/cocktails/lavender"
+        image="/og-lavender.jpg"
+      />
+      <FlavorPageLayout {...lavenderPageData} />
+    </>
+  );
 };
 
 export default LavenderPage;

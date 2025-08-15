@@ -1,4 +1,5 @@
 import React from 'react';
+import { Seo } from '../seo/Seo';
 import { motion } from 'framer-motion';
 import { ExternalLink, Quote, Newspaper, Award, TrendingUp, Mic } from 'lucide-react';
 
@@ -89,9 +90,15 @@ const PressPage: React.FC = () => {
   };
 
   return (
-    <main className="w-full min-h-screen bg-white text-black">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+    <>
+      <Seo
+        title="Jayded AF - Press"
+        description="Jayded AF in the press. See what others are saying about our ready-to-serve craft martinis."
+        path="/press"
+      />
+      <main className="w-full min-h-screen bg-white text-black">
+        {/* Hero Section */}
+        <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-50/30 via-transparent to-white" />
         
         <motion.div
@@ -253,7 +260,8 @@ const PressPage: React.FC = () => {
           </motion.a>
         </motion.div>
       </section>
-    </main>
+      </main>
+    </>
   );
 };
 
