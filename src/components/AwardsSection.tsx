@@ -11,10 +11,12 @@ export const AwardsSection: React.FC = () => {
           </h2>
           <div className="w-12 h-px bg-brand-gold mx-auto mt-1" />
         </div>
-        <div className="flex justify-center gap-8 sm:gap-12 md:gap-16">
+        <div className="flex justify-center gap-8 sm:gap-12 md:gap-24">
           {awards.map((award, index) => (
             <div key={index} className="flex flex-col items-center text-center">
-              <img src={award.image} alt={award.title} className="h-24 w-24 mb-4" />
+              <div className="w-24 h-24 flex items-center justify-center mb-4">
+                <img src={award.image} alt={award.title} className="max-w-full max-h-full object-contain" />
+              </div>
               <p className="text-black/80 tracking-widest">{award.title}</p>
             </div>
           ))}
