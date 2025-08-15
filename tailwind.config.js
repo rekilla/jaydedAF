@@ -26,10 +26,10 @@ export default {
   		    // True black theme colors
   		    'brand-background': '#000',
   		    'brand-text': '#FFF',
-            'brand-gold': '#F9F02F', // Accent yellow
-            'brand-lavender': '#C7B8FF',
+            'brand-gold': '#FDEC25', // Accent yellow
+            'brand-lavender': '#B580B5',
             'brand-cucumber': '#038264',
-            'brand-lemon': '#F9F02F',
+            'brand-lemon': '#FDEC25',
             'brand-dark': '#000',
             // Remove rainbow colors, keep monochrome
             'glow-white': '#FFF',

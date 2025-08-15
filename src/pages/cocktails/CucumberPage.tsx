@@ -41,19 +41,19 @@ const cucumberPageData = {
     </>
   ),
   lifestyleMoment: {
-    image: "/images/cucumber/Whisk_9070bc219a.jpg",
+    image: "/images/cucumber/Whisk_73e915b469.jpg",
     title: "Zenith",
     subtitle: "A cut above",
   },
   curatedMoments: {
     title: "A Curation",
-    wideImage: "/images/cucumber/Whisk_73e915b469.jpg",
+    wideImage: "/images/cucumber/Whisk_9070bc219a.jpg",
   },
   specifications: {
     title: "The Details",
     details: [
       { delay: 0.1, value: '12.5%', label: 'ABV', icon: '/martini-glass-with-straw-svgrepo-com.svg' },
-      { delay: 0.2, value: '90', label: 'Calories', icon: '/calories-svgrepo-com.svg' },
+      { delay: 0.2, value: '140', label: 'Calories', icon: '/calories-svgrepo-com.svg' },
       { delay: 0.3, value: '100%', label: 'All Natural Flavors & Gluten Free', icon: '/leaf-svgrepo-com.svg' }
     ],
   },

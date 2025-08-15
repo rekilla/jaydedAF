@@ -41,6 +41,7 @@ interface FlavorPageLayoutProps {
     image: string;
     title: React.ReactNode;
     subtitle?: string;
+    position?: string;
   };
   unlockCta?: {
     title: string;
@@ -142,7 +143,10 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
             <img
               src={lifestyleMoment.image}
               alt="Lifestyle Moment"
-              className="w-full h-full object-cover object-top"
+              className={cn(
+                "w-full h-full object-cover",
+                lifestyleMoment.position ? lifestyleMoment.position : "object-top"
+              )}
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />

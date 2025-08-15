@@ -3,7 +3,7 @@ import { SectionTitle } from './ui/SectionTitle';
 
 export const MessageFromAlexa: React.FC = () => {
   return (
-    <section className="bg-white py-16 sm:py-20">
+    <section className="bg-white pb-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <SectionTitle flavor="lemon" lineWidth="100px" className="text-gray-800">
           Message from Our Founder

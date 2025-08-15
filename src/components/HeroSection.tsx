@@ -146,7 +146,7 @@ const HeroSection: React.FC = () => {
               return (
                 <SwiperSlide key={flavor.key}>
                   {({ isActive }) => (
-                    <div className="w-full h-full flex justify-start md:justify-end items-end p-16">
+                    <div className="w-full h-full flex justify-start items-end p-16 md:justify-end px-4 sm:px-6 lg:px-8">
                       <motion.div
                         variants={containerVariants}
                         initial="hidden"
@@ -154,7 +154,7 @@ const HeroSection: React.FC = () => {
                       >
                         <motion.div
                           variants={itemVariants}
-                          className="flex flex-col items-start md:items-end gap-4"
+                          className="flex flex-col items-start gap-4 md:items-end"
                         >
                           <Link to={flavor.ctaLink}>
                             <StyledButton>
