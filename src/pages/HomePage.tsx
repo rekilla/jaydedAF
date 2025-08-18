@@ -17,10 +17,7 @@ import { StoreLocatorSection } from '../components/StoreLocatorSection';
 import { FeaturedHighlightsSection } from '../components/FeaturedHighlightsSection';
 import { MessageFromAlexa } from '../components/MessageFromAlexa';
 
-// --- Constants --- Use actual filenames provided
-// Map feature images logically
-const FEATURE_IMAGE_LEMON = "/images/home/features/feature_Lemon Drop.png";
-
+// --- Constants ---
 // Update gallery image paths and spans
 const galleryMediaItems: MediaItemType[] = [
     { id: 1, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(5).png' },
