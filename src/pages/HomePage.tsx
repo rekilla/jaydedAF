@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
               <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
                   <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                       <iframe
-                          src="https://player.vimeo.com/video/799286520?h=f2363332ee&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479"
+                          src="https://player.vimeo.com/video/799286520?h=f2363332ee&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479&muted=1&loop=1"
                           frameBorder="0"
                           allow="autoplay; picture-in-picture; clipboard-write; encrypted-media; web-share"
                           referrerPolicy="strict-origin-when-cross-origin"
@@ -101,7 +101,7 @@ const HomePage: React.FC = () => {
                 <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
                     <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                         <iframe
-                            src="https://player.vimeo.com/video/861812568?h=bb6f4fcff1&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479"
+                            src="https://player.vimeo.com/video/861812568?h=bb6f4fcff1&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479&muted=1&loop=1"
                             frameBorder="0"
                             allow="autoplay; picture-in-picture; clipboard-write; encrypted-media; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
