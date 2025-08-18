@@ -1,103 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Seo } from '../seo/Seo';
 import { MapPin } from 'lucide-react';
 import { locations, Location } from '../data/locations';
 import { StoreListItem } from '../components/StoreListItem';
 
-// Google Maps implementation
-const GoogleMap: React.FC<{
-  locations: Location[];
-  selectedStore: Location | null;
-  onSelectStore: (store: Location) => void;
-}> = ({ locations: storeLocations, selectedStore, onSelectStore }) => {
-  const mapRef = useRef<HTMLDivElement>(null);
-  const googleMap = useRef<google.maps.Map | null>(null);
-  const markers = useRef<google.maps.Marker[]>([]);
-
-  useEffect(() => {
-    // Load Google Maps script
-    const loadGoogleMaps = () => {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_KEY&callback=initMap`;
-      script.async = true;
-      script.defer = true;
-      document.head.appendChild(script);
-
-      // Define callback
-      (window as any).initMap = () => {
-        if (!mapRef.current) return;
-
-        // Initialize map with dark theme
-        googleMap.current = new google.maps.Map(mapRef.current, {
-          center: { lat: 44.9778, lng: -93.2650 },
-          zoom: 10,
-          styles: [
-            { elementType: "geometry", stylers: [{ color: "#212121" }] },
-            { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
-            { elementType: "labels.text.fill", stylers: [{ color: "#757575" }] },
-            { elementType: "labels.text.stroke", stylers: [{ color: "#212121" }] },
-            {
-              featureType: "administrative",
-              elementType: "geometry",
-              stylers: [{ color: "#757575" }]
-            },
-            {
-              featureType: "road",
-              elementType: "geometry.fill",
-              stylers: [{ color: "#2c2c2c" }]
-            },
-            {
-              featureType: "water",
-              elementType: "geometry",
-              stylers: [{ color: "#000000" }]
-            }
-          ]
-        });
-
-        // Add markers
-        storeLocations.forEach(location => {
-          const marker = new google.maps.Marker({
-            position: { lat: location.lat, lng: location.lng },
-            map: googleMap.current!,
-            title: location.name,
-            icon: {
-              path: google.maps.SymbolPath.CIRCLE,
-              scale: 8,
-              fillColor: '#000000',
-              fillOpacity: 1,
-              strokeColor: '#ffffff',
-              strokeWeight: 2,
-            }
-          });
-
-          marker.addListener('click', () => {
-            onSelectStore(location);
-          });
-
-          markers.current.push(marker);
-        });
-      };
-    };
-
-    loadGoogleMaps();
-
-    return () => {
-      // Cleanup
-      markers.current.forEach(marker => marker.setMap(null));
-      markers.current = [];
-    };
-  }, [storeLocations, onSelectStore]);
-
-  // Pan to selected store
-  useEffect(() => {
-    if (googleMap.current && selectedStore) {
-      googleMap.current.panTo({ lat: selectedStore.lat, lng: selectedStore.lng });
-      googleMap.current.setZoom(14);
-    }
-  }, [selectedStore]);
-
-  return <div ref={mapRef} className="w-full h-full rounded-lg" />;
-};
 
 // Main store locator component
 const StoreLocatorPage: React.FC = () => {
@@ -195,11 +101,15 @@ const StoreLocatorPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Interactive Map */}
           <div className="lg:col-span-1 h-[60vh] lg:h-[700px] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
-            <GoogleMap
-              locations={filteredLocations}
-              selectedStore={selectedStore}
-              onSelectStore={setSelectedStore}
-            />
+            <iframe
+              src="https://www.google.com/maps/d/embed?mid=1mlNOUQtYyofIzmenE6y0QOrjpfyVG_U"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
 
           {/* Store List */}

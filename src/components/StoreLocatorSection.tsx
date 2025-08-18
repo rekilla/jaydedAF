@@ -124,25 +124,16 @@ export const StoreLocatorSection: React.FC = () => {
             onMouseEnter={() => setIsMapHovered(true)}
             onMouseLeave={() => setIsMapHovered(false)}
           >
-            {/* Map placeholder - replace with actual map integration */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div
-                  className="mb-4 transition-all duration-300"
-                  style={{
-                    transform: isMapHovered 
-                      ? 'scale(1.1) rotate(5deg)' 
-                      : 'scale(1) rotate(0deg)'
-                  }}
-                >
-                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="mx-auto">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#F9F02F" opacity="0.3"/>
-                  </svg>
-                </div>
-                <p className="text-sm text-black mb-2">Interactive Map</p>
-                <p className="text-xs text-black">Click to explore</p>
-              </div>
-            </div>
+            <iframe
+              src="https://www.google.com/maps/d/embed?mid=1mlNOUQtYyofIzmenE6y0QOrjpfyVG_U"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0"
+            ></iframe>
             
             {/* Overlay with store info */}
             <div
@@ -154,9 +145,14 @@ export const StoreLocatorSection: React.FC = () => {
               <p className="text-sm text-black">
                 {selectedStore.address}
               </p>
-              <button className="mt-3 text-xs text-brand-gold hover:text-yellow-500 transition-colors">
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(selectedStore.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 text-xs text-brand-gold hover:text-yellow-500 transition-colors"
+              >
                 Get Directions →
-              </button>
+              </a>
             </div>
             
             {/* Corner accent */}
