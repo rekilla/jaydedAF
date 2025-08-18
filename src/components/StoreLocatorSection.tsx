@@ -20,7 +20,6 @@ const formatTime = (time: string) => {
 
 export const StoreLocatorSection: React.FC = () => {
   const [selectedStore, setSelectedStore] = useState<Location>(locations[0]);
-  const [isMapHovered, setIsMapHovered] = useState(false);
 
   return (
     <section className="relative bg-white text-black overflow-hidden" style={{ padding: '30px 0' }}>
@@ -121,8 +120,6 @@ export const StoreLocatorSection: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            onMouseEnter={() => setIsMapHovered(true)}
-            onMouseLeave={() => setIsMapHovered(false)}
           >
             <iframe
               src="https://www.google.com/maps/d/embed?mid=1mlNOUQtYyofIzmenE6y0QOrjpfyVG_U"

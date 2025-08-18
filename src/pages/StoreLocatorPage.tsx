@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Seo } from '../seo/Seo';
 import { MapPin } from 'lucide-react';
-import { locations, Location } from '../data/locations';
+import { locations } from '../data/locations';
 import { StoreListItem } from '../components/StoreListItem';
 
 
 // Main store locator component
 const StoreLocatorPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedStore, setSelectedStore] = useState<Location | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
   const [filteredLocations, setFilteredLocations] = useState(locations);
 
@@ -119,14 +118,14 @@ const StoreLocatorPage: React.FC = () => {
                 <StoreListItem
                   key={store.id}
                   store={store}
-                  isSelected={selectedStore?.id === store.id}
+                  isSelected={false}
                   distance={userLocation ? calculateDistance(
                     userLocation.lat,
                     userLocation.lng,
                     store.lat,
                     store.lng
                   ) : undefined}
-                  onClick={() => setSelectedStore(store)}
+                  onClick={() => {}}
                 />
               ))
             ) : (
@@ -138,34 +137,6 @@ const StoreLocatorPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Selected Store Details - Simple tooltip style */}
-      {selectedStore && (
-        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-sm
-                        border border-black/20 rounded-lg p-4 shadow-xl max-w-sm mx-4 z-30">
-          <h3 className="font-heading text-black mb-2">{selectedStore.name}</h3>
-          <p className="text-sm text-black/70 mb-3">{selectedStore.address}</p>
-          <div className="flex gap-3">
-            <a
-              href={`https://maps.google.com/?q=${encodeURIComponent(selectedStore.address)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 text-center py-2 px-4 bg-black/10 hover:bg-black/20
-                         text-black text-sm rounded transition-colors duration-200"
-            >
-              Get Directions
-            </a>
-            {selectedStore.phone && (
-              <a
-                href={`tel:${selectedStore.phone}`}
-                className="flex-1 text-center py-2 px-4 bg-black/10 hover:bg-black/20
-                           text-black text-sm rounded transition-colors duration-200"
-              >
-                Call Store
-              </a>
-            )}
-          </div>
-        </div>
-      )}
       </main>
     </>
   );
