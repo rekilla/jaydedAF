@@ -1,6 +1,7 @@
 // OurStoryCards.tsx
 import React, { useRef } from 'react';
 import { motion, useScroll, useReducedMotion, useTransform } from 'framer-motion';
+import FadedImage from './FadedImage';
 
 type StoryImage = { src: string; alt: string };
 type StoryCard  = { id: string; subtitle: string; text: string; image?: StoryImage };
@@ -69,7 +70,7 @@ const CardContent: React.FC<{
               </h3>
             </div>
             <div className="aspect-w-1 aspect-h-1">
-              <img src={card.image.src} alt={card.image.alt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+              <FadedImage src={card.image.src} alt={card.image.alt} className="w-full h-full object-cover" />
             </div>
           </div>
         )}
@@ -93,7 +94,7 @@ const CardContent: React.FC<{
         </div>
         {card.image && (
           <div className={`${even ? 'order-1' : 'order-2'}`}>
-            <img src={card.image.src} alt={card.image.alt} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <FadedImage src={card.image.src} alt={card.image.alt} className="w-full h-full object-cover" />
           </div>
         )}
       </div>

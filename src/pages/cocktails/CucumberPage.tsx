@@ -14,9 +14,9 @@ const flavorData = {
 const perfectServeData = {
   title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Chilled", body: "18 °C Coupe", subBody: "A crisp, clean slate." },
-    { id: 2, title: "Shaken", body: "2 °C Martini", subBody: "A refreshing rebellion." },
-    { id: 3, title: "On The Rocks", body: "4 °C Rocks Glass", subBody: "A cool cucumber haze." }
+    { id: 1, title: "Chilled", body: "18° C Coupe", subBody: "Beyond The Moment" },
+    { id: 2, title: "Shaken", body: "2° C Martini", subBody: "Finally a Twist" },
+    { id: 3, title: "Rocks", body: "6° C Lowball", subBody: "A Cucumber Breeze" }
   ]
 };
 
@@ -24,11 +24,11 @@ const curatedMomentsMedia: MediaItemType[] = [
     { id: 'cu1', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_634ea23028.jpg" },
     { id: 'cu2', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_5fec71df79.jpg" },
     { id: 'cu3', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_494461be83.jpg" },
-    { id: 'cu4', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_79687110ca.jpg" },
-    { id: 'cu5', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_a577fabf7b.jpg" },
-    { id: 'cu6', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_ad0d81dcf7.jpg" },
     { id: 'cu7', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_cbef435bee.jpg" },
-    { id: 'cu8', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_94f02a652d.jpg" }
+    { id: 'cu4', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_79687110ca.jpg" },
+    { id: 'cu8', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_94f02a652d.jpg" },
+    { id: 'cu5', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_a577fabf7b.jpg" },
+    { id: 'cu6', type: 'image', title: '', desc: '', url: "/images/cucumber/grid/Whisk_ad0d81dcf7.jpg" }
 ];
 
 const cucumberPageData = {

@@ -14,9 +14,9 @@ const flavorData = {
 const perfectServeData = {
   title: "The Perfect Serve",
   serveStyles: [
-    { id: 1, title: "Chilled", body: "18 °C Coupe", subBody: "A zesty, bold statement." },
-    { id: 2, title: "Shaken", body: "2 °C Martini", subBody: "A citrus rebellion." },
-    { id: 3, title: "On The Rocks", body: "4 °C Rocks Glass", subBody: "A lemon haze." }
+    { id: 1, title: "Chilled", body: "18° C Coupe", subBody: "Meets The Moment" },
+    { id: 2, title: "Shaken", body: "2° C Martini", subBody: "Jane Bond" },
+    { id: 3, title: "Rocks", body: "6° C Lowball", subBody: "A Tart Statement" }
   ]
 };
 

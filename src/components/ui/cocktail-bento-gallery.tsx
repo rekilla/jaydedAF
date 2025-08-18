@@ -234,7 +234,7 @@ export const CocktailBentoGallery: React.FC<CocktailBentoGalleryProps> = ({
 
             {/* Grid Gallery */}
             <div className="w-full">
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">
                     {mediaItems.map((item, index) => (
                         <GalleryItem
                             key={item.id}

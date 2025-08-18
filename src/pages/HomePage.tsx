@@ -24,21 +24,21 @@ const FEATURE_IMAGE_LEMON = "/images/home/features/feature_Lemon Drop.png";
 // Update gallery image paths and spans
 const galleryMediaItems: MediaItemType[] = [
     { id: 1, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(5).png' },
-    { id: 2, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(2).png' },
     { id: 3, type: 'image', title: 'Lemon Drop', desc: '', url: '/Product Shot of Jayded AF-2.jpg' },
-    { id: 4, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(6).png' },
-    { id: 5, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_5843d695ae.jpg' },
-    { id: 6, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(3).png' },
-    { id: 7, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_69ab59d35a.jpg' },
-    { id: 8, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_4f54a30070.jpg' },
-    { id: 9, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_7372d1a620.jpg' },
-    { id: 10, type: 'image', title: 'Lavender Bottle', desc: '', url: '/Product Shot of Jayded AF-1.jpg' },
-    { id: 11, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_c38b2e7e1c.jpg' },
+    { id: 2, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(2).png' },
     { id: 12, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_d497ed3c74.jpg' },
-    { id: 13, type: 'image', title: 'Man in Museum', desc: '', url: '/images/cucumber/grid/Whisk_94f02a652d.jpg' },
+    { id: 7, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_69ab59d35a.jpg' },
+    { id: 9, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_7372d1a620.jpg' },
+    { id: 11, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_c38b2e7e1c.jpg' },
     { id: 14, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_c31d294d3a.jpg' },
+    { id: 6, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(3).png' },
+    { id: 10, type: 'image', title: 'Lavender Bottle', desc: '', url: '/Product Shot of Jayded AF-1.jpg' },
+    { id: 13, type: 'image', title: 'Man in Museum', desc: '', url: '/images/cucumber/grid/Whisk_94f02a652d.jpg' },
+    { id: 4, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(6).png' },
+    { id: 8, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_4f54a30070.jpg' },
     { id: 15, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_e6e7cad612.jpg' },
     { id: 16, type: 'image', title: 'Cucumber Bottle', desc: '', url: '/Product Shot of Jayded AF-3.jpg' },
+    { id: 5, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_5843d695ae.jpg' },
 ];
 
 
@@ -66,10 +66,16 @@ const HomePage: React.FC = () => {
       <section>
           <InView>
               <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
-                  <video autoPlay loop muted className="w-full h-full object-cover" poster={FEATURE_IMAGE_LEMON}> {/* Update poster image */}
-                      <source src="/everyday.webm" type="video/webm" />
-                      Your browser does not support the video tag.
-                  </video>
+                  <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+                      <iframe
+                          src="https://player.vimeo.com/video/799286520?h=f2363332ee&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479"
+                          frameBorder="0"
+                          allow="autoplay; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                          title="Website Banner All Brands.mp4"
+                      ></iframe>
+                  </div>
               </div>
           </InView>
       </section>
@@ -96,10 +102,16 @@ const HomePage: React.FC = () => {
        <section className="my-8 sm:my-12">
            <InView>
                 <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
-                    <video autoPlay loop muted className="w-full h-full object-cover">
-                        <source src="/Models4.webm" type="video/webm" />
-                        Your browser does not support the video tag.
-                    </video>
+                    <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+                        <iframe
+                            src="https://player.vimeo.com/video/861812568?h=bb6f4fcff1&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479"
+                            frameBorder="0"
+                            allow="autoplay; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                            title="Website Banner All Brands.mp4"
+                        ></iframe>
+                    </div>
                 </div>
            </InView>
         </section>
@@ -118,6 +130,7 @@ const HomePage: React.FC = () => {
       {/* Section 10: Footer is handled globally in App.tsx */}
 
       </main>
+      <script src="https://player.vimeo.com/api/player.js"></script>
     </>
   );
 };
