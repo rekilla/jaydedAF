@@ -16,7 +16,7 @@ const DEFAULT_CARDS: StoryCard[] = [
     id: 'epiphany',
     subtitle: 'The Epiphany',
     text:
-      'Life gave her lemons, and she made a Martini. Alexa Jayde Fitzpatrick did not have the traditional pathway, rather an epiphany. On October 5th, 2020, a medical emergency led to her being figuratively, physically, emotionally, and creatively reborn. Emphasizing love of the eclectic and unique, along with unbridled imagination, would lead to this moment',
+      'Life gave her lemons, and she made a Martini. Alexa Jayde Fitzpatrick did not have the traditional pathway, rather an epiphany. On October 5th, 2020, a medical emergency led to her being figuratively, physically, emotionally, and creatively reborn. Emphasizing love of the eclectic and unique, along with unbridled imagination, would lead to this moment.',
     image: { src: '/images/ALEXA/A woman sits in a chair in the shadows drinking a martini.jpg', alt: 'Alexa Jayde Fitzpatrick - The beginning of Jayded AF' }
   },
   {
