@@ -26,7 +26,7 @@ const galleryMediaItems: MediaItemType[] = [
     { id: 12, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_d497ed3c74.jpg' },
     { id: 7, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_69ab59d35a.jpg' },
     { id: 9, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_7372d1a620.jpg' },
-    { id: 11, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_c38b2e7e1c.jpg' },
+    { id: 11, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_94f02a65sa2d.jpg' },
     { id: 14, type: 'image', title: '', desc: '', url: '/images/home/GX/Whisk_c31d294d3a.jpg' },
     { id: 6, type: 'image', title: '', desc: '', url: '/images/home/GX/G1%20(3).png' },
     { id: 10, type: 'image', title: 'Lavender Bottle', desc: '', url: '/Product Shot of Jayded AF-1.jpg' },
