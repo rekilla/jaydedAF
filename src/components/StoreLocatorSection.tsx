@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { locations, Location } from '../data/locations';
+import GoogleMap from './GoogleMap';
 
 // InView component placeholder
 const InView: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => {
@@ -121,20 +122,16 @@ export const StoreLocatorSection: React.FC = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <iframe
-              src="https://www.google.com/maps/d/embed?mid=1mlNOUQtYyofIzmenE6y0QOrjpfyVG_U"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0"
-            ></iframe>
-            
+            <GoogleMap
+              locations={locations.slice(0, 3)}
+              selectedLocation={selectedStore}
+              onLocationSelect={setSelectedStore}
+              className="w-full h-full"
+            />
+
             {/* Overlay with store info */}
             <div
-              className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white/80 to-transparent p-6"
+              className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-white via-white/80 to-transparent p-6 z-10"
             >
               <h4 className="text-lg font-light text-black mb-1">
                 {selectedStore.name}
@@ -151,9 +148,9 @@ export const StoreLocatorSection: React.FC = () => {
                 Get Directions →
               </a>
             </div>
-            
+
             {/* Corner accent */}
-            <div className="absolute top-4 right-4 w-8 h-8 border-t border-r border-brand-gold/30" />
+            <div className="absolute top-4 right-4 w-8 h-8 border-t border-r border-brand-gold/30 z-10" />
           </motion.div>
         </div>
       </InView>

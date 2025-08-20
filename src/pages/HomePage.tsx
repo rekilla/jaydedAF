@@ -96,7 +96,7 @@ const HomePage: React.FC = () => {
       <StoreLocatorSection />
 
       {/* Section 7: New Wide Image Section */}
-       <section className="my-8 sm:my-12">
+       <section>
            <InView>
                 <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
                     <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
