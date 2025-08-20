@@ -3,9 +3,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { BottleNexusButton } from './BottleNexusButton';
 import { useCart } from '../contexts/CartContext';
-import { BottleNexusProvider } from '../contexts/BottleNexusContext';
 import { products, Product } from '../data/products';
 import CollectionButton from './CollectionButton';
 import { SectionTitle } from './ui/SectionTitle';
@@ -38,7 +36,7 @@ const useImagePreloader = (imageUrls: string[]) => {
 const ProductCard: React.FC<{
   product: Product;
 }> = ({ product }) => {
-  const { openCart } = useCart();
+  const { } = useCart();
 
   return (
     <motion.div
@@ -63,12 +61,6 @@ const ProductCard: React.FC<{
           {product.description}
         </p>
 
-        {/* Hidden BottleNexus button */}
-        <div className="hidden" data-bottlenexus-id={product.bottleNexusId}>
-          {product.bottleNexusId && (
-            <BottleNexusButton id={product.bottleNexusId} onCartOpen={openCart} />
-          )}
-        </div>
 
         {/* Visible Custom Button */}
         <CollectionButton>
@@ -92,7 +84,6 @@ export const LuxuryCollectionSection: React.FC = () => {
 
 
   return (
-    <BottleNexusProvider>
       <section className="relative py-20 sm:py-24 pb-0 bg-white">
         <InView className="relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px]">
@@ -114,7 +105,6 @@ export const LuxuryCollectionSection: React.FC = () => {
           </div>
         </InView>
       </section>
-    </BottleNexusProvider>
   );
 };
 

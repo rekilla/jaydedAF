@@ -16,42 +16,9 @@ export const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   const handleAddToCart = async () => {
     setIsLoading(true);
     
+    // Simulate adding to cart
     try {
-      // Find the actual BottleNexus button and click it
-      const bottleNexusButton = document.querySelector(
-        `[data-product-id="${productId}"] iframe`
-      );
-      
-      if (bottleNexusButton) {
-        // Try to access the button inside the iframe
-        const iframeDoc = (bottleNexusButton as HTMLIFrameElement).contentDocument;
-        if (iframeDoc) {
-          const button = iframeDoc.querySelector('button');
-          if (button) {
-            button.click();
-            console.log('Clicked BottleNexus button for product', productId);
-          }
-        }
-      }
-      
-      // Alternative: Try using the BottleNexus API directly
-      if ((window as any).BottleNexusInstance) {
-        const instance = (window as any).BottleNexusInstance;
-        console.log('BottleNexus instance:', instance);
-        
-        // Try different methods
-        if (instance.addItem) {
-          await instance.addItem(productId, 1);
-        } else if (instance.cart?.addVariant) {
-          await instance.cart.addVariant(productId, 1);
-        } else if (instance.UI?.components?.product?.[productId]) {
-          // Try to trigger the product's add to cart
-          const productComponent = instance.UI.components.product[productId];
-          if (productComponent.addToCart) {
-            productComponent.addToCart();
-          }
-        }
-      }
+      console.log(`Product ${productId} added to cart! (Simulated)`);
     } catch (error) {
       console.error('Error adding to cart:', error);
     } finally {

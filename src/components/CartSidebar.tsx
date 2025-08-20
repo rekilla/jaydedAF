@@ -16,9 +16,8 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose }) => 
   const handleCheckout = async () => {
     setIsProcessing(true);
     try {
-      if ((window as any).BottleNexus) {
-        (window as any).BottleNexus.checkout();
-      }
+      // Simulate checkout
+      alert('Proceeding to checkout! (Simulated)');
     } catch (error) {
       console.error('Checkout error:', error);
     } finally {

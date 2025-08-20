@@ -1,38 +1,16 @@
-# Plan for FadedImage Component
+# Implementation Plan
 
-This plan outlines the steps to create a reusable React component named `FadedImage` with a linear gradient fade effect, as per the requirements.
+## Task: Remove all instances of "BottleNexus"
 
-## Component Details:
-- **Name:** `FadedImage`
-- **Type:** Functional React Component
-- **Language:** TypeScript (.tsx)
-- **Props:** `src` (string), `alt` (string)
+### Goals:
+1. Identify all files containing the string "BottleNexus".
+2. Remove all occurrences of "BottleNexus" from these files.
+3. Verify that all instances have been removed.
 
-## Styling Details:
-- **File:** `FadedImage.css`
-- **Effect:** Linear gradient fade from transparent on the left to opaque on the right.
-- **Implementation:**
-    - Use `mask-image` CSS property.
-    - Use `-webkit-mask-image` for broader browser compatibility.
-    - Apply a `linear-gradient` for the fade effect.
-    - Include clear comments in the CSS explaining the properties.
+### Steps:
 
-## Steps:
-
-1.  **Create `FadedImage.tsx`:**
-    -   Define the `FadedImageProps` interface with `src` and `alt` properties.
-    -   Create the functional `FadedImage` component that accepts these props.
-    -   Render an `img` tag with the provided `src` and `alt`.
-    -   Import the `FadedImage.css` file.
-
-2.  **Create `FadedImage.css`:**
-    -   Define CSS rules for the `FadedImage` component.
-    -   Implement the `mask-image` property with a `linear-gradient` to achieve the fade effect (e.g., `linear-gradient(to right, transparent, black)`).
-    -   Include the `-webkit-mask-image` equivalent for cross-browser compatibility.
-    -   Add comments explaining the CSS properties used for the fade effect.
-
-3.  **Review and Approval:**
-    -   Ask the user to review this plan.
-
-4.  **Switch to Code Mode:**
-    -   Once the plan is approved, request to switch to "Code" mode to implement the component.
+- [ ] **List all files in the project:** Use `list_files` to get a comprehensive list of all files in the `d:/WebDev/jayded-af-cocktails` directory.
+- [ ] **Search for "BottleNexus":** Use `search_files` with a regex to find all occurrences of "BottleNexus" across all files.
+- [ ] **Remove "BottleNexus" from files:** For each file identified in the previous step, use `replace_in_file` to remove all instances of "BottleNexus".
+- [ ] **Verify removal:** After making changes, re-run the search for "BottleNexus" to confirm that all instances have been removed.
+- [ ] **Attempt completion:** Once verified, use `attempt_completion` to finalize the task.

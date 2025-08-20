@@ -24,7 +24,6 @@ import { AgeVerificationModal } from './components/AgeVerificationModal';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
 import PressPage from './pages/PressPage';
-import { BottleNexusLoader } from './components/BottleNexusLoader';
 import { CartProvider, useCart } from './contexts/CartContext';
 import { CartSidebar } from './components/CartSidebar';
 
@@ -100,7 +99,6 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <BottleNexusLoader />
       <CartProvider>
         <AppContent />
       </CartProvider>

@@ -27,6 +27,7 @@
     "react-dom": "18.3.1",
     "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.4.1",
+    "resend": "^6.0.1",
     "swiper": "^11.2.6",
     "tailwind-clip-path": "^1.0.0",
     "tailwind-merge": "^2.6.0",

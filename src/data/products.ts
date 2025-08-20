@@ -9,7 +9,6 @@ export interface Product {
   lifestyleImage: string;
   colorHex: string;
   colorClass: string;
-  bottleNexusId?: number;
   inStock?: boolean;
 }
 
@@ -25,7 +24,6 @@ export const products: Product[] = [
     lifestyleImage: "/LE.jpg",
     colorHex: "#FFD700",
     colorClass: "from-yellow-400/20 to-yellow-600/5",
-    bottleNexusId: 47035,
     inStock: true
   },
   {
@@ -39,7 +37,6 @@ export const products: Product[] = [
     lifestyleImage: "/LV.jpg",
     colorHex: "#C7B8FF",
     colorClass: "from-gray-400/20 to-gray-600/5",
-    bottleNexusId: 47036,
     inStock: true
   },
   {
@@ -53,7 +50,6 @@ export const products: Product[] = [
     lifestyleImage: "/CU.jpg",
     colorHex: "#8BC34A",
     colorClass: "from-green-400/20 to-green-600/5",
-    bottleNexusId: 47037,
     inStock: true
   }
 ];

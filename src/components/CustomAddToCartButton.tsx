@@ -15,30 +15,11 @@ export const CustomAddToCartButton: React.FC<{
     
     setIsLoading(true);
     
-    // Find and click the hidden BottleNexus button
+    // Simulate adding to cart
     setTimeout(() => {
-      const bottleNexusContainer = document.querySelector(`[data-bottlenexus-id="${productId}"]`);
-      if (bottleNexusContainer) {
-        const iframe = bottleNexusContainer.querySelector('iframe');
-        if (iframe) {
-          // Try to click the button inside the iframe
-          try {
-            const iframeDoc = (iframe as HTMLIFrameElement).contentDocument;
-            if (iframeDoc) {
-              const button = iframeDoc.querySelector('button');
-              if (button) {
-                button.click();
-              }
-            }
-          } catch (e) {
-            // If cross-origin, try clicking the iframe itself
-            iframe.click();
-          }
-        }
-      }
-      
-      setTimeout(() => setIsLoading(false), 500);
-    }, 100);
+      setIsLoading(false);
+      alert(`Product ${productId} added to cart! (Simulated)`);
+    }, 1000);
   };
 
   if (!inStock) {

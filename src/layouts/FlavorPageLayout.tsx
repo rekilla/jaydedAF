@@ -3,7 +3,6 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { CocktailBentoGallery, MediaItemType } from '../components/ui/cocktail-bento-gallery';
 import { CustomAddToCartButton } from '../components/CustomAddToCartButton';
-import { BottleNexusProvider } from '../contexts/BottleNexusContext';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { PerfectServeSection } from '../components/PerfectServeSection';
 import { PerfectServeFab } from '../components/ui/PerfectServeFab';
@@ -86,7 +85,6 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
   }), []);
 
   return (
-    <BottleNexusProvider>
       <main id="main-content" className="w-full bg-black text-white overflow-x-hidden">
         
         <div id="page-hero">
@@ -256,9 +254,6 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
                 <CustomAddToCartButton
                   productId={closingCta.productId}
                 />
-                <div className="hidden" data-bottlenexus-id={closingCta.productId}>
-                  {/* This div is intentionally left empty for BottleNexus to populate */}
-                </div>
               </div>
             </motion.div>
           </div>
@@ -271,7 +266,6 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         />
         <FlavorNavigation currentProductId={closingCta.productId} />
       </main>
-    </BottleNexusProvider>
   );
 };
 

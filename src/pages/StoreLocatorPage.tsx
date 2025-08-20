@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Seo } from '../seo/Seo';
 import { MapPin } from 'lucide-react';
-import { locations } from '../data/locations';
+import { locations, Location } from '../data/locations';
 import { StoreListItem } from '../components/StoreListItem';
+import GoogleMap from '../components/GoogleMap';
 
 
 // Main store locator component
@@ -10,6 +11,7 @@ const StoreLocatorPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
   const [filteredLocations, setFilteredLocations] = useState(locations);
+  const [selectedStore, setSelectedStore] = useState<Location | null>(null);
 
   // Calculate distance between two points
   const calculateDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
@@ -100,15 +102,12 @@ const StoreLocatorPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Interactive Map */}
           <div className="lg:col-span-1 h-[60vh] lg:h-[700px] bg-gray-100 rounded-lg overflow-hidden shadow-inner">
-            <iframe
-              src="https://www.google.com/maps/d/embed?mid=1mlNOUQtYyofIzmenE6y0QOrjpfyVG_U"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <GoogleMap
+              locations={filteredLocations}
+              selectedLocation={selectedStore}
+              onLocationSelect={setSelectedStore}
+              className="w-full h-full"
+            />
           </div>
 
           {/* Store List */}
@@ -118,14 +117,14 @@ const StoreLocatorPage: React.FC = () => {
                 <StoreListItem
                   key={store.id}
                   store={store}
-                  isSelected={false}
+                  isSelected={selectedStore?.id === store.id}
                   distance={userLocation ? calculateDistance(
                     userLocation.lat,
                     userLocation.lng,
                     store.lat,
                     store.lng
                   ) : undefined}
-                  onClick={() => {}}
+                  onClick={() => setSelectedStore(store)}
                 />
               ))
             ) : (
