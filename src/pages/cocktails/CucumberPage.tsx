@@ -54,8 +54,8 @@ const cucumberPageData = {
     title: "The Details",
     details: [
       { delay: 0.1, value: '12.5%', label: 'ABV', icon: '/martini-glass-with-straw-svgrepo-com.svg' },
-      { delay: 0.2, value: '140', label: 'Calories', icon: '/calories-svgrepo-com.svg' },
-      { delay: 0.3, value: '100%', label: 'All Natural Flavors & Gluten Free', icon: '/leaf-svgrepo-com.svg' }
+      { delay: 0.2, value: '100%', label: 'All Natural Flavors & Gluten Free', icon: '/leaf-svgrepo-com.svg' },
+      { delay: 0.3, value: '140', label: 'Calories', icon: '/calories-svgrepo-com.svg' }
     ],
   },
   closingCta: {

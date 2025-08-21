@@ -51,21 +51,20 @@ const CardContent: React.FC<{
   card: StoryCard;
   even: boolean;
 }> = ({ card, even }) => {
-  const borderColor = '#212529';
   const headingColor = '#F9F02F';
 
   return (
     <article
-      className={`h-full w-full grid grid-cols-1 ${card.image ? 'md:grid-cols-2' : 'md:grid-cols-1'} overflow-hidden bg-black border-2`}
-      style={{ borderColor }}
+      className={`h-full w-full grid grid-cols-1 ${card.image ? 'md:grid-cols-2' : 'md:grid-cols-1'} overflow-hidden bg-black border-b-2`}
+      style={{ borderBottomColor: '#F9F02F' }}
       aria-labelledby={`story-card-title-${card.id}`}
     >
       {/* Mobile View */}
       <div className="md:hidden flex flex-col">
         {card.image && (
           <div className="grid grid-cols-2 items-center">
-            <div className="p-8">
-              <h3 id={`story-card-title-${card.id}-mobile`} className="text-3xl font-bold leading-tight" style={{ color: headingColor }}>
+            <div className="p-4">
+              <h3 id={`story-card-title-${card.id}-mobile`} className="text-2xl sm:text-3xl font-medium leading-tight" style={{ color: headingColor }}>
                 {card.subtitle}
               </h3>
             </div>
@@ -74,20 +73,20 @@ const CardContent: React.FC<{
             </div>
           </div>
         )}
-        <div className="p-8">
+        <div className="p-4 flex-1 overflow-y-auto">
           {!card.image && (
-            <h3 id={`story-card-title-${card.id}-mobile`} className="text-3xl font-bold mb-6 leading-tight" style={{ color: headingColor }}>
+            <h3 id={`story-card-title-${card.id}-mobile`} className="text-2xl sm:text-3xl font-medium mb-2 leading-tight" style={{ color: headingColor }}>
               {card.subtitle}
             </h3>
           )}
-          <p className="text-gray-300 text-base leading-relaxed">{card.text}</p>
+          <p className="text-gray-300 text-sm sm:text-base leading-tight">{card.text}</p>
         </div>
       </div>
 
       {/* Desktop View */}
       <div className="hidden md:contents">
         <div className={`p-12 lg:p-16 flex flex-col justify-center ${even && card.image ? 'order-2' : 'order-1'} ${!card.image ? 'text-center' : ''}`}>
-          <h3 id={`story-card-title-${card.id}-desktop`} className="text-4xl lg:text-5xl font-bold mb-8 leading-tight" style={{ color: headingColor }}>
+          <h3 id={`story-card-title-${card.id}-desktop`} className="text-4xl lg:text-5xl font-medium mb-8 leading-tight" style={{ color: headingColor }}>
             {card.subtitle}
           </h3>
           <p className="text-gray-300 text-lg leading-relaxed">{card.text}</p>

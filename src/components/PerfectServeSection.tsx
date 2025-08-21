@@ -77,7 +77,13 @@ export const PerfectServeSection: React.FC<PerfectServeSectionProps> = ({ title,
                 </p>
                 {/* Sub-body */}
                 <p className="text-xs text-gray-500">
-                  {style.subBody.replace(/-/g, ' ')}
+                  {flavor === 'lemon' && style.title === 'Shaken' ? (
+                    <>
+                      Jane <span className="block md:inline">Bond</span>
+                    </>
+                  ) : (
+                    style.subBody.replace(/-/g, ' ')
+                  )}
                 </p>
               </div>
               
