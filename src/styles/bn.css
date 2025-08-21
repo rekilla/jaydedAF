@@ -1,0 +1,89 @@
+.bn-chooser {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bn-purchase {
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+  padding: 12px 24px;
+  letter-spacing: 0.06em;
+  transition: background-color 180ms ease, color 180ms ease, transform 120ms ease, border-color 180ms ease;
+  cursor: pointer;
+}
+
+.bn-purchase:hover,
+.bn-purchase:focus-visible {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.bn-purchase:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Light theme (for white backgrounds) — only affects the trigger button in that block */
+.bn-theme-light .bn-purchase {
+  border-color: #000;
+  color: #000;
+}
+.bn-theme-light .bn-purchase:hover,
+.bn-theme-light .bn-purchase:focus-visible {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+.bn-theme-light .bn-purchase:focus-visible {
+  outline-color: #000;
+}
+
+.bn-chooser.open .bn-purchase {
+  transform: translateY(1px);
+}
+
+.bn-sizes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition:
+    max-height 220ms cubic-bezier(.2,.8,.2,1),
+    opacity 200ms cubic-bezier(.2,.8,.2,1),
+    transform 220ms cubic-bezier(.2,.8,.2,1);
+  margin-top: 10px;
+  will-change: transform, opacity, max-height;
+}
+
+.bn-chooser.open .bn-sizes {
+  max-height: 160px; /* enough to reveal the two BN buttons */
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Staggered fade/slide-in for slots */
+.bn-chooser.open .bn-size {
+  animation: bn-fade-slide-in 220ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.bn-chooser.open .bn-size:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+@keyframes bn-fade-slide-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bn-size [data-component='button'] {
+  /* BottleNexus injects inline styles; this is optional spacing */
+  display: inline-block;
+}

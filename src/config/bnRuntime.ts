@@ -1,0 +1,1 @@
+export const BN_TOKEN = import.meta.env.VITE_BOTTLENEXUS_TOKEN as string;

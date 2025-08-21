@@ -2,12 +2,14 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { CocktailBentoGallery, MediaItemType } from '../components/ui/cocktail-bento-gallery';
-import { CustomAddToCartButton } from '../components/CustomAddToCartButton';
+import SizeChooser from '../components/SizeChooser';
 import { SectionTitle } from '../components/ui/SectionTitle';
 import { PerfectServeSection } from '../components/PerfectServeSection';
 import { PerfectServeFab } from '../components/ui/PerfectServeFab';
 import FlavorHeroMobile from '../components/FlavorHeroMobile';
 import { FlavorNavigation } from '../components/FlavorNavigation';
+import { BN_IDS, opts } from '../config/bnProducts';
+import { BN_TOKEN } from '../config/bnRuntime';
 
 const cn = (...classes: (string | undefined | null | false)[]) => classes.filter(Boolean).join(' ');
 
@@ -83,7 +85,7 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
     animate: { opacity: 1, y: 0 },
     transition: { duration: 1, delay: 0.5 }
   }), []);
-
+  const flavorKey = flavorData.key as keyof typeof BN_IDS;
   return (
       <main id="main-content" className="w-full bg-black text-white overflow-x-hidden">
         
@@ -175,7 +177,13 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
               <div className="mb-8">
                 <SectionTitle flavor={flavorData.key as any} lineWidth="40%" noUnderline>{unlockCta.title}</SectionTitle>
               </div>
-              <CustomAddToCartButton productId={unlockCta.productId} />
+              <SizeChooser
+                id750={BN_IDS[flavorKey]["750"]}
+                id375={BN_IDS[flavorKey]["375"]}
+                token={BN_TOKEN}
+                options750={opts("PRE ORDER 750ML")}
+                options375={opts("PRE ORDER 375ML")}
+              />
             </div>
           </section>
         )}
@@ -251,8 +259,12 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
                 <SectionTitle flavor={flavorData.key as any} lineWidth="40%" noUnderline>{closingCta.title}</SectionTitle>
               </div>
               <div className="flex justify-center items-center flex-col sm:flex-row gap-3 sm:gap-4">
-                <CustomAddToCartButton
-                  productId={closingCta.productId}
+                <SizeChooser
+                  id750={BN_IDS[flavorKey]["750"]}
+                  id375={BN_IDS[flavorKey]["375"]}
+                  token={BN_TOKEN}
+                  options750={opts("PRE ORDER 750ML")}
+                  options375={opts("PRE ORDER 375ML")}
                 />
               </div>
             </motion.div>

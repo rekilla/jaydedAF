@@ -3,10 +3,11 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useCart } from '../contexts/CartContext';
 import { products, Product } from '../data/products';
-import CollectionButton from './CollectionButton';
 import { SectionTitle } from './ui/SectionTitle';
+import SizeChooser from './SizeChooser';
+import { BN_IDS, baseOptions } from '../config/bnProducts';
+import { BN_TOKEN } from '../config/bnRuntime';
 
 // Image preloader hook
 const useImagePreloader = (imageUrls: string[]) => {
@@ -36,7 +37,29 @@ const useImagePreloader = (imageUrls: string[]) => {
 const ProductCard: React.FC<{
   product: Product;
 }> = ({ product }) => {
-  const { } = useCart();
+  const productKey = (product.path.includes('lemon')
+    ? 'lemon'
+    : product.path.includes('lavender')
+      ? 'lavender'
+      : 'cucumber') as keyof typeof BN_IDS;
+
+  // Override BN button styles for white background (black outline/text; hover fill black, text white)
+  const makeLightOptions = (text: string) => ({
+    ...baseOptions,
+    buttonText: text,
+    styles: {
+      "[data-component='button']": {
+        "background-color": "TRANSPARENT",
+        "border": "solid 1px #000000",
+        "color": "#000000"
+      },
+      "[data-component='button']:hover": {
+        "background-color": "#000000",
+        "color": "#FFFFFF",
+        "border": "solid 1px #000000"
+      }
+    }
+  });
 
   return (
     <motion.div
@@ -62,10 +85,17 @@ const ProductCard: React.FC<{
         </p>
 
 
-        {/* Visible Custom Button */}
-        <CollectionButton>
-          {product.inStock ? 'Purchase' : 'Out of Stock'}
-        </CollectionButton>
+        {/* Visible Size Chooser Purchase CTA (light theme for white background) */}
+        <div className="mt-2">
+          <SizeChooser
+            id750={BN_IDS[productKey]["750"]}
+            id375={BN_IDS[productKey]["375"]}
+            token={BN_TOKEN}
+            options750={makeLightOptions("PRE ORDER 750ML")}
+            options375={makeLightOptions("PRE ORDER 375ML")}
+            variant="light"
+          />
+        </div>
       </div>
     </motion.div>
   );
