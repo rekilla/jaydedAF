@@ -1,31 +1,34 @@
-import { useState, useEffect } from 'react'; // Import hooks
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import './index.css';
 
 // Import Layout Components
 import Header from './components/Header';
-import { FooterSection } from './components/ui/footer-section'; // Import new footer
-// Removed CombinedBackground import
-// import { CombinedBackground } from './components/ui/CombinedBackground';
+import { FooterSection } from './components/ui/footer-section';
 
-// Import Page Components
-import HomePage from './pages/HomePage';
+// Lazy load page components for better performance
+const HomePage = lazy(() => import('./pages/HomePage'));
+const StoreLocatorPage = lazy(() => import('./pages/StoreLocatorPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const LemonDropPage = lazy(() => import('./pages/cocktails/LemonDropPage'));
+const LavenderPage = lazy(() => import('./pages/cocktails/LavenderPage'));
+const CucumberPage = lazy(() => import('./pages/cocktails/CucumberPage'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const TermsOfServicePage = lazy(() => import('./pages/TermsOfServicePage'));
+const PressPage = lazy(() => import('./pages/PressPage'));
 
-
-import StoreLocatorPage from './pages/StoreLocatorPage';
-import ContactPage from './pages/ContactPage';
-// Import Individual Cocktail Pages
-import LemonDropPage from './pages/cocktails/LemonDropPage';
-import LavenderPage from './pages/cocktails/LavenderPage';
-import CucumberPage from './pages/cocktails/CucumberPage';
-// Import Age Gate Modal
+// Import Age Gate Modal (keep this eager since it's critical)
 import { AgeVerificationModal } from './components/AgeVerificationModal';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsOfServicePage from './pages/TermsOfServicePage';
-import PressPage from './pages/PressPage';
 import { CartProvider, useCart } from './contexts/CartContext';
 import { CartSidebar } from './components/CartSidebar';
+
+// Loading component
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-screen bg-black">
+    <div className="text-white">Loading...</div>
+  </div>
+);
 
 
 function AppContent() {
@@ -36,26 +39,20 @@ function AppContent() {
       {/* Apply base background and ensure full height */}
       <div className="flex flex-col min-h-screen bg-brand-background text-brand-text">
         <Header />
-        {/* Main content area grows to push footer down */}
         <main className="flex-grow">
-          <Routes>
-            {/* Render all pages directly */}
-            <Route path="/" element={<HomePage />} />
-            
-            {/* Add routes for individual cocktail pages */}
-            <Route path="/cocktails/lemon-drop" element={<LemonDropPage />} />
-            <Route path="/cocktails/lavender" element={<LavenderPage />} />
-            <Route path="/cocktails/cucumber" element={<CucumberPage />} />
-            
-            <Route path="/store-locator" element={<StoreLocatorPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-            <Route path="/press" element={<PressPage />} />
-
-            {/* TODO: Add a 404 Not Found route */}
-            {/* <Route path="*" element={<NotFoundPage />} /> */}
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/cocktails/lemon-drop" element={<LemonDropPage />} />
+              <Route path="/cocktails/lavender" element={<LavenderPage />} />
+              <Route path="/cocktails/cucumber" element={<CucumberPage />} />
+              <Route path="/store-locator" element={<StoreLocatorPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+              <Route path="/press" element={<PressPage />} />
+            </Routes>
+          </Suspense>
         </main>
         {/* Use the new FooterSection */}
         <FooterSection />
