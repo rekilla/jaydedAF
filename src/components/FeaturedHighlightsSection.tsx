@@ -12,13 +12,13 @@ interface Highlight {
 const highlights: Highlight[] = [
   {
     id: 1,
-    title: "All Natural Flavors",
-    icon: "/leaf-svgrepo-com.svg"
+    title: "Gin Based",
+    icon: "/martini-glass-with-straw-svgrepo-com.svg"
   },
   {
     id: 2,
-    title: "Gin Based",
-    icon: "/martini-glass-with-straw-svgrepo-com.svg"
+    title: "All Natural Flavors",
+    icon: "/leaf-svgrepo-com.svg"
   },
   {
     id: 3,
