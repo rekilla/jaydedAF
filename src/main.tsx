@@ -9,6 +9,22 @@ import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App.tsx'
 
+// Performance monitoring
+if (typeof window !== 'undefined') {
+  // Measure LCP
+  new PerformanceObserver((list) => {
+    const entries = list.getEntries();
+    const lastEntry = entries[entries.length - 1];
+    console.log('LCP:', lastEntry.startTime);
+  }).observe({ entryTypes: ['largest-contentful-paint'] });
+
+  // Measure page load time
+  window.addEventListener('load', () => {
+    const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+    console.log('Page Load Time:', navigation.loadEventEnd - navigation.loadEventStart);
+  });
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>
