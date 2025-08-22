@@ -33,14 +33,15 @@ export default function SizeChooser({
 
   useEffect(() => {
     console.log('[BN] SizeChooser open state', open);
-    if (!open) return;
+
 
     (async () => {
       console.log('[BN] Ensuring BottleNexus...');
       await ensureBottleNexus();
       console.log('[BN] BottleNexus ensured');
 
-      if (!once750.current && slot750Ref.current) {
+      // Only mount if not already mounted and elements exist
+      if (!once750.current && slot750Ref.current && slot750Ref.current.children.length === 0) {
         once750.current = true;
         console.log('[BN] Mounting 750ML button', { id: id750 });
         mountBnCreateComponent(slot750Ref.current, {
@@ -49,7 +50,7 @@ export default function SizeChooser({
           options: options750,
         });
       }
-      if (!once375.current && slot375Ref.current) {
+      if (!once375.current && slot375Ref.current && slot375Ref.current.children.length === 0) {
         once375.current = true;
         console.log('[BN] Mounting 375ML button', { id: id375 });
         mountBnCreateComponent(slot375Ref.current, {
@@ -59,7 +60,7 @@ export default function SizeChooser({
         });
       }
     })();
-  }, [open, id375, id750, token, options375, options750]);
+  }, [open, id375, id750, token]);
 
   return (
     <div className={`bn-chooser ${open ? "open" : ""} ${variant === "light" ? "bn-theme-light" : ""}`}>

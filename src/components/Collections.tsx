@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { products, Product } from '../data/products';
@@ -43,23 +43,60 @@ const ProductCard: React.FC<{
       ? 'lavender'
       : 'cucumber') as keyof typeof BN_IDS;
 
-  // Override BN button styles for white background (black outline/text; hover fill black, text white)
-  const makeLightOptions = (text: string) => ({
+  // Memoize the light options to prevent recreation on every render
+  const options750 = useMemo(() => ({
     ...baseOptions,
-    buttonText: text,
+    buttonText: "750ml",
     styles: {
       "[data-component='button']": {
-        "background-color": "TRANSPARENT",
+        "width": "141px",
+        "height": "45px",
+        "background-color": "#FFFFFF",
         "border": "solid 1px #000000",
-        "color": "#000000"
+        "color": "#000000",
+        "font-size": "14px",
+        "font-weight": "500",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.05em",
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "gap": "8px",
       },
       "[data-component='button']:hover": {
-        "background-color": "#000000",
-        "color": "#FFFFFF",
+        "background-color": "#F3F4F6",
+        "color": "#000000",
         "border": "solid 1px #000000"
       }
     }
-  });
+  }), []);
+
+  const options375 = useMemo(() => ({
+    ...baseOptions,
+    buttonText: "375ml",
+    styles: {
+      "[data-component='button']": {
+        "width": "141px",
+        "height": "45px",
+        "background-color": "#FFFFFF",
+        "border": "solid 1px #000000",
+        "color": "#000000",
+        "font-size": "14px",
+        "font-weight": "500",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.05em",
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "gap": "8px",
+      },
+      "[data-component='button']:hover": {
+        "background-color": "#F3F4F6",
+        "color": "#000000",
+        "border": "solid 1px #000000"
+      }
+    }
+  }), []);
 
   return (
     <motion.div
@@ -91,8 +128,8 @@ const ProductCard: React.FC<{
             id750={BN_IDS[productKey]["750"]}
             id375={BN_IDS[productKey]["375"]}
             token={BN_TOKEN}
-            options750={makeLightOptions("PRE ORDER 750ML")}
-            options375={makeLightOptions("PRE ORDER 375ML")}
+            options750={options750}
+            options375={options375}
             variant="light"
           />
         </div>
@@ -114,7 +151,7 @@ export const LuxuryCollectionSection: React.FC = () => {
 
 
   return (
-      <section className="relative py-20 sm:py-24 pb-0 bg-white">
+      <section id="collection-section" className="relative py-8 sm:py-9 pb-0 bg-white">
         <InView className="relative z-10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-[120px]">
             <div className="text-center mb-12">

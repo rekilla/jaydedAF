@@ -88,7 +88,7 @@ export const FeaturedHighlightsSection: React.FC = () => {
                 </div>
                 
                 {/* Title */}
-                <h3 className="text-sm sm:text-base font-light text-white mb-2 tracking-wider">
+                <h3 className="text-sm sm:text-base font-light text-white mb-2 tracking-wider text-center">
                   {highlight.title}
                 </h3>
               </div>

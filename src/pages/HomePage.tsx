@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
               <div className="aspect-[21/9] w-full bg-brand-dark/50 overflow-hidden">
                   <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
                       <iframe
-                          src="https://player.vimeo.com/video/799286520?h=f2363332ee&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479&muted=1&loop=1&controls=0"
+                          src="https://player.vimeo.com/video/799998576?h=f2363332ee&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479&muted=1&loop=1&controls=0"
                           frameBorder="0"
                           allow="autoplay; picture-in-picture; clipboard-write; encrypted-media; web-share"
                           referrerPolicy="strict-origin-when-cross-origin"
@@ -117,9 +117,16 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-brand-dark text-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
               <motion.div whileHover={{ scale: 1.05 }} transition={{ type: 'spring', stiffness: 400 }}>
-                <Link to="/store-locator">
+                <button
+                  onClick={() => {
+                    const collectionSection = document.getElementById('collection-section');
+                    if (collectionSection) {
+                      collectionSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
                   <StyledButton>Purchase</StyledButton>
-                </Link>
+                </button>
               </motion.div>
           </div>
       </section>

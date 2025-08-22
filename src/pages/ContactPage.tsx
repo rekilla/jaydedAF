@@ -110,7 +110,7 @@ const ContactPage: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-green-500/10 border border-green-500/30 text-green-300 text-center p-4 rounded-lg mb-8"
+            className="bg-gray-100 border border-gray-300 text-black text-center p-4 rounded-lg mb-8"
           >
             Thank you for your message! We'll get back to you soon.
           </motion.div>

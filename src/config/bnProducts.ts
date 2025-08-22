@@ -30,16 +30,26 @@ export const baseOptions = {
   donation: "no_donation",
   styles: {
     "[data-component='button']": {
-      "background-color": "TRANSPARENT",
-      "border": "solid 1px #FFFFFF",
-      "color": "#FFFFFF"
+      "width": "141px",
+      "height": "45px",
+      "background-color": "#FFFFFF",
+      "border": "solid 1px #000000",
+      "color": "#000000",
+      "font-size": "14px",
+      "font-weight": "500",
+      "text-transform": "uppercase",
+      "letter-spacing": "0.05em",
+      "display": "flex",
+      "align-items": "center",
+      "justify-content": "center",
+      "gap": "8px",
     },
     "[data-component='button']:hover": {
-      "background-color": "#FFFFFF",
-      "color": "#000000",
-      "border": "solid 1px #FFFFFF"
+      "background-color": "#000000",
+      "color": "#FFFFFF",
+      "border": "solid 1px #000000"
     },
   },
 } as const;
 
-export const opts = (text: string) => ({ ...baseOptions, buttonText: text });
+export const opts = (size: "375ml" | "750ml") => ({ ...baseOptions, buttonText: size });

@@ -181,8 +181,8 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
                 id750={BN_IDS[flavorKey]["750"]}
                 id375={BN_IDS[flavorKey]["375"]}
                 token={BN_TOKEN}
-                options750={opts("PRE ORDER 750ML")}
-                options375={opts("PRE ORDER 375ML")}
+                options750={opts("750ml")}
+                options375={opts("375ml")}
               />
             </div>
           </section>
@@ -263,8 +263,8 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
                   id750={BN_IDS[flavorKey]["750"]}
                   id375={BN_IDS[flavorKey]["375"]}
                   token={BN_TOKEN}
-                  options750={opts("PRE ORDER 750ML")}
-                  options375={opts("PRE ORDER 375ML")}
+                  options750={opts("750ml")}
+                  options375={opts("375ml")}
                 />
               </div>
             </motion.div>
@@ -274,7 +274,12 @@ const FlavorPageLayout: React.FC<FlavorPageLayoutProps> = ({
         <PerfectServeFab
           showZoneId="main-content"
           hideZoneIds={['page-hero', 'page-footer']}
-          onClick={() => alert(`Added ${flavorData.name} to cart!`)}
+          onClick={() => {
+            const ctaSection = document.getElementById('page-footer');
+            if (ctaSection) {
+              ctaSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
         />
         <FlavorNavigation currentProductId={closingCta.productId} />
       </main>
